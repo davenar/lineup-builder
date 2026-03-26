@@ -1,1 +1,28 @@
-/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+
+@theme {
+  --color-brand-950: #04091a;
+  --color-brand-900: #060d24;
+  --color-brand-800: #0a1535;
+  --color-brand-700: #0f1f4d;
+  --color-brand-600: #162660;
+  --color-brand-400: #3b5bdb;
+  --color-brand-300: #748ffc;
+  --color-brand-200: #bac8ff;
+  --color-brand-100: #edf2ff;
+}
+
+@layer base {
+  body {
+    @apply bg-brand-900 text-brand-100;
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: rgba(10, 21, 53, 0.45);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+}

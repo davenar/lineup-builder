@@ -1,3 +1,10 @@
 import { Routes } from '@angular/router';
+import { LineUpBuilderComponent } from './features/line-up-builder/pages/line-up-builder/line-up-builder.component';
+import { HomepageComponent } from './features/homepage/pages/homepage/homepage.component';
 
-export const routes: Routes = [];
+export const routes: Routes = [
+
+    { path: 'builder', component: LineUpBuilderComponent },
+    { path: 'home', component: HomepageComponent },
+    { path: '', redirectTo: '/home', pathMatch: 'full' }
+];
