@@ -1,5 +1,5 @@
 import { Component, signal, HostListener } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { RouterModule } from '@angular/router';
 
 export interface NavLink {
@@ -10,7 +10,7 @@ export interface NavLink {
 @Component({
   selector: 'app-main-header',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [RouterModule],
   templateUrl: './main-header.component.html',
 })
 export class MainHeaderComponent {

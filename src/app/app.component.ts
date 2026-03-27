@@ -4,12 +4,12 @@ import { FullscreenLoaderComponent } from './core/components/fullscreen-loader/f
 import { PlayerService } from './features/line-up-builder/services/player.service';
 import { MainHeaderComponent } from './shared/components/header/main-header/main-header.component';
 import { MainFooterComponent } from './shared/components/footer/main-footer/main-footer.component';
-import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-root',
   host: { class: 'flex flex-col min-h-screen' },
-  imports: [CommonModule, RouterOutlet, FullscreenLoaderComponent, MainHeaderComponent, MainFooterComponent],
+  imports: [RouterOutlet, FullscreenLoaderComponent, MainHeaderComponent, MainFooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
