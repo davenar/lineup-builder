@@ -1,28 +1,182 @@
 @import "tailwindcss";
 
+/* ============================================================
+   THEME TOKENS
+   ============================================================ */
 @theme {
-  --color-brand-950: #04091a;
-  --color-brand-900: #060d24;
-  --color-brand-800: #0a1535;
-  --color-brand-700: #0f1f4d;
-  --color-brand-600: #162660;
-  --color-brand-400: #3b5bdb;
-  --color-brand-300: #748ffc;
-  --color-brand-200: #bac8ff;
-  --color-brand-100: #edf2ff;
+
+  /* --- Breakpoints (generates tb:, sd: utility variants) --- */
+  --breakpoint-tb: 768px;
+  --breakpoint-sd: 1024px;
+
+  /* --- Brand color palette (dark blue) --- */
+  --color-lup-darkest:  #04091a;
+  --color-lup-darker:   #060d24;
+  --color-lup-dark:     #0a1535;
+  --color-lup-mid-dark: #0f1f4d;
+  --color-lup-mid:      #162660;
+  --color-lup-accent:   #3b5bdb;
+  --color-lup-soft:     #748ffc;
+  --color-lup-pale:     #bac8ff;
+  --color-lup-lightest: #edf2ff;
+
+  /* --- Semantic background colors --- */
+  --color-bg-page:     #060d24;
+  --color-bg-surface:  #0a1535;
+  --color-bg-elevated: #0f1f4d;
+  --color-bg-overlay:  #162260cc;
+
+  /* --- Semantic text colors --- */
+  --color-text-primary: #e8eeff;  /* ice-blue white — harmonious on dark blue */
+  --color-text-muted:   #8899cc;  /* mid-blue for secondary copy              */
+  --color-text-inverse: #060d24;  /* dark text on light surfaces              */
+
+  /* --- Spacing scale (1rem = 10px)
+       Defined as --spacing-* so Tailwind maps them to
+       p-xs, px-sm, mt-base, gap-lg … etc. directly.    --- */
+  --spacing-xs:   0.4rem;
+  --spacing-sm:   0.8rem;
+  --spacing-base: 1.6rem;
+  --spacing-lg:   2.4rem;
+  --spacing-xl:   4.0rem;
+  --spacing-xxl:  6.4rem;
 }
 
+/* ============================================================
+   BASE LAYER
+   ============================================================ */
 @layer base {
+
+  :root {
+    font-size: 62.5%; /* 1rem = 10px */
+  }
+
   body {
-    @apply bg-brand-900 text-brand-100;
+    font-size: 1.6rem;
+    background-color: var(--color-bg-page);
+    color: var(--color-text-primary);
+    font-family: system-ui, sans-serif;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--color-text-primary);
+    line-height: 1.2;
+    font-weight: 700;
+  }
+
+  h1 { font-size: 4.8rem; }
+  h2 { font-size: 3.6rem; }
+  h3 { font-size: 2.8rem; }
+  h4 { font-size: 2.2rem; }
+  h5 { font-size: 1.8rem; }
+  h6 { font-size: 1.6rem; }
+
+  p {
+    color: var(--color-text-muted);
+    font-size: 1.6rem;
+    margin-bottom: var(--spacing-base);
+  }
+
+  small {
+    font-size: 1.2rem;
+    color: var(--color-text-muted);
   }
 }
 
+/* ============================================================
+   UTILITIES
+   ============================================================ */
 @layer utilities {
+
+  /* --- Glass surface --- */
   .glass {
     background: rgba(10, 21, 53, 0.45);
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1.2rem;
+  }
+
+  /* --- Elevated surface using glass (for future popups, drawers, panels) --- */
+  .bg-elevated {
+    background: rgba(15, 31, 77, 0.72);
+    backdrop-filter: blur(24px) saturate(200%);
+    -webkit-backdrop-filter: blur(24px) saturate(200%);
+    border: 1px solid rgba(116, 143, 252, 0.12);
+    border-radius: 1.6rem;
+  }
+
+  /* --- Glow hover effect --- */
+  .glow-hover {
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  .glow-hover:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 0 0 1px rgba(59, 91, 219, 0.50),
+      0 0 12px rgba(59, 91, 219, 0.45),
+      0 0 28px rgba(116, 143, 252, 0.25),
+      0 0 52px rgba(116, 143, 252, 0.10);
+  }
+
+  /* --- Buttons: shared base --- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    border-radius: 0;              /* default: rectangular */
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: box-shadow 0.25s ease, background-color 0.25s ease,
+                border-color 0.25s ease, color 0.25s ease,
+                transform 0.25s ease;
+    text-decoration: none;
+    white-space: nowrap;
+    user-select: none;
+  }
+
+  /* --- Shape modifiers --- */
+  .btn-rounded { border-radius: 0.8rem; }
+  .btn-pill    { border-radius: 999px;  }
+
+  /* --- Button: primary --- */
+  .btn-primary {
+    background-color: var(--color-lup-accent);
+    border-color: var(--color-lup-accent);
+    color: var(--color-text-primary);
+  }
+
+  .btn-primary:hover:not(:disabled) {
+    background-color: var(--color-lup-soft);
+    border-color: var(--color-lup-soft);
+  }
+
+  /* --- Button: outline --- */
+  .btn-outline {
+    background-color: transparent;
+    border-color: var(--color-lup-soft);
+    color: var(--color-text-primary);
+  }
+
+  .btn-outline:hover:not(:disabled) {
+    background-color: rgba(116, 143, 252, 0.12);
+    border-color: var(--color-text-primary);
+    color: var(--color-text-primary);
+  }
+
+  /* --- Button: disabled state --- */
+  .btn:disabled,
+  .btn[aria-disabled="true"] {
+    opacity: 0.38;
+    cursor: not-allowed;
+    box-shadow: none;
+    pointer-events: none;
   }
 }
