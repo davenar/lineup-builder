@@ -1,0 +1,25 @@
+@if (state(); as panel) {
+<div class="panel-root" [class.panel-root-open]="panel.isOpen" [ngStyle]="rootStyles()">
+  @if (panel.options.showBackdrop) {
+  <button type="button" class="panel-backdrop" [class.panel-backdrop-open]="panel.isOpen" aria-label="Close panel"
+    (click)="closeFromBackdrop()"></button>
+  }
+
+  <aside role="dialog" aria-modal="true" [attr.aria-label]="panel.options.ariaLabel" [class]="panelClasses()"
+    [ngStyle]="panelStyles()">
+    @if (hasCloseMode('close-button')) {
+
+    <button type="button" class="btn btn-outline glow-hover panel-close-btn border-0!" aria-label="Close panel"
+      (click)="closeFromButton()">
+
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-[2rem] w-[2rem]" fill="none" viewBox="0 0 24 24"
+        stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+    }
+
+    <ng-container [ngComponentOutlet]="panel.component" [ngComponentOutletInputs]="panel.inputs" />
+  </aside>
+</div>
+}

@@ -104,11 +104,17 @@
    ============================================================ */
 @layer utilities {
   /* --- Glass surface --- */
-  .glass {
-    background: rgba(10, 21, 53, 0.45);
+  .glass,
+  .app-header,
+  .panel-surface {
+    background: color-mix(in srgb, var(--color-bg-surface) 45%, transparent);
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid
+      color-mix(in srgb, var(--color-text-primary) 8%, transparent);
+  }
+
+  .glass {
     border-radius: 1.2rem;
   }
 
@@ -546,5 +552,134 @@
     white-space: pre;
     tab-size: 2;
     margin-top: var(--spacing-sm);
+  }
+
+  /* ── APP HEADER ───────────────────────────────────────────── */
+  app-main-header {
+    position: sticky;
+    top: 0;
+    z-index: 60;
+    width: 100%;
+    border-right: 0;
+    border-left: 0;
+    border-radius: 0;
+  }
+
+  /* ── PANEL ───────────────────────────────────────────────── */
+  .panel-root {
+    position: fixed;
+    inset: 0;
+    z-index: 80;
+    pointer-events: none;
+  }
+
+  .panel-root-open {
+    pointer-events: auto;
+  }
+
+  .panel-backdrop {
+    position: absolute;
+    inset: 0;
+    border: 0;
+    background: color-mix(in srgb, var(--color-lup-darkest) 54%, transparent);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    opacity: 0;
+    transition: opacity 0.32s ease;
+    cursor: pointer;
+  }
+
+  .panel-backdrop-open {
+    opacity: 1;
+  }
+
+  @starting-style {
+    .panel-backdrop-open {
+      opacity: 0;
+    }
+  }
+
+  .panel-surface {
+    position: absolute;
+    overflow: auto;
+    padding: var(--panel-padding, var(--spacing-lg));
+    border-radius: 0;
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, var(--color-text-primary) 4%, transparent),
+      0 2.4rem 8rem
+        color-mix(in srgb, var(--color-lup-darkest) 45%, transparent);
+    transition:
+      transform 0.32s cubic-bezier(0.32, 0.72, 0, 1),
+      opacity 0.32s ease;
+    color: var(--color-text-primary);
+    opacity: 1;
+  }
+
+  .panel-has-close-button {
+    padding-top: calc(var(--panel-padding, var(--spacing-lg)) + 4.8rem);
+  }
+
+  .panel-close-btn {
+    position: absolute;
+    top: var(--spacing-base);
+    right: var(--spacing-base);
+    z-index: 1;
+  }
+
+  .panel-surface-left {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: min(80rem, 100vw);
+    transform: translateX(-100%);
+  }
+
+  .panel-surface-right {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(80rem, 100vw);
+    transform: translateX(100%);
+  }
+
+  .panel-surface-bottom {
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: var(--panel-bottom-height, 70dvh);
+    transform: translateY(100%);
+  }
+
+  .panel-surface-left.panel-open,
+  .panel-surface-right.panel-open {
+    transform: translateX(0);
+  }
+
+  .panel-surface-bottom.panel-open {
+    transform: translateY(0);
+  }
+
+  @starting-style {
+    .panel-surface-left.panel-open {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+
+    .panel-surface-right.panel-open {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+
+    .panel-surface-bottom.panel-open {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+  }
+
+  @media (max-width: 1023.98px) {
+    .panel-surface-left,
+    .panel-surface-right {
+      width: 100vw;
+    }
   }
 }

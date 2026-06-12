@@ -1,6 +1,7 @@
-import { Component, signal, HostListener } from '@angular/core';
-
+import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { MainMenuPanelComponent } from '../main-menu-panel/main-menu-panel.component';
+import { PanelService } from '../../../../core/services/panel.service';
 
 export interface NavLink {
   label: string;
@@ -14,25 +15,28 @@ export interface NavLink {
   templateUrl: './main-header.component.html',
 })
 export class MainHeaderComponent {
+  private readonly panelService = inject(PanelService);
+
+  readonly appTitle = 'MyApp';
+
   readonly navLinks: NavLink[] = [
-    { label: 'Home',     path: '/' },
-    { label: 'About',    path: '/about' },
-    { label: 'Services', path: '/services' },
-    { label: 'Contact',  path: '/contact' },
+    // { label: 'Home', path: '/' },
+    { label: 'About', path: '/about' },
+    // { label: 'Services', path: '/services' },
+    { label: 'Contact', path: '/contact' },
   ];
 
-  isMobileMenuOpen = signal(false);
-
-  toggleMobileMenu(): void {
-    this.isMobileMenuOpen.update(v => !v);
-  }
-
-  closeMobileMenu(): void {
-    this.isMobileMenuOpen.set(false);
-  }
-
-  @HostListener('document:keydown.escape')
-  onEscape(): void {
-    this.closeMobileMenu();
+  openMainPanel(): void {
+    this.panelService.open(MainMenuPanelComponent, {
+      desktopDirection: 'left',
+      mobileDirection: 'left',
+      // openUnderHeader: true,
+      // headerHeight: '6.4rem',
+      ariaLabel: 'Main panel',
+      closeModes: ['close-button', 'backdrop', 'escape'],
+      onClose: reason => {
+        console.log('Panel closed:', reason);
+      },
+    });
   }
 }

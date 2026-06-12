@@ -1,33 +1,30 @@
-<footer class="border-t border-white/10 bg-brand-950">
-  <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-
-    <!-- 3-column grid → 1 column on mobile -->
-    <div class="grid grid-cols-1 gap-8 sm:grid-cols-3">
+<footer class="border-t border-lup-mid bg-bg-surface">
+  <div class="mx-auto max-w-[90rem] px-base py-xl">
+    <div class="grid grid-cols-1 gap-lg tb:grid-cols-3">
       @for (col of columns; track col.heading) {
-        <div>
-          <h3 class="text-sm font-semibold text-white">{{ col.heading }}</h3>
-          <ul class="mt-4 space-y-2">
-            @for (link of col.links; track link.path) {
-              <li>
-                <a
-                  [routerLink]="link.path"
-                  class="text-sm text-brand-200 hover:text-white transition-colors"
-                >
-                  {{ link.label }}
-                </a>
-              </li>
-            }
-          </ul>
-        </div>
+      <div>
+        <h3 class="text-[1.3rem] font-bold uppercase tracking-[0.08em] text-text-primary">
+          {{ col.heading }}
+        </h3>
+
+        <ul class="mt-base flex flex-col gap-sm">
+          @for (link of col.links; track link.path) {
+          <li>
+            <a [routerLink]="link.path"
+              class="text-[1.3rem] font-semibold text-text-muted transition-colors hover:text-lup-pale">
+              {{ link.label }}
+            </a>
+          </li>
+          }
+        </ul>
+      </div>
       }
     </div>
 
-    <!-- Bottom bar -->
-    <div class="mt-10 border-t border-white/10 pt-6 text-center">
-      <p class="text-xs text-brand-200/60">
+    <div class="mt-xl border-t border-lup-mid pt-lg text-center">
+      <p class="mb-0 text-[1.2rem] text-text-muted">
         &copy; {{ currentYear }} MyApp. All rights reserved.
       </p>
     </div>
-
   </div>
 </footer>

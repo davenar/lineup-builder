@@ -310,4 +310,87 @@
 
   </div>
 
+  <!-- ════════════════════════════════════════════════════════
+     PANEL
+     ════════════════════════════════════════════════════════ -->
+<div class="mb-xxl">
+  <p class="text-[1.2rem] font-bold tracking-[0.12em] uppercase text-lup-soft mb-base pb-sm border-b border-lup-mid">
+    Panel
+  </p>
+
+  <p class="text-[1.3rem] text-text-muted mb-base">
+    Global glass panel rendered through
+    <code class="bg-lup-mid-dark px-xs rounded text-lup-pale">PanelService</code>.
+    The surface is glass, has no border radius, and the close action uses the standard
+    rectangular button style.
+  </p>
+
+  <div class="glass p-lg grid gap-lg mb-base">
+    <div>
+      <p class="text-[1.2rem] font-semibold tracking-[0.08em] uppercase text-text-muted mt-base mb-sm">
+        Directions
+      </p>
+
+      <div class="flex flex-wrap gap-base">
+        <button
+          type="button"
+          class="btn btn-primary glow-hover"
+          (click)="openPanelLeft()"
+        >
+          Open left
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-primary glow-hover"
+          (click)="openPanelRight()"
+        >
+          Open right
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-primary glow-hover"
+          (click)="openPanelBottom()"
+        >
+          Open bottom
+        </button>
+      </div>
+    </div>
+
+    <div>
+      <p class="text-[1.2rem] font-semibold tracking-[0.08em] uppercase text-text-muted mt-base mb-sm">
+        Responsive and header-aware
+      </p>
+
+      <div class="flex flex-wrap gap-base">
+        <button
+          type="button"
+          class="btn btn-outline glow-hover"
+          (click)="openPanelResponsive()"
+        >
+          Right desktop / bottom mobile
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-outline glow-hover"
+          (click)="openPanelUnderHeader()"
+        >
+          Open under header
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <pre class="sg-code">&lt;button
+  type="button"
+  class="btn btn-primary glow-hover"
+  (click)="openPanelLeft()"
+&gt;
+  Open left
+&lt;/button&gt;</pre>
+</div>
+
+
 </section>
