@@ -1,1 +1,26 @@
-<p>line-up-builder works!</p>
+<div class="flex flex-col sd:flex-row w-full sd:h-screen">
+
+  <!-- PITCH -->
+  <div class="w-full sd:w-1/2 flex items-start justify-center p-base">
+    <div ngClass="grid grid-rows-6 grid-cols-5 [aspect-ratio:68/105] [max-height:75dvh] sd:[max-height:85dvh] [width:min(calc(75dvh*68/105),100%)] sd:[width:min(calc(85dvh*68/105),100%)] {{ customPitchClasses }} [&>*]:border [&>*]:border-lup-soft/30 [&>*]:text-text-primary">
+      @for (n of playerPositions; track n) {
+        <div class="relative flex items-center justify-center">
+          <span class="absolute top-1 right-1 text-sm text-text-muted">{{ n }}</span>
+          <span>+</span>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- BENCH -->
+  <div class="w-full sd:w-1/2 flex flex-col items-start justify-start p-base border-t border-lup-soft/20 sd:border-t-0 sd:border-l">
+    <div class="grid grid-cols-1 w-full [&>*]:border [&>*]:border-lup-soft/30 [&>*]:px-base [&>*]:py-xs [&>*]:flex [&>*]:items-center [&>*]:text-text-primary">
+      @for (n of benchPositions; track n) {
+        <div>
+          <p>player {{ n }}</p>
+        </div>
+      }
+    </div>
+  </div>
+
+</div>

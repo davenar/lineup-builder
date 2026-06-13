@@ -20,10 +20,8 @@ export class MainHeaderComponent {
   readonly appTitle = 'MyApp';
 
   readonly navLinks: NavLink[] = [
-    // { label: 'Home', path: '/' },
-    { label: 'About', path: '/about' },
-    // { label: 'Services', path: '/services' },
-    { label: 'Contact', path: '/contact' },
+    { label: 'Line Up Builder', path: '/builder' },
+    { label: 'Styleguide', path: '/styleguide' }
   ];
 
   openMainPanel(): void {
