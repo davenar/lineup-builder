@@ -1,0 +1,66 @@
+<div class="flex h-full flex-col">
+  <p class="mb-xs text-[1.2rem] font-bold uppercase tracking-[0.12em] text-lup-soft">
+    Player search
+  </p>
+
+  <h2 class="mb-base text-[2.8rem]">
+    Select a player
+    @if (slotLabel) {
+      <span class="text-lup-soft">· {{ slotLabel }}</span>
+    }
+  </h2>
+
+  <div class="field mb-base">
+    <label class="field-label" for="player-search-input">Player name</label>
+    <input
+      id="player-search-input"
+      class="input"
+      type="text"
+      placeholder="Type at least 3 letters…"
+      [formControl]="searchControl"
+      autocomplete="off"
+    />
+    <span class="field-hint">Search starts automatically from the third character.</span>
+    @if (searchError()) {
+      <span class="field-error">{{ searchError() }}</span>
+    }
+  </div>
+
+  <div class="flex-1 overflow-y-auto">
+    @if (isSearching()) {
+      <p class="text-[1.4rem] text-text-muted">Searching…</p>
+    } @else if (hasSearchedOnce() && results().length === 0 && !searchError()) {
+      <p class="text-[1.4rem] text-text-muted">No players found.</p>
+    }
+
+    <ul class="flex flex-col gap-sm">
+      @for (result of results(); track result.pid) {
+        <li>
+          <button
+            type="button"
+            class="glass glow-hover flex w-full items-center gap-base p-sm text-left"
+            [disabled]="isLoadingDetail()"
+            (click)="onSelectPlayer(result)"
+          >
+            <img
+              [src]="result.pimg"
+              [alt]="result.fn"
+              class="h-[4rem] w-[4rem] flex-shrink-0 rounded-full object-cover bg-lup-mid-dark"
+              loading="lazy"
+            />
+            <div class="flex flex-1 flex-col">
+              <span class="text-[1.4rem] font-semibold text-text-primary">{{ result.uname || result.fn }}</span>
+              <span class="text-[1.2rem] text-text-muted">
+                {{ result.ps }}
+                @if (result.cn) {
+                  · {{ result.cn }}
+                }
+              </span>
+            </div>
+            <span class="badge" style="--badge-color: #3b5bdb">{{ result.r }}</span>
+          </button>
+        </li>
+      }
+    </ul>
+  </div>
+</div>

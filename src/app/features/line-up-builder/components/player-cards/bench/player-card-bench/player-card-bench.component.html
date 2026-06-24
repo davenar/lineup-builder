@@ -1,0 +1,11 @@
+@switch (lineupState.benchCardStyle()) {
+  @case ('default') {
+    <app-player-card-bench-default [benchIndex]="benchIndex" />
+  }
+  @case ('sticker') {
+    <app-player-card-bench-sticker [benchIndex]="benchIndex" />
+  }
+  @default {
+    <app-player-card-bench-sticker [benchIndex]="benchIndex" />
+  }
+}

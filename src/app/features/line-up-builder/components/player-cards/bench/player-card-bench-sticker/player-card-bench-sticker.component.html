@@ -1,0 +1,34 @@
+@if (player()) {
+  <div class="glass glow-hover flex w-full items-center gap-base px-base py-sm cursor-pointer" (click)="onOpenSearchPanel()">
+    <img
+      [src]="player()!.player_img"
+      [alt]="player()!.shortname"
+      class="h-[3.2rem] w-[3.2rem] rounded-full object-cover bg-lup-mid-dark flex-shrink-0"
+      loading="lazy"
+    />
+    <div class="flex flex-1 flex-col">
+      <span class="text-[1.4rem] font-semibold text-text-primary">{{ player()!.shortname }}</span>
+      <span class="text-[1.2rem] text-text-muted">{{ player()!.mainposition }} · {{ player()!.teamname }}</span>
+    </div>
+    <span class="badge mr-base" style="--badge-color: #3b5bdb">{{ player()!.overallrating }}</span>
+    <button
+      type="button"
+      class="flex h-[1.8rem] w-[1.8rem] items-center justify-center rounded-full border border-lup-soft/40 bg-bg-elevated text-[1.2rem] leading-none text-text-primary flex-shrink-0"
+      aria-label="Rimuovi giocatore"
+      (click)="onRemovePlayer($event)"
+    >
+      ×
+    </button>
+  </div>
+} @else {
+  <button
+    type="button"
+    class="glow-hover flex w-full items-center gap-base border-2 border-dashed border-lup-soft/50 bg-transparent px-base py-sm text-left cursor-pointer"
+    (click)="onOpenSearchPanel()"
+  >
+    <span class="flex h-[3.2rem] w-[3.2rem] flex-shrink-0 items-center justify-center rounded-full border-2 border-dashed border-lup-soft/50 text-[1.8rem] font-light leading-none text-lup-soft">
+      +
+    </span>
+    <span class="text-[1.4rem] text-text-muted">Aggiungi riserva</span>
+  </button>
+}

@@ -1,0 +1,77 @@
+<div class="flex h-full flex-col">
+  <p class="mb-xs text-[1.2rem] font-bold uppercase tracking-[0.12em] text-lup-soft">
+    Impostazioni
+  </p>
+
+  <h2 class="mb-base text-[2.8rem]">
+    Formazione
+  </h2>
+
+  <div class="glass p-lg mb-base">
+    <app-select
+      label="Modulo"
+      placeholder="Seleziona un modulo…"
+      hint="Cambiando modulo i giocatori già assegnati restano nelle posizioni compatibili."
+      [options]="formationOptions"
+      [value]="lineupState.currentFormation().id"
+      (selected)="onFormationChange($event)"
+    />
+  </div>
+
+  <p class="text-[1.2rem] font-semibold tracking-[0.08em] uppercase text-text-muted mt-base mb-sm">
+    Aspetto
+  </p>
+
+  <div class="glass p-lg grid gap-lg mb-base">
+    <app-select
+      label="Stile card campetto"
+      placeholder="Seleziona uno stile…"
+      [options]="pitchCardStyleOptions"
+      [value]="lineupState.pitchCardStyle()"
+      (selected)="onPitchCardStyleChange($event)"
+    />
+
+    <app-select
+      label="Stile card panchina"
+      placeholder="Seleziona uno stile…"
+      [options]="benchCardStyleOptions"
+      [value]="lineupState.benchCardStyle()"
+      (selected)="onBenchCardStyleChange($event)"
+    />
+
+    <app-select
+      label="Sfondo campetto"
+      placeholder="Seleziona uno sfondo…"
+      [options]="pitchBackgroundOptions"
+      [value]="lineupState.pitchBackground()"
+      (selected)="onPitchBackgroundChange($event)"
+    />
+  </div>
+
+  <p class="text-[1.2rem] font-semibold tracking-[0.08em] uppercase text-text-muted mt-base mb-sm">
+    Salvataggio locale
+  </p>
+
+  <div class="glass p-lg flex flex-wrap items-center gap-base mb-base">
+    <button type="button" class="btn btn-rounded btn-primary glow-hover" (click)="onSave()">
+      Salva formazione
+    </button>
+
+    <button type="button" class="btn btn-rounded btn-outline glow-hover" (click)="onReset()">
+      Reset
+    </button>
+
+    <button
+      type="button"
+      class="btn btn-rounded btn-outline glow-hover"
+      [disabled]="!canLoadSavedLineup()"
+      (click)="onLoad()"
+    >
+      Carica salvata
+    </button>
+  </div>
+
+  <p class="field-hint">
+    "Carica salvata" si attiva solo se in questo browser è presente una formazione valida salvata in precedenza.
+  </p>
+</div>

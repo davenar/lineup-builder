@@ -2,25 +2,24 @@
 
   <!-- PITCH -->
   <div class="w-full sd:w-1/2 flex items-start justify-center p-base">
-    <div ngClass="grid grid-rows-6 grid-cols-5 [aspect-ratio:68/105] [max-height:75dvh] sd:[max-height:85dvh] [width:min(calc(75dvh*68/105),100%)] sd:[width:min(calc(85dvh*68/105),100%)] {{ customPitchClasses }} [&>*]:border [&>*]:border-lup-soft/30 [&>*]:text-text-primary">
-      @for (n of playerPositions; track n) {
+    <div
+      [class]="'grid grid-rows-6 grid-cols-5 [aspect-ratio:68/105] [max-height:75dvh] sd:[max-height:85dvh] [width:min(calc(75dvh*68/105),100%)] sd:[width:min(calc(85dvh*68/105),100%)] [&>*]:border [&>*]:border-lup-soft/30 [&>*]:text-text-primary ' + pitchClasses()"
+    >
+      @for (cellIndex of pitchCells; track cellIndex) {
         <div class="relative flex items-center justify-center">
-          <span class="absolute top-1 right-1 text-sm text-text-muted">{{ n }}</span>
-          <span>+</span>
+          @if (lineupState.activeSlotsByCell().has(cellIndex)) {
+            <app-player-card-pitch [slot]="lineupState.activeSlotsByCell().get(cellIndex)!" />
+          }
         </div>
       }
     </div>
   </div>
 
   <!-- BENCH -->
-  <div class="w-full sd:w-1/2 flex flex-col items-start justify-start p-base border-t border-lup-soft/20 sd:border-t-0 sd:border-l">
-    <div class="grid grid-cols-1 w-full [&>*]:border [&>*]:border-lup-soft/30 [&>*]:px-base [&>*]:py-xs [&>*]:flex [&>*]:items-center [&>*]:text-text-primary">
-      @for (n of benchPositions; track n) {
-        <div>
-          <p>player {{ n }}</p>
-        </div>
-      }
-    </div>
+  <div class="w-full sd:w-1/2 flex flex-col items-start justify-start p-base border-t border-lup-soft/20 sd:border-t-0 sd:border-l gap-sm">
+    @for (benchIndex of benchSlots; track benchIndex) {
+      <app-player-card-bench [benchIndex]="benchIndex" />
+    }
   </div>
 
 </div>

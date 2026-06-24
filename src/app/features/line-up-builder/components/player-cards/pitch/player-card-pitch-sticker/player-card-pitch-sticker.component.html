@@ -1,0 +1,23 @@
+@if (player()) {
+<div class="glass glow-hover relative flex aspect-square w-[82%] flex-col items-center justify-center gap-xs rounded-full p-xs text-center cursor-pointer"
+    (click)="onOpenSearchPanel()">
+    <button type="button"
+        class="absolute -top-1 -right-1 flex h-[1.8rem] w-[1.8rem] items-center justify-center rounded-full border border-lup-soft/40 bg-bg-elevated text-[1.2rem] leading-none text-text-primary"
+        aria-label="Rimuovi giocatore" (click)="onRemovePlayer($event)">
+        ×
+    </button>
+
+    <img [src]="player()!.player_img" [alt]="player()!.shortname"
+        class="h-[3.6rem] w-[3.6rem] rounded-full object-cover bg-lup-mid-dark" loading="lazy" />
+    <span class="truncate text-[1.1rem] font-semibold leading-tight text-text-primary max-w-full px-xs">
+        {{ player()!.shortname }}
+    </span>
+    <span class="badge" style="--badge-color: #3b5bdb">{{ player()!.overallrating }}</span>
+</div>
+} @else {
+<button type="button"
+    class="glow-hover flex aspect-square w-[70%] items-center justify-center rounded-full border-2 border-dashed border-lup-soft/50 bg-transparent text-[2.4rem] font-light leading-none text-lup-soft cursor-pointer"
+    [attr.aria-label]="'Aggiungi giocatore - ' + slot.fullLabel" (click)="onOpenSearchPanel()">
+    +
+</button>
+}

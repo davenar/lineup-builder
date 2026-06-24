@@ -18,25 +18,9 @@ export class AppComponent implements OnInit {
   title = 'lup';
 
 
-  constructor(private playerSvc: PlayerService) { }
+  constructor() { }
 
 
   ngOnInit(): void {
-    this.testSearchPlayers();
-  }
-
-  testSearchPlayers() {
-    const options = { showFullscreenLoader: true };
-    this.playerSvc.searchPlayers('baschirotto', options).subscribe(
-      {
-        next: (data) => {
-          console.log('Player Info:', data);
-        },
-        error: (error) => {
-          console.error('Error fetching player info:', error);
-        }
-      }
-    );
-
   }
 }
