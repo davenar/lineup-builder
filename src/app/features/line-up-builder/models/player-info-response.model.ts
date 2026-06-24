@@ -255,4 +255,14 @@ export interface PlayerInfoData {
 
     /** Wage as integer */
     wageInt: number;
+
+
+    /**
+     * Nation flag image URL.
+     * Not part of the raw /getPlayerInfo response — the detail endpoint
+     * doesn't return it. It's enriched client-side from the search result
+     * (`SearchPlayerResponse.nimg`) at selection time, see
+     * PlayerSearchPanelContentComponent.onSelectPlayer().
+     */
+    nation_img?: string;
 }

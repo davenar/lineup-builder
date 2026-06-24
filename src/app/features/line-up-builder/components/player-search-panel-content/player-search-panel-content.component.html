@@ -33,7 +33,7 @@
       <p class="text-[1.4rem] text-text-muted">No players found.</p>
     }
 
-    <ul class="flex flex-col gap-sm">
+    <ul class="flex flex-col gap-lg">
       @for (result of results(); track result.pid) {
         <li>
           <button
@@ -57,6 +57,12 @@
                 }
               </span>
             </div>
+            <img
+              [src]="result.nimg"
+              [alt]="''"
+              class="h-[1.6rem] w-auto flex-shrink-0 object-contain"
+              loading="lazy"
+            />
             <span class="badge" style="--badge-color: #3b5bdb">{{ result.r }}</span>
           </button>
         </li>

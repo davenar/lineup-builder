@@ -15,10 +15,7 @@ import { PlayerService } from '../../services/player.service';
   templateUrl: './player-search-panel-content.component.html',
 })
 export class PlayerSearchPanelContentComponent implements OnInit, OnDestroy {
-  /** Label of the slot we're searching a player for (e.g. 'Right back'), informational only */
   @Input() slotLabel: string | null = null;
-
-  /** Callback invoked when the user selects a player from the list */
   @Input() onPlayerSelected!: (player: PlayerInfoData) => void;
 
   private readonly playerService = inject(PlayerService);
@@ -89,7 +86,15 @@ export class PlayerSearchPanelContentComponent implements OnInit, OnDestroy {
     this.playerService.getPlayerInfo(result.pid).subscribe({
       next: response => {
         this.isLoadingDetail.set(false);
-        this.onPlayerSelected(response.data);
+
+        // The detail endpoint doesn't return the nation flag image,
+        // but the search result does — attach it client-side.
+        const player: PlayerInfoData = {
+          ...response.data,
+          nation_img: result.nimg,
+        };
+
+        this.onPlayerSelected(player);
         this.panelService.close('programmatic');
       },
       error: () => {
@@ -99,20 +104,12 @@ export class PlayerSearchPanelContentComponent implements OnInit, OnDestroy {
     });
   }
 
-  /**
-   * The search endpoint returns a plain array when there are results.
-   * When there are none, it currently returns `{ error: "No Record Found" }`,
-   * but the exact message/shape of that "no results" payload may change over
-   * time, so this normalizes any non-array response into an empty array
-   * rather than relying on a specific error string.
-   */
   private normalizeSearchResponse(response: unknown): SearchPlayerResponse[] {
     if (Array.isArray(response)) {
       return response;
     }
 
     if (response && typeof response === 'object') {
-      // Known "no results" shape: { error: '...' } — treat as empty, regardless of message
       if ('error' in (response as Record<string, unknown>)) {
         return [];
       }
@@ -127,7 +124,6 @@ export class PlayerSearchPanelContentComponent implements OnInit, OnDestroy {
       }
     }
 
-    // Any other unexpected shape (string message, null, etc.) — fall back to empty
     return [];
   }
 }
