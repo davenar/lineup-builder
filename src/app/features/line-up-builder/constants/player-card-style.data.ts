@@ -11,7 +11,6 @@ export const PITCH_CARD_STYLE_OPTIONS: { value: PitchCardStyle; label: string }[
 
 export const BENCH_CARD_STYLE_OPTIONS: { value: BenchCardStyle; label: string }[] = [
   { value: 'sticker', label: 'Sticker' },
-  { value: 'default', label: 'Default' },
   { value: 'crazy-time', label: 'Crazy Time' },
 ];
 

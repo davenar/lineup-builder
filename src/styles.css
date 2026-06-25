@@ -108,6 +108,37 @@
     font-size: 1.2rem;
     color: var(--color-text-muted);
   }
+
+  /* ── SCROLLBAR ──── */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-lup-accent) transparent;
+  }
+
+  *::-webkit-scrollbar {
+    width: 0.8rem;
+    height: 0.8rem;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: color-mix(in srgb, var(--color-lup-accent) 70%, transparent);
+    border-radius: 999px;
+    border: 0.2rem solid transparent;
+    background-clip: padding-box;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: var(--color-lup-soft);
+    background-clip: padding-box;
+  }
+
+  *::-webkit-scrollbar-corner {
+    background: transparent;
+  }
 }
 
 /* ============================================================
