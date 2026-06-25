@@ -6,11 +6,13 @@ export const DEFAULT_PITCH_BACKGROUND: PitchBackground = 'default';
 
 export const PITCH_CARD_STYLE_OPTIONS: { value: PitchCardStyle; label: string }[] = [
   { value: 'sticker', label: 'Sticker' },
+  { value: 'crazy-time', label: 'Crazy Time' },
 ];
 
 export const BENCH_CARD_STYLE_OPTIONS: { value: BenchCardStyle; label: string }[] = [
   { value: 'sticker', label: 'Sticker' },
   { value: 'default', label: 'Default' },
+  { value: 'crazy-time', label: 'Crazy Time' },
 ];
 
 export const PITCH_BACKGROUND_OPTIONS: { value: PitchBackground; label: string }[] = [

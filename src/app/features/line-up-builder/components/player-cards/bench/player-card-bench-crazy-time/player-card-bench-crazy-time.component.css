@@ -1,0 +1,109 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+/* ── RIGA: stessa cornice rotante della card del pitch ─────── */
+.ct-row {
+  position: relative;
+  background: #0a0312;
+  box-shadow: 0 0 10px rgba(180, 0, 255, 0.25);
+  animation: ct-row-pulse 2.6s ease-in-out infinite;
+}
+
+@keyframes ct-row-pulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(180, 0, 255, 0.25); }
+  50%      { box-shadow: 0 0 16px rgba(0, 230, 255, 0.4); }
+}
+
+/* cornice conic-gradient: larga e centrata così copre tutti i lati
+   anche su una riga molto più larga che alta */
+.ct-spin-border {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  background: conic-gradient(
+    from 0deg,
+    #ff0080, #ffea00, #00e6ff, #b400ff, #ff0080
+  );
+  animation: ct-rotate 4s linear infinite;
+  z-index: 0;
+}
+
+@keyframes ct-rotate {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* maschera interna: lascia vedere la cornice come bordo sottile uniforme */
+.ct-inner {
+  margin: 2px;
+  background: linear-gradient(100deg, #160a24 0%, #0a0312 55%, #1a0530 100%);
+}
+
+/* ── bandiera di sfondo dietro la foto ─────────────────────── */
+/* stesso trucco del pitch: zoom per togliere l'alone trasparente */
+.ct-flag-bg {
+  filter: saturate(1.4) blur(1.5px) brightness(0.7);
+  opacity: 0.5;
+  z-index: 0;
+  transform: scale(2.2);
+  transform-origin: center 55%;
+}
+
+/* ── overall ───────────────────────────────────────────────── */
+.ct-ovr {
+  background: linear-gradient(135deg, #ffe600, #ffa600);
+  border: 1px solid #fff;
+  animation: ct-blink 1.2s steps(1) infinite;
+}
+
+@keyframes ct-blink {
+  0%, 100% { filter: brightness(1); }
+  50%      { filter: brightness(1.45); }
+}
+
+/* ── nome LED rosso ────────────────────────────────────────── */
+.ct-name {
+  color: #ff2d55;
+  text-shadow: 0 0 4px #ff2d55, 0 0 8px rgba(255, 45, 85, 0.6);
+}
+
+/* ── x rimuovi ─────────────────────────────────────────────── */
+.ct-remove {
+  background: radial-gradient(circle at 35% 35%, #ff4d6d, #c1121f 70%);
+  border: 1px solid #fff;
+  box-shadow: 0 0 6px rgba(255, 0, 60, 0.7);
+  animation: ct-remove-blink 1s ease-in-out infinite alternate;
+}
+
+@keyframes ct-remove-blink {
+  from { box-shadow: 0 0 5px rgba(255, 0, 60, 0.5); }
+  to   { box-shadow: 0 0 12px rgba(255, 60, 100, 1); }
+}
+
+/* ── stato vuoto ───────────────────────────────────────────── */
+.ct-empty {
+  background: linear-gradient(100deg, #12001f, #1a0530);
+  border: 2px dashed #b400ff;
+  box-shadow: 0 0 8px rgba(180, 0, 255, 0.4);
+  animation: ct-empty-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes ct-empty-pulse {
+  0%, 100% { border-color: #b400ff; box-shadow: 0 0 8px rgba(180, 0, 255, 0.4); }
+  50%      { border-color: #00e6ff; box-shadow: 0 0 16px rgba(0, 230, 255, 0.6); }
+}
+
+.ct-empty-chip {
+  background: radial-gradient(circle at 30% 30%, #2a0a45, #12001f 80%);
+  border: 2px dashed #00e6ff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ct-row, .ct-ovr, .ct-remove, .ct-empty {
+    animation: none;
+  }
+}
