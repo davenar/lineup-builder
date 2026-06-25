@@ -39,6 +39,13 @@
   --spacing-lg: 2.4rem;
   --spacing-xl: 4rem;
   --spacing-xxl: 6.4rem;
+
+  /* --- Animations --- */
+   --animate-marquee: marquee 6s linear infinite;
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
 }
 
 /* ============================================================

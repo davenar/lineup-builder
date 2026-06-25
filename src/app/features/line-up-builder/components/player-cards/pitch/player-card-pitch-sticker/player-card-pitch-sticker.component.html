@@ -1,23 +1,80 @@
 @if (player()) {
-<div class="glass glow-hover relative flex aspect-square w-[82%] flex-col items-center justify-center gap-xs rounded-full p-xs text-center cursor-pointer"
+<div class="glow-hover relative flex aspect-[71/100] h-[85cqh] sd:h-[75cqh] cursor-pointer flex-col bg-white shadow-[0_2px_8px_rgba(0,0,0,0.45)] [container-type:size]"
     (click)="onOpenSearchPanel()">
+
+    <!-- bottone rimuovi: rosso, più grande, cursor pointer, angolo in alto a destra -->
     <button type="button"
-        class="absolute -top-1 -right-1 flex h-[1.8rem] w-[1.8rem] items-center justify-center rounded-full border border-lup-soft/40 bg-bg-elevated text-[1.2rem] leading-none text-text-primary"
+        class="glow-hover absolute -top-[15cqw] -right-[15cqw] z-30 flex h-[30cqw] w-[30cqw] cursor-pointer items-center justify-center rounded-full border border-white/30 bg-red-600 text-white sd:-top-[10cqw] sd:-right-[10cqw] sd:h-[20cqw] sd:w-[20cqw]"
         aria-label="Rimuovi giocatore" (click)="onRemovePlayer($event)">
-        ×
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+            class="h-[75%] w-[75%]">
+            <line x1="6" y1="6" x2="18" y2="18" />
+            <line x1="18" y1="6" x2="6" y2="18" />
+        </svg>
     </button>
 
-    <img [src]="player()!.player_img" [alt]="player()!.shortname"
-        class="h-[3.6rem] w-[3.6rem] rounded-full object-cover bg-lup-mid-dark" loading="lazy" />
-    <span class="truncate text-[1.1rem] font-semibold leading-tight text-text-primary max-w-full px-xs">
-        {{ player()!.shortname }}
-    </span>
-    <span class="badge" style="--badge-color: #3b5bdb">{{ player()!.overallrating }}</span>
+    <!-- club: OVERLAY assoluto in alto a sinistra -->
+    <div class="absolute left-[5cqw] top-[5cqw] z-20">
+        <img [src]="player()!.club_img" [alt]="player()!.teamname" [title]="player()!.teamname"
+            class="h-[26cqw] w-[26cqw] object-contain sd:h-[22cqw] sd:w-[22cqw]" loading="lazy" />
+    </div>
+
+    <!-- foto giocatore: ancorata in basso, appiccicata sopra il footer del nome -->
+    <div
+        class="relative flex min-h-0 flex-1 items-end justify-center overflow-hidden bg-gradient-to-b from-lup-pale to-lup-lightest">
+        <img [src]="player()!.player_img" [alt]="player()!.shortname"
+            class="h-[96%] w-auto object-contain object-bottom" loading="lazy" />
+
+        <!-- bandierina nazionalità: in basso a sinistra -->
+        <img [src]="player()!.nation_img" [alt]="player()!.nationname" [title]="player()!.nationname"
+            class="absolute bottom-[3cqw] left-[3cqw] z-10 h-[26cqw] w-[26cqw] object-contain sd:h-[22cqw] sd:w-[22cqw]"
+            loading="lazy" />
+
+        <!-- ruolo + overall: in basso a destra, stessa altezza della bandierina -->
+        <div class="absolute bottom-[3cqw] right-[3cqw] z-10 flex flex-col items-end gap-[2cqw]">
+            <span
+                class="rounded-[4cqw] bg-lup-darkest px-[5cqw] py-[2cqw] text-[13cqw] font-bold leading-none text-white sd:text-[12cqw]">
+                {{ player()!.overallrating }}
+            </span>
+            <span
+                class="rounded-[4cqw] bg-lup-accent px-[5cqw] py-[2cqw] text-[13cqw] font-bold leading-none text-white sd:text-[12cqw]"
+                [title]="slot.fullLabel">
+                {{ slot.label }}
+            </span>
+        </div>
+    </div>
+
+    <!-- nome con marquee -->
+    <!-- angoli inferiori arrotondati così la card non sporge sotto la x -->
+    <div class="w-full overflow-hidden rounded-b-[2cqw] border-t border-lup-darkest/10 bg-white px-[6cqw] py-[3cqw]">
+        <!-- viewport DI MISURA: niente padding orizzontale -->
+        <div #nameViewport class="w-full overflow-hidden">
+            <div class="flex w-max" [class.animate-marquee]="isNameOverflowing()"
+                [class.mx-auto]="!isNameOverflowing()">
+                <span #nameText
+                    class="whitespace-nowrap px-[4cqw] text-[16cqw] font-bold uppercase leading-tight text-lup-darkest sd:text-[14cqw]">
+                    {{ player()!.shortname }}
+                </span>
+                @if (isNameOverflowing()) {
+                <span
+                    class="whitespace-nowrap px-[4cqw] text-[16cqw] font-bold uppercase leading-tight text-lup-darkest sd:text-[14cqw]"
+                    aria-hidden="true">
+                    {{ player()!.shortname }}
+                </span>
+                }
+            </div>
+        </div>
+    </div>
 </div>
 } @else {
+<!-- stato vuoto: plus SVG centrato -->
 <button type="button"
-    class="glow-hover flex aspect-square w-[70%] items-center justify-center rounded-full border-2 border-dashed border-lup-soft/50 bg-transparent text-[2.4rem] font-light leading-none text-lup-soft cursor-pointer"
+    class="glow-hover flex aspect-square h-[52cqmin] items-center justify-center rounded-full border-2 border-dashed border-lup-soft/50 bg-transparent text-lup-soft cursor-pointer"
     [attr.aria-label]="'Aggiungi giocatore - ' + slot.fullLabel" (click)="onOpenSearchPanel()">
-    +
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        class="h-[45%] w-[45%]">
+        <line x1="12" y1="5" x2="12" y2="19" />
+        <line x1="5" y1="12" x2="19" y2="12" />
+    </svg>
 </button>
 }

@@ -272,6 +272,238 @@ export const FORMATIONS: Record<string, Formation> = {
       { cellIndex: 29, label: 'ST', fullLabel: 'Striker' },
     ],
   },
+
+  // ── 3-4-1-2 ──────────────────────────────────────────────────
+  '3-4-1-2': {
+    id: '3-4-1-2',
+    name: '3-4-1-2',
+    slots: [
+      { cellIndex: 3, label: 'GK', fullLabel: 'Goalkeeper' },
+
+      { cellIndex: 7, label: 'CB', fullLabel: 'Center Back' },
+      { cellIndex: 8, label: 'CB', fullLabel: 'Center Back' },
+      { cellIndex: 9, label: 'CB', fullLabel: 'Center Back' },
+
+      { cellIndex: 16, label: 'LWB', fullLabel: 'Left Wing Back' },
+      { cellIndex: 17, label: 'CM', fullLabel: 'Central Midfielder' },
+      { cellIndex: 19, label: 'CM', fullLabel: 'Central Midfielder' },
+      { cellIndex: 20, label: 'RWB', fullLabel: 'Right Wing Back' },
+
+      { cellIndex: 23, label: 'CAM', fullLabel: 'Central Attacking Midfielder' },
+
+      { cellIndex: 27, label: 'ST', fullLabel: 'Striker' },
+      { cellIndex: 29, label: 'ST', fullLabel: 'Striker' },
+    ],
+  },
+
+  // ── 3-5-1-1 ──────────────────────────────────────────────────
+  '3-5-1-1': {
+    id: '3-5-1-1',
+    name: '3-5-1-1',
+    slots: [
+      { cellIndex: 3, label: 'GK', fullLabel: 'Goalkeeper' },
+
+      { cellIndex: 7, label: 'CB', fullLabel: 'Center Back' },
+      { cellIndex: 8, label: 'CB', fullLabel: 'Center Back' },
+      { cellIndex: 9, label: 'CB', fullLabel: 'Center Back' },
+
+      { cellIndex: 16, label: 'LWB', fullLabel: 'Left Wing Back' },
+      { cellIndex: 17, label: 'CM', fullLabel: 'Central Midfielder' },
+      { cellIndex: 18, label: 'CM', fullLabel: 'Central Midfielder' },
+      { cellIndex: 19, label: 'CM', fullLabel: 'Central Midfielder' },
+      { cellIndex: 20, label: 'RWB', fullLabel: 'Right Wing Back' },
+
+      { cellIndex: 23, label: 'CF', fullLabel: 'Center Forward' },
+
+      { cellIndex: 28, label: 'ST', fullLabel: 'Striker' },
+    ],
+  },
+
+  // ── 4-1-2-1-2 Narrow ─────────────────────────────────────────
+  '4-1-2-1-2': {
+    id: '4-1-2-1-2',
+    name: '4-1-2-1-2 Narrow',
+    slots: [
+      { cellIndex: 3, label: 'GK', fullLabel: 'Goalkeeper' },
+
+      { cellIndex: 6, label: 'LB', fullLabel: 'Left Back' },
+      { cellIndex: 7, label: 'CB', fullLabel: 'Center Back' },
+      { cellIndex: 9, label: 'CB', fullLabel: 'Center Back' },
+      { cellIndex: 10, label: 'RB', fullLabel: 'Right Back' },
+
+      { cellIndex: 13, label: 'CDM', fullLabel: 'Defensive Midfielder' },
+
+      { cellIndex: 17, label: 'CM', fullLabel: 'Central Midfielder' },
+      { cellIndex: 19, label: 'CM', fullLabel: 'Central Midfielder' },
+
+      { cellIndex: 23, label: 'CAM', fullLabel: 'Central Attacking Midfielder' },
+
+      { cellIndex: 27, label: 'ST', fullLabel: 'Striker' },
+      { cellIndex: 29, label: 'ST', fullLabel: 'Striker' },
+    ],
+  },
+
+  // ── 4-1-2-1-2 Wide ───────────────────────────────────────────
+  '4-1-2-1-2-wide': {
+    id: '4-1-2-1-2-wide',
+    name: '4-1-2-1-2 Wide',
+    slots: [
+      { cellIndex: 3, label: 'GK', fullLabel: 'Goalkeeper' },
+
+      { cellIndex: 6, label: 'LB', fullLabel: 'Left Back' },
+      { cellIndex: 7, label: 'CB', fullLabel: 'Center Back' },
+      { cellIndex: 9, label: 'CB', fullLabel: 'Center Back' },
+      { cellIndex: 10, label: 'RB', fullLabel: 'Right Back' },
+
+      { cellIndex: 13, label: 'CDM', fullLabel: 'Defensive Midfielder' },
+
+      { cellIndex: 16, label: 'LM', fullLabel: 'Left Midfielder' },
+      { cellIndex: 20, label: 'RM', fullLabel: 'Right Midfielder' },
+
+      { cellIndex: 23, label: 'CAM', fullLabel: 'Central Attacking Midfielder' },
+
+      { cellIndex: 27, label: 'ST', fullLabel: 'Striker' },
+      { cellIndex: 29, label: 'ST', fullLabel: 'Striker' },
+    ],
+  },
+
+  // ── 4-4-2 Diamond ────────────────────────────────────────────
+  '4-4-2-diamond': {
+    id: '4-4-2-diamond',
+    name: '4-4-2 Diamond',
+    slots: [
+      { cellIndex: 3, label: 'GK', fullLabel: 'Goalkeeper' },
+
+      { cellIndex: 6, label: 'LB', fullLabel: 'Left Back' },
+      { cellIndex: 7, label: 'CB', fullLabel: 'Center Back' },
+      { cellIndex: 9, label: 'CB', fullLabel: 'Center Back' },
+      { cellIndex: 10, label: 'RB', fullLabel: 'Right Back' },
+
+      { cellIndex: 13, label: 'CDM', fullLabel: 'Defensive Midfielder' },
+
+      { cellIndex: 17, label: 'CM', fullLabel: 'Central Midfielder' },
+      { cellIndex: 19, label: 'CM', fullLabel: 'Central Midfielder' },
+
+      { cellIndex: 23, label: 'CAM', fullLabel: 'Central Attacking Midfielder' },
+
+      { cellIndex: 27, label: 'ST', fullLabel: 'Striker' },
+      { cellIndex: 29, label: 'ST', fullLabel: 'Striker' },
+    ],
+  },
+
+  // ── 4-3-1-2 ──────────────────────────────────────────────────
+  '4-3-1-2': {
+    id: '4-3-1-2',
+    name: '4-3-1-2',
+    slots: [
+      { cellIndex: 3, label: 'GK', fullLabel: 'Goalkeeper' },
+
+      { cellIndex: 6, label: 'LB', fullLabel: 'Left Back' },
+      { cellIndex: 7, label: 'CB', fullLabel: 'Center Back' },
+      { cellIndex: 9, label: 'CB', fullLabel: 'Center Back' },
+      { cellIndex: 10, label: 'RB', fullLabel: 'Right Back' },
+
+      { cellIndex: 17, label: 'CM', fullLabel: 'Central Midfielder' },
+      { cellIndex: 18, label: 'CM', fullLabel: 'Central Midfielder' },
+      { cellIndex: 19, label: 'CM', fullLabel: 'Central Midfielder' },
+
+      { cellIndex: 23, label: 'CAM', fullLabel: 'Central Attacking Midfielder' },
+
+      { cellIndex: 27, label: 'ST', fullLabel: 'Striker' },
+      { cellIndex: 29, label: 'ST', fullLabel: 'Striker' },
+    ],
+  },
+
+  // ── 4-3-2-1 ──────────────────────────────────────────────────
+  '4-3-2-1': {
+    id: '4-3-2-1',
+    name: '4-3-2-1',
+    slots: [
+      { cellIndex: 3, label: 'GK', fullLabel: 'Goalkeeper' },
+
+      { cellIndex: 6, label: 'LB', fullLabel: 'Left Back' },
+      { cellIndex: 7, label: 'CB', fullLabel: 'Center Back' },
+      { cellIndex: 9, label: 'CB', fullLabel: 'Center Back' },
+      { cellIndex: 10, label: 'RB', fullLabel: 'Right Back' },
+
+      { cellIndex: 17, label: 'CM', fullLabel: 'Central Midfielder' },
+      { cellIndex: 18, label: 'CM', fullLabel: 'Central Midfielder' },
+      { cellIndex: 19, label: 'CM', fullLabel: 'Central Midfielder' },
+
+      { cellIndex: 22, label: 'CF', fullLabel: 'Center Forward' },
+      { cellIndex: 24, label: 'CF', fullLabel: 'Center Forward' },
+
+      { cellIndex: 28, label: 'ST', fullLabel: 'Striker' },
+    ],
+  },
+
+  // ── 5-2-3 ────────────────────────────────────────────────────
+  '5-2-3': {
+    id: '5-2-3',
+    name: '5-2-3',
+    slots: [
+      { cellIndex: 3, label: 'GK', fullLabel: 'Goalkeeper' },
+
+      { cellIndex: 6, label: 'LWB', fullLabel: 'Left Wing Back' },
+      { cellIndex: 7, label: 'CB', fullLabel: 'Center Back' },
+      { cellIndex: 8, label: 'CB', fullLabel: 'Center Back' },
+      { cellIndex: 9, label: 'CB', fullLabel: 'Center Back' },
+      { cellIndex: 10, label: 'RWB', fullLabel: 'Right Wing Back' },
+
+      { cellIndex: 17, label: 'CM', fullLabel: 'Central Midfielder' },
+      { cellIndex: 19, label: 'CM', fullLabel: 'Central Midfielder' },
+
+      { cellIndex: 26, label: 'LW', fullLabel: 'Left Winger' },
+      { cellIndex: 28, label: 'ST', fullLabel: 'Striker' },
+      { cellIndex: 30, label: 'RW', fullLabel: 'Right Winger' },
+    ],
+  },
+
+  // ── 5-2-2-1 ──────────────────────────────────────────────────
+  '5-2-2-1': {
+    id: '5-2-2-1',
+    name: '5-2-2-1',
+    slots: [
+      { cellIndex: 3, label: 'GK', fullLabel: 'Goalkeeper' },
+
+      { cellIndex: 6, label: 'LWB', fullLabel: 'Left Wing Back' },
+      { cellIndex: 7, label: 'CB', fullLabel: 'Center Back' },
+      { cellIndex: 8, label: 'CB', fullLabel: 'Center Back' },
+      { cellIndex: 9, label: 'CB', fullLabel: 'Center Back' },
+      { cellIndex: 10, label: 'RWB', fullLabel: 'Right Wing Back' },
+
+      { cellIndex: 17, label: 'CM', fullLabel: 'Central Midfielder' },
+      { cellIndex: 19, label: 'CM', fullLabel: 'Central Midfielder' },
+
+      { cellIndex: 22, label: 'CF', fullLabel: 'Center Forward' },
+      { cellIndex: 24, label: 'CF', fullLabel: 'Center Forward' },
+
+      { cellIndex: 28, label: 'ST', fullLabel: 'Striker' },
+    ],
+  },
+
+  // ── 5-2-1-2 ──────────────────────────────────────────────────
+  '5-2-1-2': {
+    id: '5-2-1-2',
+    name: '5-2-1-2',
+    slots: [
+      { cellIndex: 3, label: 'GK', fullLabel: 'Goalkeeper' },
+
+      { cellIndex: 6, label: 'LWB', fullLabel: 'Left Wing Back' },
+      { cellIndex: 7, label: 'CB', fullLabel: 'Center Back' },
+      { cellIndex: 8, label: 'CB', fullLabel: 'Center Back' },
+      { cellIndex: 9, label: 'CB', fullLabel: 'Center Back' },
+      { cellIndex: 10, label: 'RWB', fullLabel: 'Right Wing Back' },
+
+      { cellIndex: 17, label: 'CM', fullLabel: 'Central Midfielder' },
+      { cellIndex: 19, label: 'CM', fullLabel: 'Central Midfielder' },
+
+      { cellIndex: 23, label: 'CAM', fullLabel: 'Central Attacking Midfielder' },
+
+      { cellIndex: 27, label: 'ST', fullLabel: 'Striker' },
+      { cellIndex: 29, label: 'ST', fullLabel: 'Striker' },
+    ],
+  },
 };
 
 export const FORMATION_OPTIONS = Object.values(FORMATIONS).map(f => ({

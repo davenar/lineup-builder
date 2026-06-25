@@ -9,6 +9,7 @@ import { PlayerCardBenchDefaultComponent } from '../player-card-bench-default/pl
   standalone: true,
   imports: [CommonModule, PlayerCardBenchStickerComponent, PlayerCardBenchDefaultComponent],
   templateUrl: './player-card-bench.component.html',
+  host: { class: 'block w-full' }
 })
 export class PlayerCardBenchComponent {
   @Input({ required: true }) benchIndex!: number;
