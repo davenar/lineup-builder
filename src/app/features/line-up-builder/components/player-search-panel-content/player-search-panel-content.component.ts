@@ -1,5 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, Input, OnDestroy, OnInit, signal } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  inject,
+  Input,
+  OnDestroy,
+  OnInit,
+  signal,
+  ViewChild,
+} from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, switchMap, takeUntil } from 'rxjs/operators';
@@ -14,9 +24,11 @@ import { PlayerService } from '../../services/player.service';
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './player-search-panel-content.component.html',
 })
-export class PlayerSearchPanelContentComponent implements OnInit, OnDestroy {
+export class PlayerSearchPanelContentComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() slotLabel: string | null = null;
   @Input() onPlayerSelected!: (player: PlayerInfoData) => void;
+
+  @ViewChild('searchInput') searchInput?: ElementRef<HTMLInputElement>;
 
   private readonly playerService = inject(PlayerService);
   private readonly panelService = inject(PanelService);
@@ -69,6 +81,12 @@ export class PlayerSearchPanelContentComponent implements OnInit, OnDestroy {
       });
   }
 
+  ngAfterViewInit(): void {
+    // Focus dopo che il pannello ha terminato lo slide-in:
+    // rAF dà il tempo al layout di stabilizzarsi, così il focus non viene perso.
+    requestAnimationFrame(() => this.searchInput?.nativeElement.focus());
+  }
+
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
@@ -87,8 +105,6 @@ export class PlayerSearchPanelContentComponent implements OnInit, OnDestroy {
       next: response => {
         this.isLoadingDetail.set(false);
 
-        // The detail endpoint doesn't return the nation flag image,
-        // but the search result does — attach it client-side.
         const player: PlayerInfoData = {
           ...response.data,
           nation_img: result.nimg,

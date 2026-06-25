@@ -41,10 +41,14 @@
   --spacing-xxl: 6.4rem;
 
   /* --- Animations --- */
-   --animate-marquee: marquee 6s linear infinite;
+  --animate-marquee: marquee 6s linear infinite;
   @keyframes marquee {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
   }
 }
 
@@ -147,6 +151,21 @@
       0 0 12px rgba(59, 91, 219, 0.45),
       0 0 28px rgba(116, 143, 252, 0.25),
       0 0 52px rgba(116, 143, 252, 0.1);
+  }
+
+  .glow-hover-soft {
+    transition:
+      box-shadow 0.3s ease,
+      border-color 0.3s ease,
+      transform 0.3s ease;
+  }
+  .glow-hover-soft:hover {
+    transform: translateY(-2px);
+    border-color: rgba(116, 143, 252, 0.5);
+    box-shadow:
+      0 0 0 1px rgba(59, 91, 219, 0.45),
+      0 0 6px rgba(59, 91, 219, 0.3),
+      0 0 12px rgba(116, 143, 252, 0.18);
   }
 
   /* ── BUTTONS ─────────────────────────────────────────────── */
