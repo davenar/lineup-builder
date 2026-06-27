@@ -42,10 +42,12 @@
 
   /* --- Animations --- */
   --animate-marquee: marquee 6s linear infinite;
+
   @keyframes marquee {
     from {
       transform: translateX(0);
     }
+
     to {
       transform: translateX(-50%);
     }
@@ -82,18 +84,23 @@
   h1 {
     font-size: 4.8rem;
   }
+
   h2 {
     font-size: 3.6rem;
   }
+
   h3 {
     font-size: 2.8rem;
   }
+
   h4 {
     font-size: 2.2rem;
   }
+
   h5 {
     font-size: 1.8rem;
   }
+
   h6 {
     font-size: 1.6rem;
   }
@@ -145,6 +152,7 @@
    UTILITIES
    ============================================================ */
 @layer utilities {
+
   /* --- Glass surface --- */
   .glass,
   .app-header,
@@ -152,8 +160,7 @@
     background: color-mix(in srgb, var(--color-bg-surface) 45%, transparent);
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
-    border: 1px solid
-      color-mix(in srgb, var(--color-text-primary) 8%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-text-primary) 8%, transparent);
   }
 
   .glass {
@@ -175,6 +182,7 @@
       box-shadow 0.3s ease,
       transform 0.3s ease;
   }
+
   .glow-hover:hover {
     transform: translateY(-2px);
     box-shadow:
@@ -190,6 +198,7 @@
       border-color 0.3s ease,
       transform 0.3s ease;
   }
+
   .glow-hover-soft:hover {
     transform: translateY(-2px);
     border-color: rgba(116, 143, 252, 0.5);
@@ -205,7 +214,7 @@
     align-items: center;
     justify-content: center;
     gap: var(--spacing-sm);
-    padding: var(--spacing-sm) var(--spacing-lg);
+    padding: var(--spacing-sm) var(--spacing-base);
     font-size: 1.4rem;
     font-weight: 600;
     letter-spacing: 0.04em;
@@ -221,12 +230,14 @@
     text-decoration: none;
     white-space: nowrap;
     user-select: none;
-    position: relative; /* needed for badge positioning */
+    position: relative;
+    /* needed for badge positioning */
   }
 
   .btn-rounded {
     border-radius: 0.8rem;
   }
+
   .btn-pill {
     border-radius: 999px;
   }
@@ -236,6 +247,7 @@
     border-color: var(--color-lup-accent);
     color: var(--color-text-primary);
   }
+
   .btn-primary:hover:not(:disabled) {
     background-color: var(--color-lup-soft);
     border-color: var(--color-lup-soft);
@@ -246,6 +258,7 @@
     border-color: var(--color-lup-soft);
     color: var(--color-text-primary);
   }
+
   .btn-outline:hover:not(:disabled) {
     background-color: rgba(116, 143, 252, 0.12);
     border-color: var(--color-text-primary);
@@ -275,12 +288,9 @@
     /* color solid when --badge-color is set, else glass */
     background-color: var(--badge-color, rgba(10, 21, 53, 0.55));
     backdrop-filter: var(--badge-color, blur(12px) saturate(180%));
-    border: 1px solid
-      color-mix(
-        in srgb,
+    border: 1px solid color-mix(in srgb,
         var(--badge-color, rgba(255, 255, 255, 0.12)) 60%,
-        transparent
-      );
+        transparent);
     color: var(--color-text-primary);
   }
 
@@ -336,18 +346,22 @@
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
   }
+
   .input::placeholder {
     color: var(--color-text-muted);
     opacity: 0.7;
   }
+
   .input:focus {
     border-color: var(--color-lup-soft);
     box-shadow: 0 0 0 3px rgba(116, 143, 252, 0.18);
   }
+
   .input.input-error {
     border-color: #f87171;
     box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.15);
   }
+
   .input:disabled {
     opacity: 0.4;
     cursor: not-allowed;
@@ -373,6 +387,7 @@
     padding-right: 3.6rem;
     cursor: pointer;
   }
+
   .select-native option {
     background-color: var(--color-bg-elevated);
     color: var(--color-text-primary);
@@ -386,6 +401,7 @@
     cursor: pointer;
     user-select: none;
   }
+
   .checkbox-wrap input[type="checkbox"] {
     appearance: none;
     -webkit-appearance: none;
@@ -402,10 +418,12 @@
       box-shadow 0.18s ease;
     position: relative;
   }
+
   .checkbox-wrap input[type="checkbox"]:checked {
     background: var(--color-lup-accent);
     border-color: var(--color-lup-accent);
   }
+
   .checkbox-wrap input[type="checkbox"]:checked::after {
     content: "";
     position: absolute;
@@ -414,13 +432,16 @@
     background-repeat: no-repeat;
     background-position: center;
   }
+
   .checkbox-wrap input[type="checkbox"]:focus-visible {
     box-shadow: 0 0 0 3px rgba(116, 143, 252, 0.3);
   }
+
   .checkbox-wrap input[type="checkbox"]:disabled {
     opacity: 0.38;
     cursor: not-allowed;
   }
+
   .checkbox-wrap span {
     font-size: 1.4rem;
     color: var(--color-text-primary);
@@ -434,6 +455,7 @@
     cursor: pointer;
     user-select: none;
   }
+
   .radio-wrap input[type="radio"] {
     appearance: none;
     -webkit-appearance: none;
@@ -449,9 +471,11 @@
       box-shadow 0.18s ease;
     position: relative;
   }
+
   .radio-wrap input[type="radio"]:checked {
     border-color: var(--color-lup-accent);
   }
+
   .radio-wrap input[type="radio"]:checked::after {
     content: "";
     position: absolute;
@@ -463,13 +487,16 @@
     border-radius: 50%;
     background: var(--color-lup-accent);
   }
+
   .radio-wrap input[type="radio"]:focus-visible {
     box-shadow: 0 0 0 3px rgba(116, 143, 252, 0.3);
   }
+
   .radio-wrap input[type="radio"]:disabled {
     opacity: 0.38;
     cursor: not-allowed;
   }
+
   .radio-wrap span {
     font-size: 1.4rem;
     color: var(--color-text-primary);
@@ -483,6 +510,7 @@
     cursor: pointer;
     user-select: none;
   }
+
   .toggle-wrap input[type="checkbox"] {
     appearance: none;
     -webkit-appearance: none;
@@ -498,6 +526,7 @@
       background 0.22s ease,
       border-color 0.22s ease;
   }
+
   .toggle-wrap input[type="checkbox"]::after {
     content: "";
     position: absolute;
@@ -512,21 +541,26 @@
       left 0.22s ease,
       background 0.22s ease;
   }
+
   .toggle-wrap input[type="checkbox"]:checked {
     background: var(--color-lup-accent);
     border-color: var(--color-lup-accent);
   }
+
   .toggle-wrap input[type="checkbox"]:checked::after {
     left: 2.1rem;
     background: #fff;
   }
+
   .toggle-wrap input[type="checkbox"]:focus-visible {
     box-shadow: 0 0 0 3px rgba(116, 143, 252, 0.3);
   }
+
   .toggle-wrap input[type="checkbox"]:disabled {
     opacity: 0.38;
     cursor: not-allowed;
   }
+
   .toggle-wrap span {
     font-size: 1.4rem;
     color: var(--color-text-primary);
@@ -542,6 +576,7 @@
     z-index: 200;
     align-items: flex-end;
   }
+
   .select-sheet-backdrop.open {
     display: flex;
   }
@@ -555,6 +590,7 @@
     transform: translateY(100%);
     transition: transform 0.32s cubic-bezier(0.32, 0.72, 0, 1);
   }
+
   .select-sheet-backdrop.open .select-sheet {
     transform: translateY(0);
   }
@@ -586,9 +622,11 @@
     cursor: pointer;
     transition: background 0.15s ease;
   }
+
   .select-sheet-option:hover {
     background: rgba(116, 143, 252, 0.1);
   }
+
   .select-sheet-option span {
     font-size: 1.6rem;
     color: var(--color-text-primary);
@@ -663,8 +701,7 @@
     border-radius: 0;
     box-shadow:
       0 0 0 1px color-mix(in srgb, var(--color-text-primary) 4%, transparent),
-      0 2.4rem 8rem
-        color-mix(in srgb, var(--color-lup-darkest) 45%, transparent);
+      0 2.4rem 8rem color-mix(in srgb, var(--color-lup-darkest) 45%, transparent);
     transition:
       transform 0.32s cubic-bezier(0.32, 0.72, 0, 1),
       opacity 0.32s ease;
@@ -673,14 +710,23 @@
   }
 
   .panel-has-close-button {
-    padding-top: calc(var(--panel-padding, var(--spacing-lg)) + 4.8rem);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-base);
   }
 
   .panel-close-btn {
-    position: absolute;
-    top: var(--spacing-base);
-    right: var(--spacing-base);
-    z-index: 1;
+    position: sticky;
+    top: 0;
+    right: 0;
+    margin-left: auto;
+    z-index: 10;
+    display: flex;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    background: color-mix(in srgb,
+        var(--color-surface) 72%,
+        transparent);
   }
 
   .panel-surface-left {
@@ -734,6 +780,7 @@
   }
 
   @media (max-width: 1023.98px) {
+
     .panel-surface-left,
     .panel-surface-right {
       width: 100vw;
