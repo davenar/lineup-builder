@@ -1,6 +1,6 @@
 {
   "name": "Line Up Builder",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "author": "davenar",
   "scripts": {
     "ng": "ng",
