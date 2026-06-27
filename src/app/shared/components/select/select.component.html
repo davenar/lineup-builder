@@ -1,1 +1,29 @@
-<p>select works!</p>
+<div class="field">
+  @if (label()) {
+    <label class="field-label" [for]="uid">{{ label() }}</label>
+  }
+
+  <select
+    [id]="uid"
+    class="input select-native"
+    [class.input-error]="error()"
+    [disabled]="disabled()"
+    (change)="onNativeChange($event)"
+  >
+    @if (placeholder()) {
+      <option value="" [selected]="!value()" disabled>{{ placeholder() }}</option>
+    }
+    @for (opt of options(); track opt.value) {
+      <option [value]="opt.value" [selected]="opt.value === value()">
+        {{ opt.label }}
+      </option>
+    }
+  </select>
+
+  @if (hint() && !error()) {
+    <span class="field-hint">{{ hint() }}</span>
+  }
+  @if (error()) {
+    <span class="field-error">{{ error() }}</span>
+  }
+</div>

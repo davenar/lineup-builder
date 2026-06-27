@@ -10,7 +10,6 @@
   <div class="glass p-lg mb-base">
     <app-select
       label="Modulo"
-      placeholder="Seleziona un modulo…"
       hint="Cambiando modulo i giocatori già assegnati restano nelle posizioni compatibili."
       [options]="formationOptions"
       [value]="lineupState.currentFormation().id"
@@ -25,7 +24,6 @@
   <div class="glass p-lg grid gap-lg mb-base">
     <app-select
       label="Stile card campetto"
-      placeholder="Seleziona uno stile…"
       [options]="pitchCardStyleOptions"
       [value]="lineupState.pitchCardStyle()"
       (selected)="onPitchCardStyleChange($event)"
@@ -33,7 +31,6 @@
 
     <app-select
       label="Stile card panchina"
-      placeholder="Seleziona uno stile…"
       [options]="benchCardStyleOptions"
       [value]="lineupState.benchCardStyle()"
       (selected)="onBenchCardStyleChange($event)"
@@ -41,7 +38,6 @@
 
     <app-select
       label="Sfondo campetto"
-      placeholder="Seleziona uno sfondo…"
       [options]="pitchBackgroundOptions"
       [value]="lineupState.pitchBackground()"
       (selected)="onPitchBackgroundChange($event)"
