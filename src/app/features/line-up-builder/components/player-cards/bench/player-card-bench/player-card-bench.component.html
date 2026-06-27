@@ -1,0 +1,11 @@
+@switch (lineupState.benchCardStyle()) {
+  @case ('sticker') {
+    <app-player-card-bench-sticker [benchIndex]="benchIndex" />
+  }
+   @case ('crazy-time') {
+    <app-player-card-bench-crazy-time [benchIndex]="benchIndex" />
+  }
+  @default {
+    <app-player-card-bench-sticker [benchIndex]="benchIndex" />
+  }
+}

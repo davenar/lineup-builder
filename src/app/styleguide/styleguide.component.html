@@ -1,0 +1,396 @@
+<section class="max-w-[90rem] mx-auto px-base py-xl">
+
+  <!-- ════════════════════════════════════════════════════════
+       BREAKPOINT INDICATOR
+       ════════════════════════════════════════════════════════ -->
+  <div class="mb-xxl">
+    <p class="text-[1.2rem] font-bold tracking-[0.12em] uppercase text-lup-soft mb-base pb-sm border-b border-lup-mid">
+      Breakpoint
+    </p>
+    <div
+      class="glass inline-flex items-center px-base py-sm text-[1.4rem] font-bold tracking-[0.06em] text-text-primary">
+      <span class="tb:hidden">mb — mobile (&lt; 768px)</span>
+      <span class="hidden tb:inline sd:hidden">tb — tablet (≥ 768px)</span>
+      <span class="hidden sd:inline">sd — desktop (≥ 1024px)</span>
+    </div>
+
+
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════════
+       BACKGROUND COLORS
+       ════════════════════════════════════════════════════════ -->
+  <div class="mb-xxl">
+    <p class="text-[1.2rem] font-bold tracking-[0.12em] uppercase text-lup-soft mb-base pb-sm border-b border-lup-mid">
+      Background colors
+    </p>
+    <div class="flex flex-wrap gap-base mb-base">
+      <div class="bg-bg-page rounded-[1.2rem] p-base flex flex-col gap-xs border border-lup-mid">
+        <span class="text-[1.2rem] text-text-primary">bg-page</span>
+        <small class="text-[1rem] text-text-muted">#060d24</small>
+      </div>
+      <div class="bg-bg-surface rounded-[1.2rem] p-base flex flex-col gap-xs border border-lup-mid">
+        <span class="text-[1.2rem] text-text-primary">bg-surface</span>
+        <small class="text-[1rem] text-text-muted">#0a1535</small>
+      </div>
+      <div class="bg-elevated p-base flex flex-col gap-xs">
+        <span class="text-[1.2rem] text-text-primary">bg-elevated</span>
+        <small class="text-[1rem] text-text-muted">#0f1f4d · glass</small>
+      </div>
+      <div class="glass p-base flex flex-col gap-xs">
+        <span class="text-[1.2rem] text-text-primary">glass</span>
+        <small class="text-[1rem] text-text-muted">rgba + blur</small>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════════
+       TYPOGRAPHY
+       ════════════════════════════════════════════════════════ -->
+  <div class="mb-xxl">
+    <p class="text-[1.2rem] font-bold tracking-[0.12em] uppercase text-lup-soft mb-base pb-sm border-b border-lup-mid">
+      Typography
+    </p>
+    <div class="glass p-lg mb-base">
+      <h1>Heading 1 — 48px</h1>
+      <h2>Heading 2 — 36px</h2>
+      <h3>Heading 3 — 28px</h3>
+      <h4>Heading 4 — 22px</h4>
+      <h5>Heading 5 — 18px</h5>
+      <h6>Heading 6 — 16px</h6>
+      <p>
+        Body text — The quick brown fox jumps over the lazy dog.
+        Rendered in <code>--color-text-muted</code> for comfortable reading contrast.
+      </p>
+      <small>Small / caption — 12px, muted blue tone.</small>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════════
+       BUTTONS
+       ════════════════════════════════════════════════════════ -->
+  <div class="mb-xxl">
+    <p class="text-[1.2rem] font-bold tracking-[0.12em] uppercase text-lup-soft mb-base pb-sm border-b border-lup-mid">
+      Buttons
+    </p>
+
+    <!-- Rectangular -->
+    <p class="text-[1.2rem] font-semibold tracking-[0.08em] uppercase text-text-muted mt-base mb-sm">
+      Rectangular (default)
+    </p>
+    <div class="glass flex flex-wrap items-center gap-base p-lg mb-base">
+      <button class="btn btn-primary glow-hover">Primary</button>
+      <button class="btn btn-primary" disabled>Primary Disabled</button>
+      <button class="btn btn-outline glow-hover">Outline</button>
+      <button class="btn btn-outline" disabled>Outline Disabled</button>
+    </div>
+
+    <!-- Rounded -->
+    <p class="text-[1.2rem] font-semibold tracking-[0.08em] uppercase text-text-muted mt-base mb-sm">
+      Rounded
+    </p>
+    <div class="glass flex flex-wrap items-center gap-base p-lg mb-base">
+      <button class="btn btn-rounded btn-primary glow-hover">Primary</button>
+      <button class="btn btn-rounded btn-primary" disabled>Primary Disabled</button>
+      <button class="btn btn-rounded btn-outline glow-hover">Outline</button>
+      <button class="btn btn-rounded btn-outline" disabled>Outline Disabled</button>
+    </div>
+
+    <!-- Pill -->
+    <p class="text-[1.2rem] font-semibold tracking-[0.08em] uppercase text-text-muted mt-base mb-sm">
+      Pill
+    </p>
+    <div class="glass flex flex-wrap items-center gap-base p-lg mb-base">
+      <button class="btn btn-pill btn-primary glow-hover">Primary</button>
+      <button class="btn btn-pill btn-primary" disabled>Primary Disabled</button>
+      <button class="btn btn-pill btn-outline glow-hover">Outline</button>
+      <button class="btn btn-pill btn-outline" disabled>Outline Disabled</button>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════════
+       GLOW
+       ════════════════════════════════════════════════════════ -->
+  <div class="mb-xxl">
+    <p class="text-[1.2rem] font-bold tracking-[0.12em] uppercase text-lup-soft mb-base pb-sm border-b border-lup-mid">
+      Glow
+    </p>
+    <div class="glass p-lg flex items-center justify-center mb-base">
+      <div
+        class="glass glow-hover px-xl py-lg text-text-primary text-[1.4rem] font-semibold tracking-wide cursor-default select-none">
+        Hover me
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════════
+       BADGE  —  <app-badge>
+       ════════════════════════════════════════════════════════ -->
+  <div class="mb-xxl">
+    <p class="text-[1.2rem] font-bold tracking-[0.12em] uppercase text-lup-soft mb-base pb-sm border-b border-lup-mid">
+      Badge
+    </p>
+
+    <p class="text-[1.2rem] font-semibold tracking-[0.08em] uppercase text-text-muted mt-base mb-sm">Standalone</p>
+    <div class="glass p-lg flex flex-wrap items-center gap-base mb-base">
+      <app-badge text="Glass" />
+      <app-badge text="Accent" color="#3b5bdb" />
+      <app-badge text="Success" color="#2f9e44" />
+      <app-badge text="Warning" color="#e67700" />
+      <app-badge text="Error" color="#c92a2a" />
+      <app-badge text="Purple" color="#862e9c" />
+    </div>
+
+    <p class="text-[1.2rem] font-semibold tracking-[0.08em] uppercase text-text-muted mt-base mb-sm">On button</p>
+    <div class="glass p-lg flex flex-wrap items-center gap-xl mb-base">
+      <button class="btn btn-rounded btn-primary glow-hover">
+        Notifications
+        <app-badge text="3" [onButton]="true" />
+      </button>
+      <button class="btn btn-pill btn-outline glow-hover">
+        Messages
+        <app-badge text="12" color="#e67700" [onButton]="true" />
+      </button>
+      <button class="btn btn-rounded btn-outline glow-hover">
+        Updates
+        <app-badge text="New" color="#2f9e44" [onButton]="true" />
+      </button>
+    </div>
+
+
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════════
+       INPUT & TEXTAREA  —  plain HTML + CSS classes
+       ════════════════════════════════════════════════════════ -->
+  <div class="mb-xxl">
+    <p class="text-[1.2rem] font-bold tracking-[0.12em] uppercase text-lup-soft mb-base pb-sm border-b border-lup-mid">
+      Input &amp; Textarea
+    </p>
+    <p class="text-[1.3rem] text-text-muted mb-base">
+      Plain HTML — use <code class="bg-lup-mid-dark px-xs rounded text-lup-pale">.field</code>,
+      <code class="bg-lup-mid-dark px-xs rounded text-lup-pale">.input</code> and helper classes directly.
+      No wrapper component needed.
+    </p>
+
+    <div class="glass p-lg grid gap-lg mb-base">
+      <div class="field">
+        <label class="field-label" for="inp-default">Full name</label>
+        <input id="inp-default" class="input" type="text" placeholder="e.g. Jane Smith" />
+      </div>
+      <div class="field">
+        <label class="field-label" for="inp-hint">Email</label>
+        <input id="inp-hint" class="input" type="email" placeholder="jane@example.com" />
+        <span class="field-hint">We'll never share your email with anyone.</span>
+      </div>
+      <div class="field">
+        <label class="field-label" for="inp-error">Password</label>
+        <input id="inp-error" class="input input-error" type="password" value="abc" />
+        <span class="field-error">Password must be at least 8 characters.</span>
+      </div>
+      <div class="field">
+        <label class="field-label" for="inp-disabled">Disabled field</label>
+        <input id="inp-disabled" class="input" type="text" value="Read-only value" disabled />
+      </div>
+      <div class="field">
+        <label class="field-label" for="ta-default">Message</label>
+        <textarea id="ta-default" class="input" rows="4" placeholder="Write here…"></textarea>
+        <span class="field-hint">Max 500 characters.</span>
+      </div>
+    </div>
+
+
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════════
+       SELECT  —  <app-select>
+       ════════════════════════════════════════════════════════ -->
+  <div class="mb-xxl">
+    <p class="text-[1.2rem] font-bold tracking-[0.12em] uppercase text-lup-soft mb-base pb-sm border-b border-lup-mid">
+      Select
+    </p>
+    <p class="text-[1.3rem] text-text-muted mb-base">
+      ≥ 1024 px → native <code class="bg-lup-mid-dark px-xs rounded text-lup-pale">&lt;select&gt;</code>.
+      &lt; 1024 px → bottom-sheet with radio buttons (iOS-style).
+      Both modes are handled internally by <code
+        class="bg-lup-mid-dark px-xs rounded text-lup-pale">&lt;app-select&gt;</code>
+      via <code class="bg-lup-mid-dark px-xs rounded text-lup-pale">BreakpointObserver</code>.
+    </p>
+
+    <div class="glass p-lg mb-base">
+      <app-select label="Role" placeholder="Select a role…" hint="Choose the role that best describes you." [options]="[
+          { value: 'designer',  label: 'Designer'  },
+          { value: 'developer', label: 'Developer' },
+          { value: 'manager',   label: 'Manager'   }
+        ]" [(value)]="selectedRole" (selected)="onRoleChange($event)" />
+    </div>
+
+
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════════
+       CHECKBOX  —  plain HTML + CSS classes
+       ════════════════════════════════════════════════════════ -->
+  <div class="mb-xxl">
+    <p class="text-[1.2rem] font-bold tracking-[0.12em] uppercase text-lup-soft mb-base pb-sm border-b border-lup-mid">
+      Checkbox
+    </p>
+    <div class="glass p-lg flex flex-col gap-base mb-base">
+      <label class="checkbox-wrap">
+        <input type="checkbox" />
+        <span>Unchecked (default)</span>
+      </label>
+      <label class="checkbox-wrap">
+        <input type="checkbox" checked />
+        <span>Checked</span>
+      </label>
+      <label class="checkbox-wrap">
+        <input type="checkbox" disabled />
+        <span>Disabled</span>
+      </label>
+      <label class="checkbox-wrap">
+        <input type="checkbox" checked disabled />
+        <span>Checked &amp; disabled</span>
+      </label>
+    </div>
+
+
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════════
+       RADIO BUTTON  —  plain HTML + CSS classes
+       ════════════════════════════════════════════════════════ -->
+  <div class="mb-xxl">
+    <p class="text-[1.2rem] font-bold tracking-[0.12em] uppercase text-lup-soft mb-base pb-sm border-b border-lup-mid">
+      Radio button
+    </p>
+    <div class="glass p-lg flex flex-col gap-base mb-base">
+      <label class="radio-wrap">
+        <input type="radio" name="sg-plan" value="free" />
+        <span>Free</span>
+      </label>
+      <label class="radio-wrap">
+        <input type="radio" name="sg-plan" value="pro" checked />
+        <span>Pro (selected)</span>
+      </label>
+      <label class="radio-wrap">
+        <input type="radio" name="sg-plan" value="enterprise" disabled />
+        <span>Enterprise (disabled)</span>
+      </label>
+    </div>
+
+
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════════
+       TOGGLE / SWITCH  —  <app-toggle>
+       ════════════════════════════════════════════════════════ -->
+  <div class="mb-xxl">
+    <p class="text-[1.2rem] font-bold tracking-[0.12em] uppercase text-lup-soft mb-base pb-sm border-b border-lup-mid">
+      Toggle / Switch
+    </p>
+    <div class="glass p-lg flex flex-col gap-base mb-base">
+      <app-toggle label="Off (default)" />
+      <app-toggle label="On" [checked]="true" />
+      <app-toggle label="Disabled" [disabled]="true" />
+      <app-toggle label="On & disabled" [checked]="true" [disabled]="true" />
+    </div>
+
+
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════
+     PANEL
+     ════════════════════════════════════════════════════════ -->
+<div class="mb-xxl">
+  <p class="text-[1.2rem] font-bold tracking-[0.12em] uppercase text-lup-soft mb-base pb-sm border-b border-lup-mid">
+    Panel
+  </p>
+
+  <p class="text-[1.3rem] text-text-muted mb-base">
+    Global glass panel rendered through
+    <code class="bg-lup-mid-dark px-xs rounded text-lup-pale">PanelService</code>.
+    The surface is glass, has no border radius, and the close action uses the standard
+    rectangular button style.
+  </p>
+
+  <div class="glass p-lg grid gap-lg mb-base">
+    <div>
+      <p class="text-[1.2rem] font-semibold tracking-[0.08em] uppercase text-text-muted mt-base mb-sm">
+        Directions
+      </p>
+
+      <div class="flex flex-wrap gap-base">
+        <button
+          type="button"
+          class="btn btn-primary glow-hover"
+          (click)="openPanelLeft()"
+        >
+          Open left
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-primary glow-hover"
+          (click)="openPanelRight()"
+        >
+          Open right
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-primary glow-hover"
+          (click)="openPanelBottom()"
+        >
+          Open bottom
+        </button>
+      </div>
+    </div>
+
+    <div>
+      <p class="text-[1.2rem] font-semibold tracking-[0.08em] uppercase text-text-muted mt-base mb-sm">
+        Responsive and header-aware
+      </p>
+
+      <div class="flex flex-wrap gap-base">
+        <button
+          type="button"
+          class="btn btn-outline glow-hover"
+          (click)="openPanelResponsive()"
+        >
+          Right desktop / bottom mobile
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-outline glow-hover"
+          (click)="openPanelUnderHeader()"
+        >
+          Open under header
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <pre class="sg-code">&lt;button
+  type="button"
+  class="btn btn-primary glow-hover"
+  (click)="openPanelLeft()"
+&gt;
+  Open left
+&lt;/button&gt;</pre>
+</div>
+
+
+</section>

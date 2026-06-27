@@ -1,0 +1,25 @@
+<div class="flex flex-col sd:flex-row w-full sd:h-screen">
+
+  <!-- PITCH -->
+  <div class="w-full sd:w-1/2 flex items-start justify-center p-base">
+    <div
+      [class]="'grid grid-rows-6 grid-cols-5 [aspect-ratio:68/105] [max-height:75dvh] sd:[max-height:85dvh] [width:min(calc(75dvh*68/105),100%)] sd:[width:min(calc(85dvh*68/105),100%)] [&>*]:border [&>*]:border-lup-soft/30 [&>*]:text-text-primary ' + pitchClasses()">
+      @for (cellIndex of pitchCells; track cellIndex) {
+      <div class="relative flex items-center justify-center [container-type:size]">
+        @if (lineupState.activeSlotsByCell().has(cellIndex)) {
+        <app-player-card-pitch [slot]="lineupState.activeSlotsByCell().get(cellIndex)!" />
+        }
+      </div>
+      }
+    </div>
+  </div>
+
+  <!-- BENCH -->
+<div
+  class="w-full sd:w-1/2 flex flex-col justify-start p-base gap-sm">
+  @for (benchIndex of benchSlots; track benchIndex) {
+  <app-player-card-bench [benchIndex]="benchIndex" />
+  }
+</div>
+
+</div>

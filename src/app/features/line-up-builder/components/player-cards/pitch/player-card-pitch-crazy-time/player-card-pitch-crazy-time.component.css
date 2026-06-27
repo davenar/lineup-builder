@@ -1,0 +1,173 @@
+:host {
+  display: contents;
+}
+
+/* angolo animabile per il conic-gradient (no transform, no clipping) */
+@property --ct-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+/* ── CARD ──────────────────────────────────────────────────── */
+.ct-card {
+  --ct-border-width: 2.5cqw;
+  box-sizing: border-box;
+  padding: var(--ct-border-width);
+  background: #0a0312;
+  border-radius: 1cqw;
+  box-shadow:
+    0 0 12px rgba(255, 0, 128, 0.4),
+    0 0 28px rgba(120, 0, 255, 0.25);
+  animation: ct-card-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes ct-card-pulse {
+  0%, 100% { box-shadow: 0 0 12px rgba(255, 0, 128, 0.4), 0 0 28px rgba(120, 0, 255, 0.25); }
+  50%      { box-shadow: 0 0 18px rgba(0, 230, 255, 0.5), 0 0 40px rgba(255, 0, 128, 0.35); }
+}
+
+/* ── CORNICE: conic-gradient ritagliato a bordo uniforme ───── */
+.ct-border {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: var(--ct-border-width);
+  background: conic-gradient(
+    from var(--ct-angle),
+    #ff0080, #ffea00, #00e6ff, #b400ff, #ff0080
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  animation: ct-spin 4s linear infinite;
+  z-index: 0;
+}
+
+@keyframes ct-spin {
+  to { --ct-angle: 360deg; }
+}
+
+/* contenuto interno: NIENTE margin, riempie la content-box del padding */
+.ct-inner {
+  border-radius: 0.5cqw;
+  background: linear-gradient(160deg, #160a24 0%, #0a0312 60%, #1a0530 100%);
+}
+
+/* ── RAGGI ─────────────────────────────────────────────────── */
+.ct-rays {
+  background: repeating-conic-gradient(
+    from 0deg at 50% 60%,
+    rgba(255, 255, 255, 0.10) 0deg 12deg,
+    transparent 12deg 24deg
+  );
+  animation: ct-rays-rotate 12s linear infinite;
+  z-index: 1;
+}
+
+@keyframes ct-rays-rotate {
+  to { transform: rotate(360deg); }
+}
+
+/* ── BANDIERA di sfondo ────────────────────────────────────── */
+.ct-flag-bg {
+  filter: saturate(1.4) blur(2px) brightness(0.7);
+  opacity: 0.55;
+  z-index: 0;
+  transform: scale(2.2);
+  transform-origin: center 55%;
+  animation: ct-flag-breathe 5s ease-in-out infinite;
+}
+
+@keyframes ct-flag-breathe {
+  0%, 100% { transform: scale(2.2);  opacity: 0.45; }
+  50%      { transform: scale(2.45); opacity: 0.65; }
+}
+
+/* ── GETTONE club scuro con bordo neon ─────────────────────── */
+.ct-chip {
+  background: radial-gradient(circle at 35% 30%, #1a0530, #0a0312 90%);
+  border: 0.6cqw solid #00e6ff;
+  box-shadow: 0 0 6px rgba(0, 230, 255, 0.7), inset 0 0 4px rgba(0, 230, 255, 0.4);
+  animation: ct-chip-glow 1.8s ease-in-out infinite alternate;
+}
+
+@keyframes ct-chip-glow {
+  from { box-shadow: 0 0 5px rgba(0, 230, 255, 0.5), inset 0 0 3px rgba(0, 230, 255, 0.3); }
+  to   { box-shadow: 0 0 12px rgba(0, 230, 255, 1), inset 0 0 6px rgba(0, 230, 255, 0.6); }
+}
+
+/* ── TOKEN ruolo / overall ─────────────────────────────────── */
+.ct-token {
+  border: 0.4cqw solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+}
+.ct-token-role {
+  background: linear-gradient(135deg, #ff0080, #b400ff);
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
+}
+.ct-token-ovr {
+  background: linear-gradient(135deg, #ffe600, #ffa600);
+  animation: ct-token-blink 1.2s steps(1) infinite;
+}
+
+@keyframes ct-token-blink {
+  0%, 100% { filter: brightness(1); }
+  50%      { filter: brightness(1.4); }
+}
+
+/* ── TABELLONE nome ────────────────────────────────────────── */
+.ct-board {
+  background: #050008;
+  border-top: 0.5cqw solid rgba(255, 0, 80, 0.5);
+  box-shadow: inset 0 0 10px rgba(255, 0, 80, 0.3);
+}
+.ct-board-text {
+  color: #ff2d55;
+  text-shadow: 0 0 4px #ff2d55, 0 0 8px rgba(255, 45, 85, 0.7);
+  animation: ct-led-flicker 3s ease-in-out infinite;
+}
+
+@keyframes ct-led-flicker {
+  0%, 100% { opacity: 1; }
+  47% { opacity: 1; } 48% { opacity: 0.6; } 49% { opacity: 1; }
+  93% { opacity: 1; } 94% { opacity: 0.7; } 95% { opacity: 1; }
+}
+
+/* ── BOTTONE rimuovi ───────────────────────────────────────── */
+.ct-remove {
+  background: radial-gradient(circle at 35% 35%, #ff4d6d, #c1121f 70%);
+  border: 0.5cqw solid #fff;
+  box-shadow: 0 0 8px rgba(255, 0, 60, 0.8);
+  animation: ct-remove-blink 1s ease-in-out infinite alternate;
+}
+
+@keyframes ct-remove-blink {
+  from { box-shadow: 0 0 6px rgba(255, 0, 60, 0.6); }
+  to   { box-shadow: 0 0 16px rgba(255, 60, 100, 1); }
+}
+
+/* ── STATO VUOTO ───────────────────────────────────────────── */
+.ct-empty {
+  background: radial-gradient(circle at 30% 30%, #2a0a45, #12001f 80%);
+  border: 0.4rem dashed #b400ff;
+  box-shadow: 0 0 10px rgba(180, 0, 255, 0.5);
+  animation: ct-empty-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes ct-empty-pulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(180, 0, 255, 0.4); border-color: #b400ff; }
+  50%      { box-shadow: 0 0 18px rgba(0, 230, 255, 0.7); border-color: #00e6ff; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ct-card, .ct-border, .ct-rays, .ct-flag-bg, .ct-chip,
+  .ct-token-ovr, .ct-board-text, .ct-remove, .ct-empty {
+    animation: none;
+  }
+}
