@@ -8,5 +8,5 @@ export const routes: Routes = [
     { path: 'styleguide', component: StyleguideComponent },
     { path: 'builder', component: LineUpBuilderComponent },
     { path: 'home', component: HomepageComponent },
-    { path: '', redirectTo: '/home', pathMatch: 'full' }
+    { path: '', redirectTo: '/builder', pathMatch: 'full' }
 ];

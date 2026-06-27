@@ -1,6 +1,7 @@
 {
-  "name": "lup",
+  "name": "Line Up Builder",
   "version": "0.0.0",
+  "author": "davenar",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

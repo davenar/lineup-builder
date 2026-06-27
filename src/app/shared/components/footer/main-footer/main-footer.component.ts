@@ -1,9 +1,16 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
+export interface FooterLink {
+  label: string;
+  /** Interno (routerLink) se path inizia con '/', altrimenti esterno (href). */
+  path: string;
+  external?: boolean;
+}
+
 export interface FooterColumn {
   heading: string;
-  links: { label: string; path: string }[];
+  links: FooterLink[];
 }
 
 @Component({
@@ -15,29 +22,31 @@ export interface FooterColumn {
 export class MainFooterComponent {
   readonly currentYear = new Date().getFullYear();
 
+  // ⬇️ Personalizza questi due con i tuoi dati reali.
+  readonly repoUrl = 'https://github.com/davenar/lineup-builder';
+  readonly authorUrl = 'https://github.com/davenar';
+
   readonly columns: FooterColumn[] = [
     {
-      heading: 'Product',
+      heading: 'Project',
       links: [
-        { label: 'Features',  path: '/features' },
-        { label: 'Pricing',   path: '/pricing' },
-        { label: 'Changelog', path: '/changelog' },
+        { label: 'Lineup Builder', path: '/' },
+        { label: 'Style Guide', path: '/styleguide' },
+        { label: 'Source on GitHub', path: this.repoUrl, external: true },
       ],
     },
     {
-      heading: 'Company',
+      heading: 'Built with',
       links: [
-        { label: 'About',   path: '/about' },
-        { label: 'Blog',    path: '/blog' },
-        { label: 'Careers', path: '/careers' },
+        { label: 'Angular', path: 'https://angular.dev', external: true },
+        { label: 'Tailwind CSS', path: 'https://tailwindcss.com', external: true },
+        { label: 'Data: FIFACM', path: 'https://www.fifacm.com', external: true },
       ],
     },
     {
-      heading: 'Legal',
+      heading: 'Developer',
       links: [
-        { label: 'Privacy',  path: '/privacy' },
-        { label: 'Terms',    path: '/terms' },
-        { label: 'Cookies',  path: '/cookies' },
+        { label: 'GitHub Profile', path: this.authorUrl, external: true },
       ],
     },
   ];
