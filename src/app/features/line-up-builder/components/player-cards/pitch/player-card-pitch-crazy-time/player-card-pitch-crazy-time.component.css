@@ -11,11 +11,11 @@
 
 /* ── CARD ──────────────────────────────────────────────────── */
 .ct-card {
-  --ct-border-width: 2.5cqw;
+  --ct-border-width: 3%;
   box-sizing: border-box;
   padding: var(--ct-border-width);
   background: #0a0312;
-  border-radius: 1cqw;
+  border-radius: 0.5rem; 
   box-shadow:
     0 0 12px rgba(255, 0, 128, 0.4),
     0 0 28px rgba(120, 0, 255, 0.25);
@@ -155,7 +155,7 @@
 /* ── STATO VUOTO ───────────────────────────────────────────── */
 .ct-empty {
   background: radial-gradient(circle at 30% 30%, #2a0a45, #12001f 80%);
-  border: 0.4rem dashed #b400ff;
+  border: 0.4cqw dashed #b400ff;
   box-shadow: 0 0 10px rgba(180, 0, 255, 0.5);
   animation: ct-empty-pulse 1.6s ease-in-out infinite;
 }

@@ -1,44 +1,37 @@
 @if (player()) {
 <div
-  class="glow-hover relative flex w-full cursor-pointer items-stretch overflow-hidden bg-white shadow-[0_2px_8px_rgba(0,0,0,0.35)]"
+  class="glow-hover-soft relative flex w-full cursor-pointer items-stretch overflow-hidden rounded-[0.8rem] border border-lup-soft/15 bg-bg-elevated/80 shadow-[0_2px_8px_rgba(0,0,0,0.35)]"
   (click)="onOpenSearchPanel()">
-
-  <!-- foto figurina: ancorata in basso, ritagliata dalle spalle -->
+  <!-- foto figurina: unico elemento chiaro, richiama la sticker del campo -->
   <div
     class="relative flex h-[6rem] w-[5.4rem] flex-shrink-0 items-end justify-center overflow-hidden bg-gradient-to-b from-lup-pale to-lup-lightest">
-    <img [src]="player()!.player_img" [alt]="player()!.shortname"
-      class="h-[112%] w-auto object-contain object-bottom" loading="lazy" />
-
-    <!-- bandierina nazionalità -->
-    <!-- <img [src]="player()!.nation_img" [alt]="player()!.nationname" [title]="player()!.nationname"
-      class="absolute bottom-[0.3rem] left-[0.3rem] h-[1.6rem] w-[1.6rem] object-contain" loading="lazy" /> -->
+    <img [src]="player()!.player_img" [alt]="player()!.shortname" class="h-[112%] w-auto object-contain object-bottom"
+      loading="lazy" />
   </div>
-
   <!-- bandierina country + overall impilati -->
   <div class="flex flex-shrink-0 flex-col items-center justify-center gap-[0.4rem] px-base">
     <img [src]="player()!.nation_img" [alt]="player()!.nationname" [title]="player()!.nationname"
       class="h-[1.8rem] w-[1.8rem] object-contain" loading="lazy" />
-    <span class="rounded-[0.4rem] bg-lup-darkest px-[0.6rem] py-[0.2rem] text-[1.1rem] font-bold leading-none text-white">
+    <span
+      class="rounded-[0.4rem] bg-lup-accent px-[0.6rem] py-[0.2rem] text-[1.1rem] font-bold leading-none text-white">
       {{ player()!.overallrating }}
     </span>
   </div>
-
   <!-- nome + squadra -->
   <div class="flex min-w-0 flex-1 flex-col justify-center pr-base">
-    <span class="truncate text-[1.5rem] font-bold uppercase leading-tight text-lup-darkest">
+    <span class="truncate text-[1.5rem] font-bold uppercase leading-tight text-text-primary">
       {{ player()!.shortname }}
     </span>
-    <span class="truncate text-[1.2rem] leading-tight text-lup-mid-dark/70">
+    <span class="truncate text-[1.2rem] leading-tight text-text-muted">
       {{ player()!.teamname }}
     </span>
   </div>
-
   <!-- x rimuovi: rossa, centrata a destra -->
   <button type="button"
     class="glow-hover mr-base flex h-[2.4rem] w-[2.4rem] flex-shrink-0 cursor-pointer items-center justify-center self-center rounded-full border border-white/30 bg-red-600 text-white"
     aria-label="Rimuovi giocatore" (click)="onRemovePlayer($event)">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
-      stroke-linecap="round" class="h-[55%] w-[55%]">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+      class="h-[55%] w-[55%]">
       <line x1="6" y1="6" x2="18" y2="18" />
       <line x1="18" y1="6" x2="6" y2="18" />
     </svg>
@@ -51,8 +44,8 @@
   (click)="onOpenSearchPanel()">
   <span
     class="flex h-[3.6rem] w-[3.6rem] flex-shrink-0 items-center justify-center rounded-full border-2 border-dashed border-lup-soft/50 text-lup-soft">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-      stroke-linecap="round" class="h-[45%] w-[45%]">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+      class="h-[45%] w-[45%]">
       <line x1="12" y1="5" x2="12" y2="19" />
       <line x1="5" y1="12" x2="19" y2="12" />
     </svg>

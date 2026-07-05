@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import {
-  AfterViewInit,
   Component,
   computed,
+  DestroyRef,
+  effect,
   ElementRef,
   inject,
   Input,
-  OnDestroy,
   signal,
-  ViewChild,
+  viewChild,
 } from '@angular/core';
 import { PanelService } from '../../../../../../core/services/panel.service';
 import { LineupStateService } from '../../../../services/lineup-state.service';
@@ -23,45 +23,59 @@ import { PlayerSearchPanelContentComponent } from '../../../player-search-panel-
   templateUrl: './player-card-pitch-crazy-time.component.html',
   styleUrl: './player-card-pitch-crazy-time.component.css',
 })
-export class PlayerCardPitchCrazyTimeComponent implements AfterViewInit, OnDestroy {
+export class PlayerCardPitchCrazyTimeComponent {
   @Input({ required: true }) slot!: FormationSlot;
 
-  @ViewChild('nameViewport') nameViewport?: ElementRef<HTMLElement>;
-  @ViewChild('nameText') nameText?: ElementRef<HTMLElement>;
+  // Signal queries: si aggiornano quando il @if monta/smonta gli elementi
+  private readonly nameViewport = viewChild<ElementRef<HTMLElement>>('nameViewport');
+  private readonly nameText = viewChild<ElementRef<HTMLElement>>('nameText');
 
   private readonly panelService = inject(PanelService);
   private readonly lineupState = inject(LineupStateService);
+  private readonly destroyRef = inject(DestroyRef);
 
   private resizeObserver?: ResizeObserver;
 
   readonly player = computed<PlayerInfoData | null>(
     () => this.lineupState.pitchAssignments().get(this.slot.cellIndex) ?? null,
   );
-
   readonly isNameOverflowing = signal(false);
 
-  ngAfterViewInit(): void {
-    this.resizeObserver = new ResizeObserver(() => this.scheduleOverflowCheck());
-    if (this.nameViewport) {
-      this.resizeObserver.observe(this.nameViewport.nativeElement);
-    }
-    this.scheduleOverflowCheck();
-  }
+  constructor() {
+    // Rigira quando: il viewport appare/scompare (@if) o il player cambia.
+    // Gli effect girano DOPO il rendering del template, quindi il DOM
+    // misurato è già quello aggiornato — niente race con la CD.
+    effect(() => {
+      const viewport = this.nameViewport()?.nativeElement;
+      this.player(); // dipendenza esplicita: nuovo player → nuova misura
 
-  ngOnDestroy(): void {
-    this.resizeObserver?.disconnect();
+      this.resizeObserver?.disconnect();
+
+      if (!viewport) {
+        this.isNameOverflowing.set(false);
+        return;
+      }
+
+      this.resizeObserver = new ResizeObserver(() => this.scheduleOverflowCheck());
+      this.resizeObserver.observe(viewport);
+      this.scheduleOverflowCheck();
+    });
+
+    this.destroyRef.onDestroy(() => this.resizeObserver?.disconnect());
   }
 
   private scheduleOverflowCheck(): void {
+    // rAF: misura dopo che layout e unità cqw sono applicati.
     requestAnimationFrame(() => this.checkNameOverflow());
   }
 
   private checkNameOverflow(): void {
-    const viewport = this.nameViewport?.nativeElement;
-    const text = this.nameText?.nativeElement;
+    const viewport = this.nameViewport()?.nativeElement;
+    const text = this.nameText()?.nativeElement;
     if (!viewport || !text) {
       return;
     }
+    // +1px di tolleranza per evitare falsi positivi da rounding.
     this.isNameOverflowing.set(text.scrollWidth > viewport.clientWidth + 1);
   }
 
@@ -79,7 +93,7 @@ export class PlayerCardPitchCrazyTimeComponent implements AfterViewInit, OnDestr
         slotLabel: this.slot.fullLabel,
         onPlayerSelected: (player: PlayerInfoData) => {
           this.lineupState.assignPitchPlayer(this.slot.cellIndex, player);
-          this.scheduleOverflowCheck();
+          // niente scheduleOverflowCheck manuale: ci pensa l'effect
         },
       },
     );

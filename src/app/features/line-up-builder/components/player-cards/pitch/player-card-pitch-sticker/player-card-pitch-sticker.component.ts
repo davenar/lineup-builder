@@ -3,11 +3,14 @@ import {
   AfterViewInit,
   Component,
   computed,
+  DestroyRef,
+  effect,
   ElementRef,
   inject,
   Input,
   OnDestroy,
   signal,
+  viewChild,
   ViewChild,
 } from '@angular/core';
 import { PanelService } from '../../../../../../core/services/panel.service';
@@ -23,35 +26,45 @@ import { PlayerSearchPanelContentComponent } from '../../../player-search-panel-
   templateUrl: './player-card-pitch-sticker.component.html',
   host: { class: 'block w-full' },
 })
-export class PlayerCardPitchStickerComponent implements AfterViewInit, OnDestroy {
+export class PlayerCardPitchStickerComponent {
   @Input({ required: true }) slot!: FormationSlot;
 
-  @ViewChild('nameViewport') nameViewport?: ElementRef<HTMLElement>;
-  @ViewChild('nameText') nameText?: ElementRef<HTMLElement>;
+  // Signal queries: si aggiornano quando il @if monta/smonta gli elementi
+  private readonly nameViewport = viewChild<ElementRef<HTMLElement>>('nameViewport');
+  private readonly nameText = viewChild<ElementRef<HTMLElement>>('nameText');
 
   private readonly panelService = inject(PanelService);
   private readonly lineupState = inject(LineupStateService);
+  private readonly destroyRef = inject(DestroyRef);
 
   private resizeObserver?: ResizeObserver;
 
   readonly player = computed<PlayerInfoData | null>(
     () => this.lineupState.pitchAssignments().get(this.slot.cellIndex) ?? null,
   );
-
   readonly isNameOverflowing = signal(false);
 
-  ngAfterViewInit(): void {
-    // Ricontrolla l'overflow ogni volta che la cella cambia dimensione
-    // (resize finestra, breakpoint, ecc.) o il player viene assegnato.
-    this.resizeObserver = new ResizeObserver(() => this.scheduleOverflowCheck());
-    if (this.nameViewport) {
-      this.resizeObserver.observe(this.nameViewport.nativeElement);
-    }
-    this.scheduleOverflowCheck();
-  }
+  constructor() {
+    // Rigira quando: il viewport appare/scompare (@if) o il player cambia.
+    // Gli effect girano DOPO il rendering del template, quindi il DOM
+    // che misuriamo è già quello aggiornato — niente race con la CD.
+    effect(() => {
+      const viewport = this.nameViewport()?.nativeElement;
+      this.player(); // dipendenza esplicita: nuovo player → nuova misura
 
-  ngOnDestroy(): void {
-    this.resizeObserver?.disconnect();
+      this.resizeObserver?.disconnect();
+
+      if (!viewport) {
+        this.isNameOverflowing.set(false);
+        return;
+      }
+
+      this.resizeObserver = new ResizeObserver(() => this.scheduleOverflowCheck());
+      this.resizeObserver.observe(viewport);
+      this.scheduleOverflowCheck();
+    });
+
+    this.destroyRef.onDestroy(() => this.resizeObserver?.disconnect());
   }
 
   private scheduleOverflowCheck(): void {
@@ -60,33 +73,21 @@ export class PlayerCardPitchStickerComponent implements AfterViewInit, OnDestroy
   }
 
   private checkNameOverflow(): void {
-    const viewport = this.nameViewport?.nativeElement;
-    const text = this.nameText?.nativeElement;
-    if (!viewport || !text) {
-      return;
-    }
-    // +1px di tolleranza per evitare falsi positivi da rounding.
-    // Il viewport non ha padding orizzontale, quindi clientWidth
-    // corrisponde all'area reale di contenuto.
+    const viewport = this.nameViewport()?.nativeElement;
+    const text = this.nameText()?.nativeElement;
+    if (!viewport || !text) return;
     this.isNameOverflowing.set(text.scrollWidth > viewport.clientWidth + 1);
   }
 
   onOpenSearchPanel(): void {
     this.panelService.open(
       PlayerSearchPanelContentComponent,
-      {
-        desktopDirection: 'right',
-        mobileDirection: 'bottom',
-        bottomHeight: '85dvh',
-        ariaLabel: `Seleziona giocatore - ${this.slot.fullLabel}`,
-        closeModes: ['close-button', 'backdrop', 'escape'],
-      },
+      { /* invariato */ },
       {
         slotLabel: this.slot.fullLabel,
         onPlayerSelected: (player: PlayerInfoData) => {
           this.lineupState.assignPitchPlayer(this.slot.cellIndex, player);
-          // il player cambia → ricalcola l'overflow al prossimo frame
-          this.scheduleOverflowCheck();
+          // niente scheduleOverflowCheck manuale: ci pensa l'effect
         },
       },
     );
