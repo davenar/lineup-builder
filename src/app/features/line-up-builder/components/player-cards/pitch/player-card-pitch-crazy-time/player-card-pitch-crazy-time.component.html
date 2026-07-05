@@ -1,6 +1,6 @@
 @if (player()) {
 <div
-  class="ct-card glow-hover relative flex aspect-[71/100] h-[85cqh] sd:h-[75cqh] cursor-pointer flex-col [container-type:size]"
+  class="ct-card glow-hover relative flex aspect-[71/100] w-full cursor-pointer flex-col [container-type:size]"
   (click)="onOpenSearchPanel()">
 
   <!-- bottone rimuovi: FUORI da .ct-inner così non viene clippato -->
@@ -71,7 +71,7 @@
 </div>
 } @else {
 <button type="button"
-  class="ct-empty glow-hover flex aspect-square h-[52cqmin] items-center justify-center rounded-full text-white cursor-pointer"
+  class="ct-empty glow-hover mx-auto flex aspect-square w-[62%] items-center justify-center rounded-full text-white cursor-pointer"
   [attr.aria-label]="'Aggiungi giocatore - ' + slot.fullLabel" (click)="onOpenSearchPanel()">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
     stroke-linecap="round" class="h-[45%] w-[45%]">

@@ -1,10 +1,9 @@
 export interface FormationSlot {
-  /** Indice della cella nella griglia 6x5 del campetto (1-30) */
-  cellIndex: number;
-  /** Etichetta breve mostrata sulla card, es. 'TD', 'CC', 'ATT' */
+  cellIndex: number;   // ora è un id univoco dello slot (1–11), non più una cella
   label: string;
-  /** Etichetta estesa, es. 'Terzino destro', 'Centrocampista centrale' */
   fullLabel: string;
+  x: number;           // % da sinistra (0–100)
+  y: number;           // % dall'alto (0–100), GK in alto
 }
 
 export interface Formation {

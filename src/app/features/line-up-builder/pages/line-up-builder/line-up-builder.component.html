@@ -3,23 +3,52 @@
   <!-- PITCH -->
   <div class="w-full sd:w-1/2 flex items-start justify-center p-base">
     <div
-      [class]="'grid grid-rows-6 grid-cols-5 [aspect-ratio:68/105] [max-height:75dvh] sd:[max-height:85dvh] [width:min(calc(75dvh*68/105),100%)] sd:[width:min(calc(85dvh*68/105),100%)] [&>*]:border [&>*]:border-lup-soft/30 [&>*]:text-text-primary ' + pitchClasses()">
-      @for (cellIndex of pitchCells; track cellIndex) {
-      <div class="relative flex items-center justify-center [container-type:size]">
-        @if (lineupState.activeSlotsByCell().has(cellIndex)) {
-        <app-player-card-pitch [slot]="lineupState.activeSlotsByCell().get(cellIndex)!" />
-        }
+      [class]="'relative [container-type:size] [aspect-ratio:68/105] [max-height:75dvh] sd:[max-height:85dvh] [width:min(calc(75dvh*68/105),100%)] sd:[width:min(calc(85dvh*68/105),100%)] ' + pitchClasses()">
+      <!-- Linee del campo: regolamentari IFAB in scala 1 unità = 1 dm -->
+      <svg class="pointer-events-none absolute inset-0 h-full w-full" viewBox="0 0 680 1050" fill="none"
+        aria-hidden="true">
+        <g stroke="var(--pitch-line, rgba(255,255,255,0.45))" stroke-width="2">
+          <!-- perimetro -->
+          <rect x="1" y="1" width="678" height="1048" />
+          <!-- linea mediana -->
+          <line x1="1" y1="525" x2="679" y2="525" />
+          <!-- cerchio di centrocampo (r = 9,15 m) e punto del calcio d'inizio -->
+          <circle cx="340" cy="525" r="91.5" />
+          <circle cx="340" cy="525" r="3" fill="var(--pitch-line, rgba(255,255,255,0.45))" stroke="none" />
+
+          <!-- metà superiore -->
+          <rect x="138.4" y="1" width="403.2" height="164" /> <!-- area di rigore -->
+          <rect x="248.4" y="1" width="183.2" height="54" /> <!-- area piccola -->
+          <circle cx="340" cy="110" r="3" fill="var(--pitch-line, rgba(255,255,255,0.45))" stroke="none" /> <!-- dischetto -->
+          <path d="M 266.9 165 A 91.5 91.5 0 0 0 413.1 165" /> <!-- lunetta -->
+
+          <!-- metà inferiore -->
+          <rect x="138.4" y="885" width="403.2" height="164" />
+          <rect x="248.4" y="995" width="183.2" height="54" />
+          <circle cx="340" cy="940" r="3" fill="var(--pitch-line, rgba(255,255,255,0.45))" stroke="none" />
+          <path d="M 266.9 885 A 91.5 91.5 0 0 1 413.1 885" />
+
+          <!-- archi d'angolo (r = 1 m) -->
+          <path d="M 0 10 A 10 10 0 0 0 10 0" />
+          <path d="M 670 0 A 10 10 0 0 0 680 10" />
+          <path d="M 10 1050 A 10 10 0 0 0 0 1040" />
+          <path d="M 680 1040 A 10 10 0 0 0 670 1050" />
+        </g>
+      </svg>
+      @for (slot of activeSlots(); track slot.cellIndex) {
+      <div class="absolute -translate-x-1/2 -translate-y-1/2 w-[16cqw] sd:w-[14cqw]" [style.left.%]="slot.x"
+        [style.top.%]="slot.y">
+        <app-player-card-pitch [slot]="slot" />
       </div>
       }
     </div>
   </div>
 
   <!-- BENCH -->
-<div
-  class="w-full sd:w-1/2 flex flex-col justify-start p-base gap-sm">
-  @for (benchIndex of benchSlots; track benchIndex) {
-  <app-player-card-bench [benchIndex]="benchIndex" />
-  }
-</div>
+  <div class="w-full sd:w-1/2 flex flex-col justify-start p-base gap-sm">
+    @for (benchIndex of benchSlots; track benchIndex) {
+    <app-player-card-bench [benchIndex]="benchIndex" />
+    }
+  </div>
 
 </div>

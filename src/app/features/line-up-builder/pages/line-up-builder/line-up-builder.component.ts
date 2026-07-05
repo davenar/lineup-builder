@@ -15,7 +15,9 @@ import { PITCH_BACKGROUND_CLASSES } from '../../constants/player-card-style.data
 export class LineUpBuilderComponent {
   readonly lineupState = inject(LineupStateService);
 
-  readonly pitchCells = Array.from({ length: 30 }, (_, i) => i + 1);
+  readonly activeSlots = computed(() =>
+    Array.from(this.lineupState.activeSlotsByCell().values()),
+  );
   readonly benchSlots = Array.from({ length: BENCH_SLOTS_COUNT }, (_, i) => i + 1);
 
   readonly pitchClasses = computed(
