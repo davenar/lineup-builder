@@ -1,8 +1,7 @@
 @if (player()) {
-<div class="glow-hover relative flex aspect-[71/100] w-full cursor-pointer flex-col bg-white shadow-[0_2px_8px_rgba(0,0,0,0.45)] [container-type:size]"
-    (click)="onOpenSearchPanel()">
+<div class="glow-hover relative flex aspect-[71/100] w-full flex-col bg-white shadow-[0_2px_8px_rgba(0,0,0,0.45)] [container-type:size]">
 
-    <!-- bottone rimuovi: rosso, più grande, cursor pointer, angolo in alto a destra -->
+    <!-- bottone rimuovi -->
     <button type="button"
         class="glow-hover absolute -top-[15cqw] -right-[15cqw] z-30 flex h-[30cqw] w-[30cqw] cursor-pointer items-center justify-center rounded-full border border-white/30 bg-red-600 text-white sd:-top-[10cqw] sd:-right-[10cqw] sd:h-[20cqw] sd:w-[20cqw]"
         aria-label="Rimuovi giocatore" (click)="onRemovePlayer($event)">
@@ -10,6 +9,17 @@
             class="h-[75%] w-[75%]">
             <line x1="6" y1="6" x2="18" y2="18" />
             <line x1="18" y1="6" x2="6" y2="18" />
+        </svg>
+    </button>
+
+    <!-- bottone sostituisci: quadrato, sotto la x -->
+    <button type="button"
+        class="glow-hover absolute -right-[15cqw] top-[20cqw] z-30 flex h-[30cqw] w-[30cqw] cursor-pointer items-center justify-center rounded-[4cqw] border border-white/30 bg-lup-accent text-white sd:-right-[10cqw] sd:top-[14cqw] sd:h-[20cqw] sd:w-[20cqw]"
+        aria-label="Sostituisci giocatore" (click)="onOpenSearchPanel()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+            stroke-linejoin="round" class="h-[65%] w-[65%]">
+            <path d="M4 7h13M13 3l4 4-4 4" />
+            <path d="M20 17H7M11 21l-4-4 4-4" />
         </svg>
     </button>
 
@@ -30,7 +40,7 @@
             class="absolute bottom-[3cqw] left-[3cqw] z-10 h-[26cqw] w-[26cqw] object-contain sd:h-[22cqw] sd:w-[22cqw]"
             loading="lazy" />
 
-        <!-- ruolo + overall: in basso a destra, stessa altezza della bandierina -->
+        <!-- overall + ruolo: in basso a destra -->
         <div class="absolute bottom-[3cqw] right-[3cqw] z-10 flex flex-col items-end gap-[2cqw]">
             <span
                 class="rounded-[4cqw] bg-lup-darkest px-[5cqw] py-[2cqw] text-[13cqw] font-bold leading-none text-white sd:text-[12cqw]">
@@ -45,9 +55,7 @@
     </div>
 
     <!-- nome con marquee -->
-    <!-- angoli inferiori arrotondati così la card non sporge sotto la x -->
     <div class="w-full overflow-hidden rounded-b-[2cqw] border-t border-lup-darkest/10 bg-white px-[6cqw] py-[3cqw]">
-        <!-- viewport DI MISURA: niente padding orizzontale -->
         <div #nameViewport class="w-full overflow-hidden">
             <div class="flex w-max" [class.animate-marquee]="isNameOverflowing()"
                 [class.mx-auto]="!isNameOverflowing()">

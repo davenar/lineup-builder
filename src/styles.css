@@ -786,4 +786,45 @@
       width: 100vw;
     }
   }
+
+  /* ── CDK DRAG & DROP ─────────────────────────────────────── */
+  /* mano aperta sulle card trascinabili, chiusa durante la presa */
+  .cdk-drag:not(.cdk-drag-disabled) {
+    cursor: grab;
+  }
+
+  .cdk-drag:not(.cdk-drag-disabled):active {
+    cursor: grabbing;
+  }
+
+  .cdk-drag-preview {
+    cursor: grabbing;
+  }
+
+  /* il placeholder (elemento originale) esce dal layout:
+   niente slot che collassano o si deformano durante il drag */
+  .cdk-drag-placeholder {
+    position: absolute !important;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .cdk-drag-animating {
+    transition: transform 0.2s cubic-bezier(0, 0, 0.2, 1);
+  }
+
+  /* niente menu "salva immagine / copia link" su long-press mobile,
+   niente drag nativo delle immagini che interferisce col CDK */
+  .cdk-drag,
+  .cdk-drag * {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  .cdk-drag img {
+    -webkit-user-drag: none;
+    user-drag: none;
+  }
+
 }

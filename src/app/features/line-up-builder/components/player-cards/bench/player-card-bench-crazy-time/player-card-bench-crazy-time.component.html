@@ -1,7 +1,6 @@
 @if (player()) {
 <div
-  class="ct-row glow-hover relative flex w-full cursor-pointer items-stretch overflow-hidden"
-  (click)="onOpenSearchPanel()">
+  class="ct-row glow-hover relative flex w-full items-stretch overflow-hidden">
 
   <!-- cornice di luci rotante, identica alla card del pitch -->
   <div class="ct-spin-border" aria-hidden="true"></div>
@@ -18,7 +17,7 @@
         loading="lazy" />
     </div>
 
-    <!-- bandiera country + overall (stesse dimensioni, niente bordo sulla bandiera) -->
+    <!-- bandiera country + overall -->
     <div class="relative z-10 flex flex-shrink-0 flex-col items-center justify-center gap-[0.4rem] px-base">
       <img [src]="player()!.nation_img" [alt]="player()!.nationname" [title]="player()!.nationname"
         class="h-[2.4rem] w-[2.4rem] object-contain" loading="lazy" />
@@ -37,16 +36,27 @@
       </span>
     </div>
 
-    <!-- x rimuovi lampeggiante -->
-    <button type="button"
-      class="ct-remove glow-hover relative z-10 mr-base flex h-[2.4rem] w-[2.4rem] flex-shrink-0 cursor-pointer items-center justify-center self-center rounded-full text-white"
-      aria-label="Rimuovi giocatore" (click)="onRemovePlayer($event)">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
-        stroke-linecap="round" class="h-[55%] w-[55%]">
-        <line x1="6" y1="6" x2="18" y2="18" />
-        <line x1="18" y1="6" x2="6" y2="18" />
-      </svg>
-    </button>
+    <!-- colonna azioni: x rimuovi + sostituisci -->
+    <div class="relative z-10 mr-base flex flex-shrink-0 flex-col items-center justify-center gap-[0.6rem] self-center">
+      <button type="button"
+        class="ct-remove glow-hover flex h-[2.4rem] w-[2.4rem] cursor-pointer items-center justify-center rounded-full text-white"
+        aria-label="Rimuovi giocatore" (click)="onRemovePlayer($event)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+          stroke-linecap="round" class="h-[55%] w-[55%]">
+          <line x1="6" y1="6" x2="18" y2="18" />
+          <line x1="18" y1="6" x2="6" y2="18" />
+        </svg>
+      </button>
+      <button type="button"
+        class="glow-hover flex h-[2.4rem] w-[2.4rem] cursor-pointer items-center justify-center rounded-[0.5rem] border border-white/60 bg-gradient-to-br from-[#00e6ff] to-[#b400ff] text-white"
+        aria-label="Sostituisci giocatore" (click)="onOpenSearchPanel()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+          stroke-linejoin="round" class="h-[65%] w-[65%]">
+          <path d="M4 7h13M13 3l4 4-4 4" />
+          <path d="M20 17H7M11 21l-4-4 4-4" />
+        </svg>
+      </button>
+    </div>
   </div>
 </div>
 } @else {
