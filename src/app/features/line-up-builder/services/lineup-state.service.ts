@@ -5,7 +5,7 @@ import { Formation, FormationSlot } from '../models/formation.models';
 import { PlayerInfoData } from '../models/player-info-response.model';
 import { PitchCardStyle, BenchCardStyle, PitchBackground } from '../types/line-up-builder-settings.types';
 
-
+export type DragOrigin = { zone: 'pitch' | 'bench'; index: number };
 interface StoredLineup {
   formationId: string;
   pitch: Record<number, PlayerInfoData>;
@@ -233,4 +233,43 @@ export class LineupStateService {
     });
     return map;
   }
+
+  // ── Drag & Drop ────────────────────────────────────────────
+
+  /**
+   * Sposta o scambia due giocatori tra qualsiasi combinazione di
+   * pitch e bench. Se il target è occupato scambia, altrimenti sposta.
+   */
+  swapOrMovePlayer(source: DragOrigin, target: DragOrigin): void {
+    if (source.zone === target.zone && source.index === target.index) {
+      return;
+    }
+
+    const pitch = new Map(this._pitchAssignments());
+    const bench = new Map(this._benchAssignments());
+
+    const getMap = (zone: DragOrigin['zone']) => (zone === 'pitch' ? pitch : bench);
+
+    const sourceMap = getMap(source.zone);
+    const targetMap = getMap(target.zone);
+
+    const sourcePlayer = sourceMap.get(source.index);
+    if (!sourcePlayer) {
+      return;
+    }
+
+    const targetPlayer = targetMap.get(target.index);
+
+    targetMap.set(target.index, sourcePlayer);
+
+    if (targetPlayer) {
+      sourceMap.set(source.index, targetPlayer);
+    } else {
+      sourceMap.delete(source.index);
+    }
+
+    this._pitchAssignments.set(pitch);
+    this._benchAssignments.set(bench);
+  }
+
 }
