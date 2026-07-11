@@ -265,6 +265,29 @@
     color: var(--color-text-primary);
   }
 
+  .btn-danger {
+    background-color: #c92a2a;
+    border-color: #c92a2a;
+    color: var(--color-text-primary);
+  }
+
+  .btn-danger:hover:not(:disabled) {
+    background-color: #e03131;
+    border-color: #e03131;
+  }
+
+  .btn-danger-outline {
+    background-color: transparent;
+    border-color: color-mix(in srgb, #c92a2a 70%, transparent);
+    color: #f87171;
+  }
+
+  .btn-danger-outline:hover:not(:disabled) {
+    background-color: color-mix(in srgb, #c92a2a 12%, transparent);
+    border-color: #f87171;
+    color: var(--color-text-primary);
+  }
+
   .btn:disabled,
   .btn[aria-disabled="true"] {
     opacity: 0.38;
