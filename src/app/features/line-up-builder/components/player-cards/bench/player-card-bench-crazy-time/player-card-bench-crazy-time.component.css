@@ -39,7 +39,7 @@
 
 /* maschera interna: lascia vedere la cornice come bordo sottile uniforme */
 .ct-inner {
-  margin: 2px;
+  margin: 1px;
   background: linear-gradient(100deg, #160a24 0%, #0a0312 55%, #1a0530 100%);
 }
 
@@ -87,7 +87,7 @@
 /* ── stato vuoto ───────────────────────────────────────────── */
 .ct-empty {
   background: linear-gradient(100deg, #12001f, #1a0530);
-  border: 2px dashed #b400ff;
+  border: 1px dashed #b400ff;
   box-shadow: 0 0 8px rgba(180, 0, 255, 0.4);
   animation: ct-empty-pulse 1.8s ease-in-out infinite;
 }
@@ -99,7 +99,7 @@
 
 .ct-empty-chip {
   background: radial-gradient(circle at 30% 30%, #2a0a45, #12001f 80%);
-  border: 2px dashed #00e6ff;
+  border: 1px dashed #00e6ff;
 }
 
 @media (prefers-reduced-motion: reduce) {
