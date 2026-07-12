@@ -11,11 +11,11 @@
 
 /* ── CARD ──────────────────────────────────────────────────── */
 .ct-card {
-  --ct-border-width: 3%;
+  --ct-border-width: 2.5%;
   box-sizing: border-box;
   padding: var(--ct-border-width);
   background: #0a0312;
-  border-radius: 0.5rem; 
+  border-radius: 0.5rem;
   box-shadow:
     0 0 12px rgba(255, 0, 128, 0.4),
     0 0 28px rgba(120, 0, 255, 0.25);
@@ -89,36 +89,57 @@
   50%      { transform: scale(2.45); opacity: 0.65; }
 }
 
-/* ── GETTONE club scuro con bordo neon ─────────────────────── */
+/* ── PANNELLO club: fondo chiaro, niente bordo, flickering ─── */
+/* Sfondo avorio caldo (#f5f0e6): neutro, non compete coi neon
+   della card e fa risaltare qualsiasi logo, chiaro o scuro. */
 .ct-chip {
-  background: radial-gradient(circle at 35% 30%, #1a0530, #0a0312 90%);
-  border: 0.6cqw solid #00e6ff;
-  box-shadow: 0 0 6px rgba(0, 230, 255, 0.7), inset 0 0 4px rgba(0, 230, 255, 0.4);
-  animation: ct-chip-glow 1.8s ease-in-out infinite alternate;
+  background: #f5f0e6;
+  box-shadow:
+    0 0 6px rgba(245, 240, 230, 0.45),
+    0 0 12px rgba(245, 240, 230, 0.2);
+  animation: ct-chip-flicker 3s ease-in-out infinite;
+  animation-delay: 0.7s;
 }
 
-@keyframes ct-chip-glow {
-  from { box-shadow: 0 0 5px rgba(0, 230, 255, 0.5), inset 0 0 3px rgba(0, 230, 255, 0.3); }
-  to   { box-shadow: 0 0 12px rgba(0, 230, 255, 1), inset 0 0 6px rgba(0, 230, 255, 0.6); }
+@keyframes ct-chip-flicker {
+  0%, 100% { opacity: 1; }
+  47% { opacity: 1; } 48% { opacity: 0.72; } 49% { opacity: 1; }
+  93% { opacity: 1; } 94% { opacity: 0.8; } 95% { opacity: 1; }
 }
 
-/* ── TOKEN ruolo / overall ─────────────────────────────────── */
-.ct-token {
-  border: 0.4cqw solid rgba(255, 255, 255, 0.85);
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
-}
-.ct-token-role {
-  background: linear-gradient(135deg, #ff0080, #b400ff);
-  text-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
-}
-.ct-token-ovr {
-  background: linear-gradient(135deg, #ffe600, #ffa600);
-  animation: ct-token-blink 1.2s steps(1) infinite;
+/* ── MINI TABELLONI laterali (ruolo / overall) ─────────────── */
+/* stessa estetica del tabellone nome: fondo quasi nero, scritta
+   LED con glow, leggero inset. Colori diversi per distinguerli. */
+.ct-side-board {
+  background: #050008;
+  border: 0.4cqw solid rgba(255, 255, 255, 0.18);
+  border-radius: 1.5cqw;
+  box-shadow:
+    0 0 6px rgba(0, 0, 0, 0.6),
+    inset 0 0 8px rgba(255, 255, 255, 0.06);
 }
 
-@keyframes ct-token-blink {
-  0%, 100% { filter: brightness(1); }
-  50%      { filter: brightness(1.4); }
+/* ruolo: LED ciano */
+.ct-side-board-role {
+  color: #00e6ff;
+  text-shadow: 0 0 4px #00e6ff, 0 0 8px rgba(0, 230, 255, 0.7);
+  border-color: rgba(0, 230, 255, 0.4);
+  box-shadow:
+    0 0 6px rgba(0, 230, 255, 0.35),
+    inset 0 0 8px rgba(0, 230, 255, 0.15);
+  animation: ct-led-flicker 3s ease-in-out infinite;
+}
+
+/* overall: LED giallo ambra */
+.ct-side-board-ovr {
+  color: #ffd60a;
+  text-shadow: 0 0 4px #ffd60a, 0 0 8px rgba(255, 214, 10, 0.7);
+  border-color: rgba(255, 214, 10, 0.4);
+  box-shadow:
+    0 0 6px rgba(255, 214, 10, 0.35),
+    inset 0 0 8px rgba(255, 214, 10, 0.15);
+  animation: ct-led-flicker 3s ease-in-out infinite;
+  animation-delay: 1.4s;
 }
 
 /* ── TABELLONE nome ────────────────────────────────────────── */
@@ -167,6 +188,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .ct-card, .ct-border, .ct-rays, .ct-flag-bg, .ct-chip,
+  .ct-side-board-role, .ct-side-board-ovr,
   .ct-token-ovr, .ct-board-text, .ct-remove, .ct-empty {
     animation: none;
   }

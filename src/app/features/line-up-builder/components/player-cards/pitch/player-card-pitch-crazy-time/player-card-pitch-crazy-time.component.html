@@ -24,6 +24,17 @@
     </svg>
   </button>
 
+  <!-- ruolo + overall: mini tabelloni a cavallo del bordo SINISTRO, metà altezza -->
+  <div class="absolute -left-[10cqw] top-1/2 z-40 flex -translate-y-1/2 flex-col gap-[3cqw]">
+    <span class="ct-side-board ct-side-board-role flex w-[30cqw] items-center justify-center px-[4cqw] py-[4cqw] text-[13cqw] font-black uppercase leading-none tracking-wider sd:w-[26cqw] sd:text-[11cqw]"
+      [title]="slot.fullLabel">
+      {{ slot.label }}
+    </span>
+    <span class="ct-side-board ct-side-board-ovr flex w-[30cqw] items-center justify-center px-[4cqw] py-[4cqw] text-[13cqw] font-black leading-none tracking-wider sd:w-[26cqw] sd:text-[11cqw]">
+      {{ player()!.overallrating }}
+    </span>
+  </div>
+
   <!-- cornice: un solo layer, conic-gradient ritagliato a bordo da mask -->
   <div class="ct-border" aria-hidden="true"></div>
 
@@ -31,9 +42,9 @@
   <div class="ct-inner relative z-10 flex h-full w-full flex-col overflow-hidden">
 
     <!-- club: gettone scuro in alto a sinistra -->
-    <div class="ct-chip absolute left-[5cqw] top-[5cqw] z-20 flex h-[28cqw] w-[28cqw] items-center justify-center rounded-full sd:h-[24cqw] sd:w-[24cqw]">
+    <div class="ct-chip absolute left-[5cqw] top-[5cqw] z-20 flex h-[24cqw] w-[24cqw] items-center justify-center rounded-[2cqw] sd:h-[20cqw] sd:w-[20cqw]">
       <img [src]="player()!.club_img" [alt]="player()!.teamname" [title]="player()!.teamname"
-        class="h-[70%] w-[70%] object-contain" loading="lazy" />
+        class="h-[76%] w-[76%] object-contain" loading="lazy" />
     </div>
 
     <!-- foto giocatore: bandiera enorme come sfondo dietro -->
@@ -45,17 +56,6 @@
       <img [src]="player()!.player_img" [alt]="player()!.shortname"
         class="relative z-10 h-[96%] w-auto object-contain object-bottom drop-shadow-[0_0_8px_rgba(0,0,0,0.6)]"
         loading="lazy" />
-
-      <!-- ruolo: gettone in basso a sinistra -->
-      <span class="ct-token ct-token-role absolute bottom-[3cqw] left-[3cqw] z-20 rounded-[4cqw] px-[5cqw] py-[2cqw] text-[13cqw] font-black leading-none text-white sd:text-[12cqw]"
-        [title]="slot.fullLabel">
-        {{ slot.label }}
-      </span>
-
-      <!-- overall: gettone in basso a destra -->
-      <span class="ct-token ct-token-ovr absolute bottom-[3cqw] right-[3cqw] z-20 rounded-[4cqw] px-[5cqw] py-[2cqw] text-[14cqw] font-black leading-none text-black sd:text-[13cqw]">
-        {{ player()!.overallrating }}
-      </span>
     </div>
 
     <!-- TABELLONE nome -->
