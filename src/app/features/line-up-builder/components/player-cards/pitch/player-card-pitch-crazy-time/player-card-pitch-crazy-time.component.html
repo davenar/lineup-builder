@@ -5,8 +5,8 @@
   <!-- bottone rimuovi: FUORI da .ct-inner così non viene clippato -->
   <button type="button"
     class="ct-remove glow-hover absolute -top-[15cqw] -right-[15cqw] z-40 flex h-[30cqw] w-[30cqw] cursor-pointer items-center justify-center rounded-full text-white sd:-top-[10cqw] sd:-right-[10cqw] sd:h-[20cqw] sd:w-[20cqw]"
-    aria-label="Rimuovi giocatore" (click)="onRemovePlayer($event)">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+    [attr.aria-label]="'lineup.removePlayer' | transloco: { player: player()!.shortname }" (click)="onRemovePlayer($event)">
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
       stroke-linecap="round" class="h-[75%] w-[75%]">
       <line x1="6" y1="6" x2="18" y2="18" />
       <line x1="18" y1="6" x2="6" y2="18" />
@@ -16,8 +16,8 @@
   <!-- bottone sostituisci: quadrato, sotto la x -->
   <button type="button"
     class="glow-hover absolute -right-[15cqw] top-[20cqw] z-40 flex h-[30cqw] w-[30cqw] cursor-pointer items-center justify-center rounded-[4cqw] border border-white/60 bg-gradient-to-br from-[#00e6ff] to-[#b400ff] text-white sd:-right-[10cqw] sd:top-[14cqw] sd:h-[20cqw] sd:w-[20cqw]"
-    aria-label="Sostituisci giocatore" (click)="onOpenSearchPanel()">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+    [attr.aria-label]="'lineup.replacePlayer' | transloco: { player: player()!.shortname }" (click)="onOpenSearchPanel()">
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
       stroke-linejoin="round" class="h-[65%] w-[65%]">
       <path d="M4 7h13M13 3l4 4-4 4" />
       <path d="M20 17H7M11 21l-4-4 4-4" />
@@ -27,11 +27,12 @@
   <!-- ruolo + overall: mini tabelloni a cavallo del bordo SINISTRO, metà altezza -->
   <div class="absolute -left-[10cqw] top-1/2 z-40 flex -translate-y-1/2 flex-col gap-[3cqw]">
     <span class="ct-side-board ct-side-board-role flex w-[30cqw] items-center justify-center px-[4cqw] py-[4cqw] text-[13cqw] font-black uppercase leading-none tracking-wider sd:w-[26cqw] sd:text-[11cqw]"
-      [title]="slot.fullLabel">
-      {{ slot.label }}
+      [title]="slot.label | positionLabel: 'long' : slot.fullLabel">
+      <span aria-hidden="true">{{ slot.label | positionLabel }}</span>
+      <span class="sr-only">{{ slot.label | positionLabel: 'long' : slot.fullLabel }}</span>
     </span>
     <span class="ct-side-board ct-side-board-ovr flex w-[30cqw] items-center justify-center px-[4cqw] py-[4cqw] text-[13cqw] font-black leading-none tracking-wider sd:w-[26cqw] sd:text-[11cqw]">
-      {{ player()!.overallrating }}
+      <span class="sr-only">{{ 'common.overall' | transloco }} </span>{{ player()!.overallrating }}
     </span>
   </div>
 
@@ -49,7 +50,7 @@
 
     <!-- foto giocatore: bandiera enorme come sfondo dietro -->
     <div class="relative flex min-h-0 flex-1 items-end justify-center overflow-hidden">
-      <img [src]="player()!.nation_img || 'images/placeholders/nation.svg'" appImgFallback="images/placeholders/nation.svg" [alt]="player()!.nationname" aria-hidden="true"
+      <img [src]="player()!.nation_img || 'images/placeholders/nation.svg'" appImgFallback="images/placeholders/nation.svg" alt="" aria-hidden="true"
         class="ct-flag-bg absolute inset-0 h-full w-full object-cover" loading="lazy" />
       <div class="ct-rays absolute inset-0" aria-hidden="true"></div>
 
@@ -80,10 +81,10 @@
   </div>
 </div>
 } @else {
-<button type="button"
+<button type="button" #addButton
   class="ct-empty glow-hover mx-auto flex aspect-square w-[62%] items-center justify-center rounded-full text-white cursor-pointer"
-  [attr.aria-label]="'Aggiungi giocatore - ' + slot.fullLabel" (click)="onOpenSearchPanel()">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+  [attr.aria-label]="'lineup.addPlayer' | transloco: { position: (slot.label | positionLabel: 'long' : slot.fullLabel) }" (click)="onOpenSearchPanel()">
+  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
     stroke-linecap="round" class="h-[45%] w-[45%]">
     <line x1="12" y1="5" x2="12" y2="19" />
     <line x1="5" y1="12" x2="19" y2="12" />

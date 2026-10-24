@@ -1,14 +1,19 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { TranslocoPipe } from '@jsverse/transloco';
 
 export interface FooterLink {
-  label: string;
+  /** Testo fisso (nomi propri, non tradotti) */
+  label?: string;
+  /** Chiave di traduzione: ha la precedenza su label */
+  labelKey?: string;
   /** Interno (routerLink) se path inizia con '/', altrimenti esterno (href). */
   path: string;
   external?: boolean;
 }
 
 export interface FooterColumn {
+  /** Chiave di traduzione dell'intestazione */
   heading: string;
   links: FooterLink[];
 }
@@ -16,7 +21,7 @@ export interface FooterColumn {
 @Component({
   selector: 'app-main-footer',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, TranslocoPipe],
   templateUrl: './main-footer.component.html',
 })
 export class MainFooterComponent {
@@ -28,25 +33,25 @@ export class MainFooterComponent {
 
   readonly columns: FooterColumn[] = [
     {
-      heading: 'Project',
+      heading: 'footer.columns.project',
       links: [
         { label: 'Lineup Builder', path: '/' },
-        { label: 'Style Guide', path: '/styleguide' },
-        { label: 'Source on GitHub', path: this.repoUrl, external: true },
+        { labelKey: 'footer.links.styleGuide', path: '/styleguide' },
+        { labelKey: 'footer.links.source', path: this.repoUrl, external: true },
       ],
     },
     {
-      heading: 'Built with',
+      heading: 'footer.columns.builtWith',
       links: [
         { label: 'Angular', path: 'https://angular.dev', external: true },
         { label: 'Tailwind CSS', path: 'https://tailwindcss.com', external: true },
-        { label: 'Data: FIFACM', path: 'https://www.fifacm.com', external: true },
+        { labelKey: 'footer.links.data', path: 'https://www.fifacm.com', external: true },
       ],
     },
     {
-      heading: 'Developer',
+      heading: 'footer.columns.developer',
       links: [
-        { label: 'GitHub Profile', path: this.authorUrl, external: true },
+        { labelKey: 'footer.links.githubProfile', path: this.authorUrl, external: true },
       ],
     },
   ];

@@ -1,0 +1,31 @@
+<button #trigger type="button" class="btn btn-outline glow-hover border-0! !px-sm gap-xs"
+  [cdkMenuTriggerFor]="langMenu" [cdkMenuPosition]="menuPositions"
+  [attr.aria-label]="'header.language.button' | transloco: { lang: nativeName(activeLang()), code: activeLang().toUpperCase() }">
+  <!-- mappamondo, stesso stile outline (stroke 2) delle altre icone inline -->
+  <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="h-[2rem] w-[2rem]" fill="none" viewBox="0 0 24 24"
+    stroke="currentColor" stroke-width="2">
+    <circle cx="12" cy="12" r="9" />
+    <path stroke-linecap="round" stroke-linejoin="round" d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" />
+  </svg>
+  <span class="text-[1.3rem] font-semibold uppercase tracking-[0.06em]">{{ activeLang() }}</span>
+</button>
+
+<ng-template #langMenu>
+  <div cdkMenu class="glass flex min-w-[16rem] flex-col gap-[0.2rem] p-xs shadow-[0_8px_24px_rgba(0,0,0,0.6)]"
+    [attr.aria-label]="'header.language.menu' | transloco">
+    @for (lang of langs; track lang) {
+    <button type="button" cdkMenuItemRadio [cdkMenuItemChecked]="lang === activeLang()" [attr.lang]="lang"
+      class="flex w-full cursor-pointer items-center justify-between gap-base rounded-[0.8rem] px-sm py-xs text-left text-[1.4rem] font-semibold transition-colors hover:bg-lup-soft/10 focus:bg-lup-soft/10"
+      [ngClass]="lang === activeLang() ? 'bg-lup-accent/20 text-text-primary' : 'text-text-muted'"
+      (cdkMenuItemTriggered)="selectLang(lang)">
+      {{ nativeName(lang) }}
+      @if (lang === activeLang()) {
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="h-[1.6rem] w-[1.6rem] text-lup-pale" fill="none"
+        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+      </svg>
+      }
+    </button>
+    }
+  </div>
+</ng-template>

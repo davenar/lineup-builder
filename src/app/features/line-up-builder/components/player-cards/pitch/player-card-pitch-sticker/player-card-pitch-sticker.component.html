@@ -4,8 +4,8 @@
     <!-- bottone rimuovi -->
     <button type="button"
         class="glow-hover absolute -top-[15cqw] -right-[15cqw] z-30 flex h-[30cqw] w-[30cqw] cursor-pointer items-center justify-center rounded-full border border-white/30 bg-red-600 text-white sd:-top-[10cqw] sd:-right-[10cqw] sd:h-[20cqw] sd:w-[20cqw]"
-        aria-label="Rimuovi giocatore" (click)="onRemovePlayer($event)">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+        [attr.aria-label]="'lineup.removePlayer' | transloco: { player: player()!.shortname }" (click)="onRemovePlayer($event)">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
             class="h-[75%] w-[75%]">
             <line x1="6" y1="6" x2="18" y2="18" />
             <line x1="18" y1="6" x2="6" y2="18" />
@@ -15,8 +15,8 @@
     <!-- bottone sostituisci: quadrato, sotto la x -->
     <button type="button"
         class="glow-hover absolute -right-[15cqw] top-[20cqw] z-30 flex h-[30cqw] w-[30cqw] cursor-pointer items-center justify-center rounded-[4cqw] border border-white/30 bg-lup-accent text-white sd:-right-[10cqw] sd:top-[14cqw] sd:h-[20cqw] sd:w-[20cqw]"
-        aria-label="Sostituisci giocatore" (click)="onOpenSearchPanel()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+        [attr.aria-label]="'lineup.replacePlayer' | transloco: { player: player()!.shortname }" (click)="onOpenSearchPanel()">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
             stroke-linejoin="round" class="h-[65%] w-[65%]">
             <path d="M4 7h13M13 3l4 4-4 4" />
             <path d="M20 17H7M11 21l-4-4 4-4" />
@@ -44,12 +44,13 @@
         <div class="absolute bottom-[3cqw] right-[3cqw] z-10 flex flex-col items-end gap-[2cqw]">
             <span
                 class="rounded-[4cqw] bg-lup-darkest px-[5cqw] py-[2cqw] text-[13cqw] font-bold leading-none text-white sd:text-[12cqw]">
-                {{ player()!.overallrating }}
+                <span class="sr-only">{{ 'common.overall' | transloco }} </span>{{ player()!.overallrating }}
             </span>
             <span
                 class="rounded-[4cqw] bg-lup-accent px-[5cqw] py-[2cqw] text-[13cqw] font-bold leading-none text-white sd:text-[12cqw]"
-                [title]="slot.fullLabel">
-                {{ slot.label }}
+                [title]="slot.label | positionLabel: 'long' : slot.fullLabel">
+                <span aria-hidden="true">{{ slot.label | positionLabel }}</span>
+                <span class="sr-only">{{ slot.label | positionLabel: 'long' : slot.fullLabel }}</span>
             </span>
         </div>
     </div>
@@ -76,10 +77,10 @@
 </div>
 } @else {
 <!-- stato vuoto: plus SVG centrato -->
-<button type="button"
+<button type="button" #addButton
     class="glow-hover mx-auto flex aspect-square w-[62%] items-center justify-center rounded-full border-2 border-dashed border-lup-pale/60 bg-lup-dark/55 text-lup-pale backdrop-blur-sm cursor-pointer"
-    [attr.aria-label]="'Aggiungi giocatore - ' + slot.fullLabel" (click)="onOpenSearchPanel()">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+    [attr.aria-label]="'lineup.addPlayer' | transloco: { position: (slot.label | positionLabel: 'long' : slot.fullLabel) }" (click)="onOpenSearchPanel()">
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
         class="h-[45%] w-[45%]">
         <line x1="12" y1="5" x2="12" y2="19" />
         <line x1="5" y1="12" x2="19" y2="12" />

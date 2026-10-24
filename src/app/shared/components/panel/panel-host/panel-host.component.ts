@@ -8,6 +8,8 @@ import {
   signal,
 } from '@angular/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { A11yModule } from '@angular/cdk/a11y';
+import { TranslocoPipe } from '@jsverse/transloco';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { PanelService } from '../../../../core/services/panel.service';
 import { PanelCloseMode, PanelDirection } from '../panel.types';
@@ -15,7 +17,7 @@ import { PanelCloseMode, PanelDirection } from '../panel.types';
 @Component({
   selector: 'app-panel-host',
   standalone: true,
-  imports: [NgStyle, NgComponentOutlet],
+  imports: [NgStyle, NgComponentOutlet, A11yModule, TranslocoPipe],
   templateUrl: './panel-host.component.html',
 })
 export class PanelHostComponent {

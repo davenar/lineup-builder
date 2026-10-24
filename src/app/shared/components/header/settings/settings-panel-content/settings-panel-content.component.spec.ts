@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { getTranslocoTestingModule } from '../../../../../testing/transloco-testing';
 
 import { SettingsPanelContentComponent } from './settings-panel-content.component';
 
@@ -8,7 +9,7 @@ describe('SettingsPanelContentComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SettingsPanelContentComponent]
+      imports: [SettingsPanelContentComponent, getTranslocoTestingModule()]
     })
     .compileComponents();
 

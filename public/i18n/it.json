@@ -1,0 +1,166 @@
+{
+  "common": {
+    "loading": "Caricamento…",
+    "opensInNewTab": "(si apre in una nuova scheda)",
+    "overall": "Valutazione"
+  },
+  "app": {
+    "updateAvailable": "È disponibile una nuova versione. Aggiornare ora?"
+  },
+  "a11y": {
+    "skipToContent": "Vai al contenuto principale",
+    "languageChanged": "Lingua cambiata: {{lang}}",
+    "playerAdded": "{{player}} inserito: {{slot}}",
+    "playerRemoved": "{{player}} rimosso: {{slot}}",
+    "playerMoved": "{{player}} spostato: {{slot}}",
+    "playersSwapped": "{{player}} spostato: {{slot}}, {{other}} spostato: {{otherSlot}}",
+    "lineupCleared": "Campo e panchina svuotati",
+    "lineupSaved": "Formazione salvata",
+    "lineupLoaded": "Formazione salvata caricata",
+    "resetConfirm": "Premi di nuovo entro 3 secondi per rimuovere tutti i giocatori",
+    "searchResults": "{{count}} giocatori trovati",
+    "moveStarted": "{{player}} selezionato. Spostati su uno slot e scegli “Sposta qui”, oppure premi Esc per annullare.",
+    "moveCancelled": "Spostamento annullato"
+  },
+  "header": {
+    "openMenu": "Apri menu",
+    "homeLink": "Line Up Builder, versione {{version}}, home",
+    "language": {
+      "button": "Cambia lingua, lingua attuale: {{lang}} ({{code}})",
+      "menu": "Lingua"
+    }
+  },
+  "panel": {
+    "close": "Chiudi pannello",
+    "mainMenu": "Menu principale",
+    "selectPlayer": "Seleziona giocatore: {{slot}}"
+  },
+  "footer": {
+    "description": "Un lineup builder per il calcio, realizzato come progetto di studio e portfolio. Scegli un modulo, cerca i giocatori e componi la tua squadra in campo.",
+    "columns": {
+      "project": "Progetto",
+      "builtWith": "Realizzato con",
+      "developer": "Sviluppatore"
+    },
+    "links": {
+      "styleGuide": "Style guide",
+      "source": "Codice sorgente su GitHub",
+      "data": "Dati: FIFACM",
+      "githubProfile": "Profilo GitHub"
+    },
+    "disclaimer": "Questo è un progetto non ufficiale e senza scopo di lucro, realizzato a fini didattici. Non è affiliato, approvato o collegato in alcun modo a EA Sports, FIFA, FC25 o FIFACM. Tutti i dati, i nomi, le immagini dei giocatori e gli stemmi dei club appartengono ai rispettivi proprietari e sono usati qui solo a scopo dimostrativo.",
+    "copyright": "© {{year}} Lineup Builder · Realizzato con Angular e Tailwind CSS"
+  },
+  "settings": {
+    "eyebrow": "Impostazioni",
+    "title": "Formazione",
+    "formation": "Modulo",
+    "formationHint": "Cambiando modulo i giocatori già assegnati restano nelle posizioni compatibili.",
+    "appearance": "Aspetto",
+    "pitchCardStyle": "Stile card campetto",
+    "benchCardStyle": "Stile card panchina",
+    "pitchBackground": "Sfondo campetto",
+    "cardStyles": {
+      "sticker": "Sticker",
+      "crazyTime": "Crazy Time"
+    },
+    "backgrounds": {
+      "grass": "Erba",
+      "grassNight": "Erba notturna",
+      "glass": "Glass",
+      "default": "Predefinito"
+    },
+    "localSave": "Salvataggio locale",
+    "save": "Salva formazione",
+    "saved": "Salvato",
+    "saveHint": "Salva modulo, giocatori e stili in questo browser.",
+    "load": "Carica salvata",
+    "loadHint": "Ripristina l'ultima formazione salvata.",
+    "noSaved": "Nessuna formazione salvata in questo browser.",
+    "reset": "Svuota campo e panchina",
+    "resetConfirm": "Sicuro? Clicca di nuovo",
+    "resetHint": "Rimuove tutti i giocatori. Non tocca la formazione salvata."
+  },
+  "formations": {
+    "names": {
+      "4-4-2-diamond": "4-4-2 a rombo",
+      "4-1-2-1-2": "4-1-2-1-2 stretto",
+      "4-1-2-1-2-wide": "4-1-2-1-2 largo"
+    }
+  },
+  "lineup": {
+    "pageTitle": "Lineup builder",
+    "pitch": "Campo, modulo {{formation}}",
+    "bench": "Panchina",
+    "benchSlot": "Riserva {{index}}",
+    "addSubstitute": "Aggiungi riserva {{index}}",
+    "addPlayer": "Aggiungi giocatore: {{position}}",
+    "removePlayer": "Rimuovi {{player}}",
+    "replacePlayer": "Sostituisci {{player}}",
+    "slotEmpty": "{{slot}}: vuoto",
+    "slotPlayer": "{{slot}}: {{player}}",
+    "move": "Sposta {{player}}",
+    "moveHere": "Sposta qui: {{slot}}",
+    "cancelMove": "Annulla spostamento"
+  },
+  "search": {
+    "eyebrow": "Ricerca giocatore",
+    "title": "Seleziona un giocatore",
+    "label": "Nome del giocatore",
+    "placeholder": "Digita almeno 3 lettere…",
+    "hint": "La ricerca parte automaticamente dal terzo carattere.",
+    "searching": "Ricerca in corso…",
+    "noResults": "Nessun giocatore trovato.",
+    "results": "Risultati della ricerca",
+    "errors": {
+      "search": "Si è verificato un errore durante la ricerca. Riprova.",
+      "detail": "Impossibile caricare i dati del giocatore. Riprova."
+    }
+  },
+  "positions": {
+    "short": {
+      "GK": "POR",
+      "RB": "TD",
+      "CB": "DC",
+      "LB": "TS",
+      "RWB": "ADA",
+      "LWB": "ASA",
+      "CDM": "CDC",
+      "CM": "CC",
+      "CAM": "COC",
+      "RM": "ED",
+      "LM": "ES",
+      "RAM": "COD",
+      "LAM": "COS",
+      "RW": "AD",
+      "LW": "AS",
+      "RF": "ATD",
+      "LF": "ATS",
+      "CF": "SP",
+      "SS": "SP",
+      "ST": "ATT"
+    },
+    "long": {
+      "GK": "Portiere",
+      "RB": "Terzino destro",
+      "CB": "Difensore centrale",
+      "LB": "Terzino sinistro",
+      "RWB": "Ala destra arretrata",
+      "LWB": "Ala sinistra arretrata",
+      "CDM": "Centrocampista difensivo centrale",
+      "CM": "Centrocampista centrale",
+      "CAM": "Centrocampista offensivo centrale",
+      "RM": "Esterno destro",
+      "LM": "Esterno sinistro",
+      "RAM": "Centrocampista offensivo destro",
+      "LAM": "Centrocampista offensivo sinistro",
+      "RW": "Ala destra",
+      "LW": "Ala sinistra",
+      "RF": "Attaccante tornante destro",
+      "LF": "Attaccante tornante sinistro",
+      "CF": "Seconda punta",
+      "SS": "Seconda punta",
+      "ST": "Attaccante"
+    }
+  }
+}

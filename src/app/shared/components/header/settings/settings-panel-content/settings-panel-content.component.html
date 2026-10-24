@@ -1,52 +1,52 @@
 <div class="flex h-full flex-col">
   <p class="mb-xs text-[1.2rem] font-bold uppercase tracking-[0.12em] text-lup-soft">
-    Impostazioni
+    {{ 'settings.eyebrow' | transloco }}
   </p>
 
   <h2 class="mb-base text-[2.8rem]">
-    Formazione
+    {{ 'settings.title' | transloco }}
   </h2>
 
   <div class="glass p-lg mb-base">
     <app-select
-      label="Modulo"
-      hint="Cambiando modulo i giocatori già assegnati restano nelle posizioni compatibili."
-      [options]="formationOptions"
+      [label]="'settings.formation' | transloco"
+      [hint]="'settings.formationHint' | transloco"
+      [options]="formationOptions()"
       [value]="lineupState.currentFormation().id"
       (selected)="onFormationChange($event)"
     />
   </div>
 
-  <p class="text-[1.2rem] font-semibold tracking-[0.08em] uppercase text-text-muted mt-base mb-sm">
-    Aspetto
-  </p>
+  <h3 class="text-[1.2rem] font-semibold leading-[1.6] tracking-[0.08em] uppercase text-text-muted mt-base mb-sm">
+    {{ 'settings.appearance' | transloco }}
+  </h3>
 
   <div class="glass p-lg grid gap-lg mb-base">
     <app-select
-      label="Stile card campetto"
-      [options]="pitchCardStyleOptions"
+      [label]="'settings.pitchCardStyle' | transloco"
+      [options]="pitchCardStyleOptions()"
       [value]="lineupState.pitchCardStyle()"
       (selected)="onPitchCardStyleChange($event)"
     />
 
     <app-select
-      label="Stile card panchina"
-      [options]="benchCardStyleOptions"
+      [label]="'settings.benchCardStyle' | transloco"
+      [options]="benchCardStyleOptions()"
       [value]="lineupState.benchCardStyle()"
       (selected)="onBenchCardStyleChange($event)"
     />
 
     <app-select
-      label="Sfondo campetto"
-      [options]="pitchBackgroundOptions"
+      [label]="'settings.pitchBackground' | transloco"
+      [options]="pitchBackgroundOptions()"
       [value]="lineupState.pitchBackground()"
       (selected)="onPitchBackgroundChange($event)"
     />
   </div>
 
-  <p class="text-[1.2rem] font-semibold tracking-[0.08em] uppercase text-text-muted mt-base mb-sm">
-    Salvataggio locale
-  </p>
+  <h3 class="text-[1.2rem] font-semibold leading-[1.6] tracking-[0.08em] uppercase text-text-muted mt-base mb-sm">
+    {{ 'settings.localSave' | transloco }}
+  </h3>
 
   <div class="glass p-lg mb-base flex flex-col gap-lg">
 
@@ -54,13 +54,14 @@
     <div class="flex flex-col gap-xs">
       <button type="button"
         class="btn btn-rounded btn-primary glow-hover w-full sd:w-auto sd:self-start"
+        aria-describedby="settings-save-hint"
         (click)="onSave()">
         @if (justSaved()) {
           <svg xmlns="http://www.w3.org/2000/svg" class="h-[1.6rem] w-[1.6rem]" fill="none"
             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
           </svg>
-          Salvato
+          {{ 'settings.saved' | transloco }}
         } @else {
           <svg xmlns="http://www.w3.org/2000/svg" class="h-[1.6rem] w-[1.6rem]" fill="none"
             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -68,11 +69,11 @@
               d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8l4 4v12a2 2 0 0 1-2 2z" />
             <path stroke-linecap="round" stroke-linejoin="round" d="M7 3v5h7M8 21v-7h8v7" />
           </svg>
-          Salva formazione
+          {{ 'settings.save' | transloco }}
         }
       </button>
-      <p class="mb-0 text-[1.2rem] leading-snug text-text-muted">
-        Salva modulo, giocatori e stili in questo browser.
+      <p id="settings-save-hint" class="mb-0 text-[1.2rem] leading-snug text-text-muted">
+        {{ 'settings.saveHint' | transloco }}
       </p>
     </div>
 
@@ -81,19 +82,20 @@
       <button type="button"
         class="btn btn-rounded btn-outline glow-hover w-full sd:w-auto sd:self-start"
         [disabled]="!canLoadSavedLineup()"
+        aria-describedby="settings-load-hint"
         (click)="onLoad()">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-[1.6rem] w-[1.6rem]" fill="none"
           viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round"
             d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2M12 4v12m0 0l-4-4m4 4l4-4" />
         </svg>
-        Carica salvata
+        {{ 'settings.load' | transloco }}
       </button>
-      <p class="mb-0 text-[1.2rem] leading-snug text-text-muted">
+      <p id="settings-load-hint" class="mb-0 text-[1.2rem] leading-snug text-text-muted">
         @if (canLoadSavedLineup()) {
-          Ripristina l'ultima formazione salvata.
+          {{ 'settings.loadHint' | transloco }}
         } @else {
-          Nessuna formazione salvata in questo browser.
+          {{ 'settings.noSaved' | transloco }}
         }
       </p>
     </div>
@@ -102,6 +104,7 @@
     <div class="flex flex-col gap-xs border-t border-lup-mid pt-lg">
       <button type="button"
         class="btn btn-rounded btn-danger glow-hover w-full sd:w-auto sd:self-start"
+        aria-describedby="settings-reset-hint"
         (click)="onReset()">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-[1.6rem] w-[1.6rem]" fill="none"
           viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -109,13 +112,13 @@
             d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m5 5v6m4-6v6" />
         </svg>
         @if (confirmingReset()) {
-          Sicuro? Clicca di nuovo
+          {{ 'settings.resetConfirm' | transloco }}
         } @else {
-          Svuota campo e panchina
+          {{ 'settings.reset' | transloco }}
         }
       </button>
-      <p class="mb-0 text-[1.2rem] leading-snug text-text-muted">
-        Rimuove tutti i giocatori. Non tocca la formazione salvata.
+      <p id="settings-reset-hint" class="mb-0 text-[1.2rem] leading-snug text-text-muted">
+        {{ 'settings.resetHint' | transloco }}
       </p>
     </div>
   </div>

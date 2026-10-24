@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { getTranslocoTestingModule } from '../../../../testing/transloco-testing';
 
 import { LineUpBuilderComponent } from './line-up-builder.component';
 
@@ -8,7 +9,7 @@ describe('LineUpBuilderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LineUpBuilderComponent]
+      imports: [LineUpBuilderComponent, getTranslocoTestingModule()]
     })
     .compileComponents();
 

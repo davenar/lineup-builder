@@ -5,11 +5,12 @@ import { AppUpdateService } from './core/services/app-update.service';
 import { MainHeaderComponent } from './shared/components/header/main-header/main-header.component';
 import { MainFooterComponent } from './shared/components/footer/main-footer/main-footer.component';
 import { PanelHostComponent } from './shared/components/panel/panel-host/panel-host.component';
+import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-root',
   host: { class: 'flex flex-col min-h-screen' },
-  imports: [RouterOutlet, FullscreenLoaderComponent, MainHeaderComponent, MainFooterComponent, PanelHostComponent],
+  imports: [RouterOutlet, FullscreenLoaderComponent, MainHeaderComponent, MainFooterComponent, PanelHostComponent, TranslocoPipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -20,5 +21,11 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.appUpdate.init();
+  }
+
+  /** Con withHashLocation un href="#id" cambierebbe la rotta: sposta il focus a mano */
+  skipToMain(event: Event): void {
+    event.preventDefault();
+    document.getElementById('main-content')?.focus();
   }
 }
