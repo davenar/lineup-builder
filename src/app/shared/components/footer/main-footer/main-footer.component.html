@@ -7,8 +7,7 @@
         Lineup Builder
       </p>
       <p class="mt-sm max-w-[52rem] text-[1.3rem] leading-relaxed text-text-muted">
-        A football lineup builder, built as a learning project and portfolio piece.
-        Pick a formation, search players, and assemble your squad on the pitch.
+        {{ 'footer.description' | transloco }}
       </p>
     </div>
 
@@ -16,16 +15,17 @@
     <div class="grid grid-cols-1 gap-lg tb:grid-cols-3">
       @for (col of columns; track col.heading) {
       <div>
-        <h3 class="text-[1.3rem] font-bold uppercase tracking-[0.08em] text-text-primary">
-          {{ col.heading }}
-        </h3>
+        <h2 class="text-[1.3rem] font-bold uppercase tracking-[0.08em] text-text-primary">
+          {{ col.heading | transloco }}
+        </h2>
         <ul class="mt-base flex flex-col gap-sm">
-          @for (link of col.links; track link.label) {
+          @for (link of col.links; track link.path) {
           <li>
             @if (link.external) {
             <a [href]="link.path" target="_blank" rel="noopener noreferrer"
               class="inline-flex items-center gap-xs text-[1.3rem] font-semibold text-text-muted transition-colors hover:text-lup-pale">
-              {{ link.label }}
+              {{ link.labelKey ? (link.labelKey | transloco) : link.label }}
+              <span class="sr-only">{{ 'common.opensInNewTab' | transloco }}</span>
               <svg xmlns="http://www.w3.org/2000/svg" class="h-[1.2rem] w-[1.2rem]" fill="none"
                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -35,7 +35,7 @@
             } @else {
             <a [routerLink]="link.path"
               class="text-[1.3rem] font-semibold text-text-muted transition-colors hover:text-lup-pale">
-              {{ link.label }}
+              {{ link.labelKey ? (link.labelKey | transloco) : link.label }}
             </a>
             }
           </li>
@@ -48,17 +48,14 @@
     <!-- disclaimer -->
     <div class="mt-xl rounded-[0.8rem] border border-lup-mid bg-bg-page/40 p-base">
       <p class="mb-0 text-[1.2rem] leading-relaxed text-text-muted">
-        This is an unofficial, non-commercial project made for educational purposes.
-        It is not affiliated with, endorsed by, or connected to EA Sports, FIFA, FC25,
-        or FIFACM. All player data, names, images and club badges belong to their
-        respective owners and are used here for demonstration only.
+        {{ 'footer.disclaimer' | transloco }}
       </p>
     </div>
 
     <!-- copyright -->
     <div class="mt-lg border-t border-lup-mid pt-lg text-center">
       <p class="mb-0 text-[1.2rem] text-text-muted">
-        &copy; {{ currentYear }} Lineup Builder · Built with Angular &amp; Tailwind CSS
+        {{ 'footer.copyright' | transloco: { year: currentYear } }}
       </p>
     </div>
   </div>

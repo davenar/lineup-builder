@@ -1,0 +1,166 @@
+{
+  "common": {
+    "loading": "Loading…",
+    "opensInNewTab": "(opens in a new tab)",
+    "overall": "Overall"
+  },
+  "app": {
+    "updateAvailable": "A new version is available. Update now?"
+  },
+  "a11y": {
+    "skipToContent": "Skip to main content",
+    "languageChanged": "Language changed to {{lang}}",
+    "playerAdded": "{{player}} added: {{slot}}",
+    "playerRemoved": "{{player}} removed: {{slot}}",
+    "playerMoved": "{{player}} moved to {{slot}}",
+    "playersSwapped": "{{player}} moved to {{slot}}, {{other}} moved to {{otherSlot}}",
+    "lineupCleared": "Pitch and bench cleared",
+    "lineupSaved": "Lineup saved",
+    "lineupLoaded": "Saved lineup loaded",
+    "resetConfirm": "Press again within 3 seconds to remove all players",
+    "searchResults": "{{count}} players found",
+    "moveStarted": "{{player}} selected. Move to a slot and choose “Move here”, or press Escape to cancel.",
+    "moveCancelled": "Move cancelled"
+  },
+  "header": {
+    "openMenu": "Open menu",
+    "homeLink": "Line Up Builder, version {{version}}, home",
+    "language": {
+      "button": "Change language, current language: {{lang}} ({{code}})",
+      "menu": "Language"
+    }
+  },
+  "panel": {
+    "close": "Close panel",
+    "mainMenu": "Main menu",
+    "selectPlayer": "Select player: {{slot}}"
+  },
+  "footer": {
+    "description": "A football lineup builder, built as a learning project and portfolio piece. Pick a formation, search players, and assemble your squad on the pitch.",
+    "columns": {
+      "project": "Project",
+      "builtWith": "Built with",
+      "developer": "Developer"
+    },
+    "links": {
+      "styleGuide": "Style Guide",
+      "source": "Source on GitHub",
+      "data": "Data: FIFACM",
+      "githubProfile": "GitHub Profile"
+    },
+    "disclaimer": "This is an unofficial, non-commercial project made for educational purposes. It is not affiliated with, endorsed by, or connected to EA Sports, FIFA, FC25, or FIFACM. All player data, names, images and club badges belong to their respective owners and are used here for demonstration only.",
+    "copyright": "© {{year}} Lineup Builder · Built with Angular & Tailwind CSS"
+  },
+  "settings": {
+    "eyebrow": "Settings",
+    "title": "Lineup",
+    "formation": "Formation",
+    "formationHint": "When you change formation, players already assigned stay in the compatible positions.",
+    "appearance": "Appearance",
+    "pitchCardStyle": "Pitch card style",
+    "benchCardStyle": "Bench card style",
+    "pitchBackground": "Pitch background",
+    "cardStyles": {
+      "sticker": "Sticker",
+      "crazyTime": "Crazy Time"
+    },
+    "backgrounds": {
+      "grass": "Grass",
+      "grassNight": "Night grass",
+      "glass": "Glass",
+      "default": "Default"
+    },
+    "localSave": "Local save",
+    "save": "Save lineup",
+    "saved": "Saved",
+    "saveHint": "Saves formation, players and styles in this browser.",
+    "load": "Load saved",
+    "loadHint": "Restores the last saved lineup.",
+    "noSaved": "No lineup saved in this browser.",
+    "reset": "Clear pitch and bench",
+    "resetConfirm": "Sure? Click again",
+    "resetHint": "Removes all players. Does not affect the saved lineup."
+  },
+  "formations": {
+    "names": {
+      "4-4-2-diamond": "4-4-2 Diamond",
+      "4-1-2-1-2": "4-1-2-1-2 Narrow",
+      "4-1-2-1-2-wide": "4-1-2-1-2 Wide"
+    }
+  },
+  "lineup": {
+    "pageTitle": "Lineup builder",
+    "pitch": "Pitch, formation {{formation}}",
+    "bench": "Bench",
+    "benchSlot": "Substitute {{index}}",
+    "addSubstitute": "Add substitute {{index}}",
+    "addPlayer": "Add player: {{position}}",
+    "removePlayer": "Remove {{player}}",
+    "replacePlayer": "Replace {{player}}",
+    "slotEmpty": "{{slot}}: empty",
+    "slotPlayer": "{{slot}}: {{player}}",
+    "move": "Move {{player}}",
+    "moveHere": "Move here: {{slot}}",
+    "cancelMove": "Cancel move"
+  },
+  "search": {
+    "eyebrow": "Player search",
+    "title": "Select a player",
+    "label": "Player name",
+    "placeholder": "Type at least 3 letters…",
+    "hint": "Search starts automatically from the third character.",
+    "searching": "Searching…",
+    "noResults": "No players found.",
+    "results": "Search results",
+    "errors": {
+      "search": "Something went wrong while searching. Please try again.",
+      "detail": "Could not load player data. Please try again."
+    }
+  },
+  "positions": {
+    "short": {
+      "GK": "GK",
+      "RB": "RB",
+      "CB": "CB",
+      "LB": "LB",
+      "RWB": "RWB",
+      "LWB": "LWB",
+      "CDM": "CDM",
+      "CM": "CM",
+      "CAM": "CAM",
+      "RM": "RM",
+      "LM": "LM",
+      "RAM": "RAM",
+      "LAM": "LAM",
+      "RW": "RW",
+      "LW": "LW",
+      "RF": "RF",
+      "LF": "LF",
+      "CF": "CF",
+      "SS": "SS",
+      "ST": "ST"
+    },
+    "long": {
+      "GK": "Goalkeeper",
+      "RB": "Right Back",
+      "CB": "Centre Back",
+      "LB": "Left Back",
+      "RWB": "Right Wing-Back",
+      "LWB": "Left Wing-Back",
+      "CDM": "Defensive Midfielder",
+      "CM": "Central Midfielder",
+      "CAM": "Attacking Midfielder",
+      "RM": "Right Midfielder",
+      "LM": "Left Midfielder",
+      "RAM": "Right Attacking Midfielder",
+      "LAM": "Left Attacking Midfielder",
+      "RW": "Right Winger",
+      "LW": "Left Winger",
+      "RF": "Right Forward",
+      "LF": "Left Forward",
+      "CF": "Centre Forward",
+      "SS": "Second Striker",
+      "ST": "Striker"
+    }
+  }
+}

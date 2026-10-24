@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { getTranslocoTestingModule } from '../../../../../../testing/transloco-testing';
 
 import { PlayerCardPitchCrazyTimeComponent } from './player-card-pitch-crazy-time.component';
 
@@ -8,7 +9,7 @@ describe('PlayerCardPitchCrazyTimeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PlayerCardPitchCrazyTimeComponent]
+      imports: [PlayerCardPitchCrazyTimeComponent, getTranslocoTestingModule()]
     })
     .compileComponents();
 

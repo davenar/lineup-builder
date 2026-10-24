@@ -1,8 +1,11 @@
-<div class="flex flex-col sd:flex-row w-full sd:h-screen" cdkDropListGroup>
+<h1 class="sr-only">{{ 'lineup.pageTitle' | transloco }}</h1>
+
+<div class="flex flex-col sd:flex-row w-full sd:h-screen" cdkDropListGroup (keydown.escape)="cancelMove()">
 
   <!-- PITCH -->
-  <div class="w-full sd:w-1/2 flex items-start justify-center p-base">
-    <div
+  <section class="w-full sd:w-1/2 flex items-start justify-center p-base" aria-labelledby="pitch-heading">
+    <h2 id="pitch-heading" class="sr-only">{{ 'lineup.pitch' | transloco: { formation: formationName() } }}</h2>
+    <div role="list"
       [class]="'relative [container-type:size] [aspect-ratio:68/105] [max-height:75dvh] sd:[max-height:85dvh] [width:min(calc(75dvh*68/105),100%)] sd:[width:min(calc(85dvh*68/105),100%)] ' + pitchClasses()">
       <!-- Linee del campo: regolamentari IFAB in scala 1 unità = 1 dm -->
       <svg class="pointer-events-none absolute inset-0 h-full w-full" viewBox="0 0 680 1050" fill="none"
@@ -30,10 +33,34 @@
       @for (slot of activeSlots(); track slot.cellIndex) {
       <div class="absolute -translate-x-1/2 -translate-y-1/2 w-[16cqw] sd:w-[14cqw]"
         [style.left.%]="slot.x" [style.top.%]="slot.y"
+        role="listitem"
         cdkDropList
         [cdkDropListData]="pitchOrigin(slot.cellIndex)"
         [cdkDropListSortingDisabled]="true"
         (cdkDropListDropped)="onDrop($event)">
+        <!-- stato dello slot per screen reader: ruolo + giocatore o "vuoto" -->
+        <span class="sr-only">{{ pitchSlotLabel(slot) }}</span>
+
+        <!-- alternativa da tastiera al drag & drop: visibile solo al focus -->
+        @if (moveSource()) {
+          @if (isMoveSource(pitchOrigin(slot.cellIndex))) {
+          <button type="button" class="kbd-move-btn" [id]="moveButtonId(pitchOrigin(slot.cellIndex))"
+            (click)="cancelMove()">
+            {{ 'lineup.cancelMove' | transloco }}
+          </button>
+          } @else {
+          <button type="button" class="kbd-move-btn" [id]="moveButtonId(pitchOrigin(slot.cellIndex))"
+            (click)="completeMove(pitchOrigin(slot.cellIndex))">
+            {{ 'lineup.moveHere' | transloco: { slot: pitchSlotLabel(slot) } }}
+          </button>
+          }
+        } @else if (hasPitchPlayer(slot.cellIndex)) {
+        <button type="button" class="kbd-move-btn" [id]="moveButtonId(pitchOrigin(slot.cellIndex))"
+          (click)="startMove(pitchOrigin(slot.cellIndex))">
+          {{ 'lineup.move' | transloco: { player: pitchPlayer(slot.cellIndex)?.shortname } }}
+        </button>
+        }
+
         <div cdkDrag
           [cdkDragDisabled]="!hasPitchPlayer(slot.cellIndex)"
           [cdkDragStartDelay]="dragStartDelay"
@@ -59,16 +86,40 @@
       </div>
       }
     </div>
-  </div>
+  </section>
 
   <!-- BENCH -->
-  <div class="w-full sd:w-1/2 flex flex-col justify-start p-base gap-sm">
+  <section class="w-full sd:w-1/2 flex flex-col justify-start p-base gap-sm" aria-labelledby="bench-heading">
+    <h2 id="bench-heading" class="sr-only">{{ 'lineup.bench' | transloco }}</h2>
+    <!-- display: contents mantiene il layout flex originale; role="list" ripristina la semantica -->
+    <ul role="list" class="contents">
     @for (benchIndex of benchSlots; track benchIndex) {
-    <div cdkDropList
-      class="min-h-[6rem] rounded-[0.8rem] has-[.cdk-drag-placeholder]:border-2 has-[.cdk-drag-placeholder]:border-dashed has-[.cdk-drag-placeholder]:border-lup-soft/25"
+    <li cdkDropList
+      class="relative min-h-[6rem] rounded-[0.8rem] has-[.cdk-drag-placeholder]:border-2 has-[.cdk-drag-placeholder]:border-dashed has-[.cdk-drag-placeholder]:border-lup-soft/25"
       [cdkDropListData]="benchOrigin(benchIndex)"
       [cdkDropListSortingDisabled]="true"
       (cdkDropListDropped)="onDrop($event)">
+      <span class="sr-only">{{ benchSlotLabel(benchIndex) }}</span>
+
+      @if (moveSource()) {
+        @if (isMoveSource(benchOrigin(benchIndex))) {
+        <button type="button" class="kbd-move-btn" [id]="moveButtonId(benchOrigin(benchIndex))"
+          (click)="cancelMove()">
+          {{ 'lineup.cancelMove' | transloco }}
+        </button>
+        } @else {
+        <button type="button" class="kbd-move-btn" [id]="moveButtonId(benchOrigin(benchIndex))"
+          (click)="completeMove(benchOrigin(benchIndex))">
+          {{ 'lineup.moveHere' | transloco: { slot: benchSlotLabel(benchIndex) } }}
+        </button>
+        }
+      } @else if (hasBenchPlayer(benchIndex)) {
+      <button type="button" class="kbd-move-btn" [id]="moveButtonId(benchOrigin(benchIndex))"
+        (click)="startMove(benchOrigin(benchIndex))">
+        {{ 'lineup.move' | transloco: { player: benchPlayer(benchIndex)?.shortname } }}
+      </button>
+      }
+
       <div cdkDrag
         [cdkDragDisabled]="!hasBenchPlayer(benchIndex)"
         [cdkDragStartDelay]="dragStartDelay"
@@ -91,8 +142,9 @@
 
         <app-player-card-bench [benchIndex]="benchIndex" />
       </div>
-    </div>
+    </li>
     }
-  </div>
+    </ul>
+  </section>
 
 </div>

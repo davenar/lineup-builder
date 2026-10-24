@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { getTranslocoTestingModule } from '../../../../testing/transloco-testing';
 
 import { PlayerSearchPanelContentComponent } from './player-search-panel-content.component';
 
@@ -8,7 +9,7 @@ describe('PlayerSearchPanelContentComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PlayerSearchPanelContentComponent]
+      imports: [PlayerSearchPanelContentComponent, getTranslocoTestingModule()]
     })
     .compileComponents();
 

@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { getTranslocoTestingModule } from '../../../../testing/transloco-testing';
 
 import { MainFooterComponent } from './main-footer.component';
 
@@ -8,7 +9,7 @@ describe('MainFooterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MainFooterComponent]
+      imports: [MainFooterComponent, getTranslocoTestingModule()]
     })
     .compileComponents();
 

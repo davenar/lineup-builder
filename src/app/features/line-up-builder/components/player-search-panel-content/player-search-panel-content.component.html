@@ -1,41 +1,48 @@
 <div class="flex h-full flex-col">
   <p class="mb-xs text-[1.2rem] font-bold uppercase tracking-[0.12em] text-lup-soft">
-    Player search
+    {{ 'search.eyebrow' | transloco }}
   </p>
 
   <h2 class="mb-base text-[2.8rem]">
-    Select a player
+    {{ 'search.title' | transloco }}
     @if (slotLabel) {
       <span class="text-lup-soft">· {{ slotLabel }}</span>
     }
   </h2>
 
   <div class="field mb-base">
-    <label class="field-label" for="player-search-input">Player name</label>
+    <label class="field-label" for="player-search-input">{{ 'search.label' | transloco }}</label>
     <input
       #searchInput
       id="player-search-input"
       class="input"
       type="text"
-      placeholder="Type at least 3 letters…"
+      [placeholder]="'search.placeholder' | transloco"
       [formControl]="searchControl"
       autocomplete="off"
+      [attr.aria-describedby]="searchError() ? 'player-search-hint player-search-error' : 'player-search-hint'"
+      [attr.aria-invalid]="searchError() ? true : null"
     />
-    <span class="field-hint">Search starts automatically from the third character.</span>
+    <span id="player-search-hint" class="field-hint">{{ 'search.hint' | transloco }}</span>
     @if (searchError()) {
-      <span class="field-error">{{ searchError() }}</span>
+      <span id="player-search-error" class="field-error" role="alert">{{ searchError()! | transloco }}</span>
     }
   </div>
 
   <!-- px + py danno respiro al box-shadow del glow così non viene tagliato dall'overflow -->
   <div class="-mx-sm flex-1 overflow-y-auto px-sm py-xs">
-    @if (isSearching()) {
-      <p class="text-[1.4rem] text-text-muted">Searching…</p>
-    } @else if (hasSearchedOnce() && results().length === 0 && !searchError()) {
-      <p class="text-[1.4rem] text-text-muted">No players found.</p>
-    }
+    <!-- live region sempre presente: annuncia ricerca in corso, nessun risultato, numero di risultati -->
+    <div role="status" aria-live="polite">
+      @if (isSearching()) {
+        <p class="text-[1.4rem] text-text-muted">{{ 'search.searching' | transloco }}</p>
+      } @else if (hasSearchedOnce() && results().length === 0 && !searchError()) {
+        <p class="text-[1.4rem] text-text-muted">{{ 'search.noResults' | transloco }}</p>
+      } @else if (results().length > 0) {
+        <span class="sr-only">{{ 'a11y.searchResults' | transloco: { count: results().length } }}</span>
+      }
+    </div>
 
-    <ul class="flex flex-col gap-sm">
+    <ul class="flex flex-col gap-sm" [attr.aria-label]="'search.results' | transloco" [attr.aria-busy]="isLoadingDetail()">
       @for (result of results(); track result.pid) {
         <li>
           <button
@@ -44,9 +51,10 @@
             [disabled]="isLoadingDetail()"
             (click)="onSelectPlayer(result)"
           >
+            <!-- alt vuoto: il nome del giocatore è già il testo del pulsante -->
             <img
               [src]="result.pimg || 'images/placeholders/player.svg'" appImgFallback="images/placeholders/player.svg"
-              [alt]="result.fn"
+              alt=""
               class="h-[4.4rem] w-[4.4rem] flex-shrink-0 rounded-full bg-lup-mid-dark object-cover ring-1 ring-lup-soft/20"
               loading="lazy"
             />
@@ -55,7 +63,8 @@
                 {{ result.uname || result.fn }}
               </span>
               <span class="truncate text-[1.2rem] leading-tight text-text-muted">
-                {{ result.ps }}
+                <span aria-hidden="true">{{ result.ps | positionLabel }}</span>
+                <span class="sr-only">{{ result.ps | positionLabel: 'long' }}</span>
                 @if (result.cn) {
                   · {{ result.cn }}
                 }
@@ -67,7 +76,9 @@
               class="h-[1.6rem] w-[2.4rem] flex-shrink-0 rounded-[0.2rem] object-cover"
               loading="lazy"
             />
-            <span class="badge flex-shrink-0" style="--badge-color: #3b5bdb">{{ result.r }}</span>
+            <span class="badge flex-shrink-0" style="--badge-color: #3b5bdb">
+              <span class="sr-only">{{ 'common.overall' | transloco }} </span>{{ result.r }}
+            </span>
           </button>
         </li>
       }

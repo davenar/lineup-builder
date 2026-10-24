@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { getTranslocoTestingModule } from '../../../../../../testing/transloco-testing';
 
 import { PlayerCardBenchComponent } from './player-card-bench.component';
 
@@ -8,7 +9,7 @@ describe('PlayerCardBenchComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PlayerCardBenchComponent]
+      imports: [PlayerCardBenchComponent, getTranslocoTestingModule()]
     })
     .compileComponents();
 

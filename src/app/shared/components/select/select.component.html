@@ -8,6 +8,8 @@
     class="input select-native"
     [class.input-error]="error()"
     [disabled]="disabled()"
+    [attr.aria-describedby]="error() ? uid + '-error' : hint() ? uid + '-hint' : null"
+    [attr.aria-invalid]="error() ? true : null"
     (change)="onNativeChange($event)"
   >
     @if (placeholder()) {
@@ -21,9 +23,9 @@
   </select>
 
   @if (hint() && !error()) {
-    <span class="field-hint">{{ hint() }}</span>
+    <span class="field-hint" [id]="uid + '-hint'">{{ hint() }}</span>
   }
   @if (error()) {
-    <span class="field-error">{{ error() }}</span>
+    <span class="field-error" [id]="uid + '-error'">{{ error() }}</span>
   }
 </div>

@@ -18,11 +18,13 @@ import { PanelService } from '../../../../core/services/panel.service';
 import { PlayerInfoData } from '../../models/player-info-response.model';
 import { SearchPlayerResponse } from '../../models/search-player-response.model';
 import { PlayerService } from '../../services/player.service';
+import { TranslocoPipe } from '@jsverse/transloco';
+import { PositionLabelPipe } from '../../../../shared/pipes/position-label.pipe';
 
 @Component({
   selector: 'app-player-search-panel-content',
   standalone: true,
-  imports: [ImgFallbackDirective, CommonModule, ReactiveFormsModule],
+  imports: [ImgFallbackDirective, CommonModule, ReactiveFormsModule, TranslocoPipe, PositionLabelPipe],
   templateUrl: './player-search-panel-content.component.html',
 })
 export class PlayerSearchPanelContentComponent implements OnInit, AfterViewInit, OnDestroy {
@@ -39,6 +41,7 @@ export class PlayerSearchPanelContentComponent implements OnInit, AfterViewInit,
   readonly results = signal<SearchPlayerResponse[]>([]);
   readonly isSearching = signal<boolean>(false);
   readonly isLoadingDetail = signal<boolean>(false);
+  /** chiave di traduzione dell'errore corrente (tradotta nel template) */
   readonly searchError = signal<string | null>(null);
   readonly hasSearchedOnce = signal<boolean>(false);
 
@@ -77,7 +80,7 @@ export class PlayerSearchPanelContentComponent implements OnInit, AfterViewInit,
         error: () => {
           this.results.set([]);
           this.isSearching.set(false);
-          this.searchError.set('Something went wrong while searching. Please try again.');
+          this.searchError.set('search.errors.search');
         },
       });
   }
@@ -116,7 +119,7 @@ export class PlayerSearchPanelContentComponent implements OnInit, AfterViewInit,
       },
       error: () => {
         this.isLoadingDetail.set(false);
-        this.searchError.set('Could not load player data. Please try again.');
+        this.searchError.set('search.errors.detail');
       },
     });
   }
