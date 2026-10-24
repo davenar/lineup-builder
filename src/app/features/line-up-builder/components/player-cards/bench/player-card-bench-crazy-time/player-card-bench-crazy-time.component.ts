@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { ImgFallbackDirective } from '../../../../../../shared/directives/img-fallback.directive';
 import { Component, computed, inject, Input } from '@angular/core';
 import { PanelService } from '../../../../../../core/services/panel.service';
 import { LineupStateService } from '../../../../services/lineup-state.service';
@@ -8,7 +9,7 @@ import { PlayerSearchPanelContentComponent } from '../../../player-search-panel-
 @Component({
   selector: 'app-player-card-bench-crazy-time',
   standalone: true,
-  imports: [CommonModule],
+  imports: [ImgFallbackDirective, CommonModule],
   templateUrl: './player-card-bench-crazy-time.component.html',
   styleUrl: './player-card-bench-crazy-time.component.css',
   host: { class: 'block w-full' },

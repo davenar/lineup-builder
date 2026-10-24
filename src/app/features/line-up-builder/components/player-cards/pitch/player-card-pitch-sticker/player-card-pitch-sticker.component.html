@@ -25,18 +25,18 @@
 
     <!-- club: OVERLAY assoluto in alto a sinistra -->
     <div class="absolute left-[5cqw] top-[5cqw] z-20">
-        <img [src]="player()!.club_img" [alt]="player()!.teamname" [title]="player()!.teamname"
+        <img [src]="player()!.club_img || 'images/placeholders/club.svg'" appImgFallback="images/placeholders/club.svg" [alt]="player()!.teamname" [title]="player()!.teamname"
             class="h-[26cqw] w-[26cqw] object-contain sd:h-[22cqw] sd:w-[22cqw]" loading="lazy" />
     </div>
 
     <!-- foto giocatore: ancorata in basso, appiccicata sopra il footer del nome -->
     <div
         class="relative flex min-h-0 flex-1 items-end justify-center overflow-hidden bg-gradient-to-b from-lup-pale to-lup-lightest">
-        <img [src]="player()!.player_img" [alt]="player()!.shortname"
+        <img [src]="player()!.player_img || 'images/placeholders/player.svg'" appImgFallback="images/placeholders/player.svg" [alt]="player()!.shortname"
             class="h-[96%] w-auto object-contain object-bottom" loading="lazy" />
 
         <!-- bandierina nazionalità: in basso a sinistra -->
-        <img [src]="player()!.nation_img" [alt]="player()!.nationname" [title]="player()!.nationname"
+        <img [src]="player()!.nation_img || 'images/placeholders/nation.svg'" appImgFallback="images/placeholders/nation.svg" [alt]="player()!.nationname" [title]="player()!.nationname"
             class="absolute bottom-[3cqw] left-[3cqw] z-10 h-[26cqw] w-[26cqw] object-contain sd:h-[22cqw] sd:w-[22cqw]"
             loading="lazy" />
 

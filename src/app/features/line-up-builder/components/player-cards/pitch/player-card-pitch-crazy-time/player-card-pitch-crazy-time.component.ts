@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { ImgFallbackDirective } from '../../../../../../shared/directives/img-fallback.directive';
 import {
   Component,
   computed,
@@ -19,7 +20,7 @@ import { PlayerSearchPanelContentComponent } from '../../../player-search-panel-
 @Component({
   selector: 'app-player-card-pitch-crazy-time',
   standalone: true,
-  imports: [CommonModule],
+  imports: [ImgFallbackDirective, CommonModule],
   templateUrl: './player-card-pitch-crazy-time.component.html',
   styleUrl: './player-card-pitch-crazy-time.component.css',
 })

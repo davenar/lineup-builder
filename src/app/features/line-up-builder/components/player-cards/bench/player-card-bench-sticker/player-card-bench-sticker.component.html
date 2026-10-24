@@ -4,12 +4,12 @@
   <!-- foto figurina: unico elemento chiaro, richiama la sticker del campo -->
   <div
     class="relative flex h-[6rem] w-[5.4rem] flex-shrink-0 items-end justify-center overflow-hidden bg-gradient-to-b from-lup-pale to-lup-lightest">
-    <img [src]="player()!.player_img" [alt]="player()!.shortname" class="h-[95%] w-auto max-w-none object-contain object-bottom"
+    <img [src]="player()!.player_img || 'images/placeholders/player.svg'" appImgFallback="images/placeholders/player.svg" [alt]="player()!.shortname" class="h-[95%] w-auto max-w-none object-contain object-bottom"
       loading="lazy" />
   </div>
   <!-- bandierina country + overall impilati -->
   <div class="flex flex-shrink-0 flex-col items-center justify-center gap-[0.4rem] px-base">
-    <img [src]="player()!.nation_img" [alt]="player()!.nationname" [title]="player()!.nationname"
+    <img [src]="player()!.nation_img || 'images/placeholders/nation.svg'" appImgFallback="images/placeholders/nation.svg" [alt]="player()!.nationname" [title]="player()!.nationname"
       class="h-[1.8rem] w-[1.8rem] object-contain" loading="lazy" />
     <span
       class="rounded-[0.4rem] bg-lup-accent px-[0.6rem] py-[0.2rem] text-[1.1rem] font-bold leading-none text-white">

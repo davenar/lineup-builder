@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { ImgFallbackDirective } from '../../../../shared/directives/img-fallback.directive';
 import { Component, computed, inject } from '@angular/core';
 import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 import {
@@ -14,7 +15,7 @@ import { PITCH_BACKGROUND_CLASSES } from '../../constants/player-card-style.data
 @Component({
   selector: 'app-line-up-builder',
   standalone: true,
-  imports: [CommonModule, DragDropModule, PlayerCardPitchComponent, PlayerCardBenchComponent],
+  imports: [ImgFallbackDirective, CommonModule, DragDropModule, PlayerCardPitchComponent, PlayerCardBenchComponent],
   templateUrl: './line-up-builder.component.html',
   styleUrl: './line-up-builder.component.css',
 })

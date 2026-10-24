@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { ImgFallbackDirective } from '../../../../../../shared/directives/img-fallback.directive';
 import {
   AfterViewInit,
   Component,
@@ -22,7 +23,7 @@ import { PlayerSearchPanelContentComponent } from '../../../player-search-panel-
 @Component({
   selector: 'app-player-card-pitch-sticker',
   standalone: true,
-  imports: [CommonModule],
+  imports: [ImgFallbackDirective, CommonModule],
   templateUrl: './player-card-pitch-sticker.component.html',
   host: { class: 'block w-full' },
 })
