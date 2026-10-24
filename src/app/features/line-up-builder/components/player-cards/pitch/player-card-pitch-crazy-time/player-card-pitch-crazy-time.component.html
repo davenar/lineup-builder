@@ -43,17 +43,17 @@
 
     <!-- club: gettone scuro in alto a sinistra -->
     <div class="ct-chip absolute left-[5cqw] top-[5cqw] z-20 flex h-[24cqw] w-[24cqw] items-center justify-center rounded-[2cqw] sd:h-[20cqw] sd:w-[20cqw]">
-      <img [src]="player()!.club_img" [alt]="player()!.teamname" [title]="player()!.teamname"
+      <img [src]="player()!.club_img || 'images/placeholders/club.svg'" appImgFallback="images/placeholders/club.svg" [alt]="player()!.teamname" [title]="player()!.teamname"
         class="h-[76%] w-[76%] object-contain" loading="lazy" />
     </div>
 
     <!-- foto giocatore: bandiera enorme come sfondo dietro -->
     <div class="relative flex min-h-0 flex-1 items-end justify-center overflow-hidden">
-      <img [src]="player()!.nation_img" [alt]="player()!.nationname" aria-hidden="true"
+      <img [src]="player()!.nation_img || 'images/placeholders/nation.svg'" appImgFallback="images/placeholders/nation.svg" [alt]="player()!.nationname" aria-hidden="true"
         class="ct-flag-bg absolute inset-0 h-full w-full object-cover" loading="lazy" />
       <div class="ct-rays absolute inset-0" aria-hidden="true"></div>
 
-      <img [src]="player()!.player_img" [alt]="player()!.shortname"
+      <img [src]="player()!.player_img || 'images/placeholders/player.svg'" appImgFallback="images/placeholders/player.svg" [alt]="player()!.shortname"
         class="relative z-10 h-[96%] w-auto object-contain object-bottom drop-shadow-[0_0_8px_rgba(0,0,0,0.6)]"
         loading="lazy" />
     </div>

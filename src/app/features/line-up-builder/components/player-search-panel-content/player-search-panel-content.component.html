@@ -45,7 +45,7 @@
             (click)="onSelectPlayer(result)"
           >
             <img
-              [src]="result.pimg"
+              [src]="result.pimg || 'images/placeholders/player.svg'" appImgFallback="images/placeholders/player.svg"
               [alt]="result.fn"
               class="h-[4.4rem] w-[4.4rem] flex-shrink-0 rounded-full bg-lup-mid-dark object-cover ring-1 ring-lup-soft/20"
               loading="lazy"
@@ -62,7 +62,7 @@
               </span>
             </div>
             <img
-              [src]="result.nimg"
+              [src]="result.nimg || 'images/placeholders/nation.svg'" appImgFallback="images/placeholders/nation.svg"
               [alt]="''"
               class="h-[1.6rem] w-[2.4rem] flex-shrink-0 rounded-[0.2rem] object-cover"
               loading="lazy"

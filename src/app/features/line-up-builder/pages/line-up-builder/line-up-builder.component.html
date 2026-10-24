@@ -43,7 +43,7 @@
           <div *cdkDragPreview
             class="flex w-[9rem] flex-col items-center overflow-hidden rounded-[0.8rem] border border-lup-soft/40 bg-bg-elevated shadow-[0_8px_24px_rgba(0,0,0,0.6)]">
             <div class="relative flex h-[9rem] w-full items-end justify-center overflow-hidden bg-gradient-to-b from-lup-pale to-lup-lightest">
-              <img [src]="pitchPlayer(slot.cellIndex)?.player_img" alt=""
+              <img [src]="pitchPlayer(slot.cellIndex)?.player_img || 'images/placeholders/player.svg'" appImgFallback="images/placeholders/player.svg" alt=""
                 class="h-[105%] w-auto object-contain object-bottom" />
               <span class="absolute right-[0.4rem] top-[0.4rem] rounded-[0.4rem] bg-lup-darkest px-[0.5rem] py-[0.2rem] text-[1.2rem] font-bold leading-none text-white">
                 {{ pitchPlayer(slot.cellIndex)?.overallrating }}
@@ -78,7 +78,7 @@
         <div *cdkDragPreview
           class="flex w-[9rem] flex-col items-center overflow-hidden rounded-[0.8rem] border border-lup-soft/40 bg-bg-elevated shadow-[0_8px_24px_rgba(0,0,0,0.6)]">
           <div class="relative flex h-[9rem] w-full items-end justify-center overflow-hidden bg-gradient-to-b from-lup-pale to-lup-lightest">
-            <img [src]="benchPlayer(benchIndex)?.player_img" alt=""
+            <img [src]="benchPlayer(benchIndex)?.player_img || 'images/placeholders/player.svg'" appImgFallback="images/placeholders/player.svg" alt=""
               class="h-[105%] w-auto object-contain object-bottom" />
             <span class="absolute right-[0.4rem] top-[0.4rem] rounded-[0.4rem] bg-lup-darkest px-[0.5rem] py-[0.2rem] text-[1.2rem] font-bold leading-none text-white">
               {{ benchPlayer(benchIndex)?.overallrating }}

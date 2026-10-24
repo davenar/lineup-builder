@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { ImgFallbackDirective } from '../../../../shared/directives/img-fallback.directive';
 import {
   AfterViewInit,
   Component,
@@ -21,7 +22,7 @@ import { PlayerService } from '../../services/player.service';
 @Component({
   selector: 'app-player-search-panel-content',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [ImgFallbackDirective, CommonModule, ReactiveFormsModule],
   templateUrl: './player-search-panel-content.component.html',
 })
 export class PlayerSearchPanelContentComponent implements OnInit, AfterViewInit, OnDestroy {
