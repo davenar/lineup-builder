@@ -20,7 +20,7 @@ export class PlayerService {
    */
   searchPlayers(searchTerm: string, options?: HttpOptions): Observable<SearchPlayerResponse[]> {
     const timestamp = Date.now(); // Cache-buster timestamp
-    const year = '26';
+    const year = '27';
     const version = '1';
     const url = `${this.baseUrl}/search?year=${year}&v=${version}&term=${encodeURIComponent(searchTerm)}&_=${timestamp}`;
     return this.httpClient.get<SearchPlayerResponse[]>(url, options);
